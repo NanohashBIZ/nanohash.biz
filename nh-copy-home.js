@@ -52,8 +52,8 @@ window.NH_COPY = {
     'pdf.download': 'Download free',
 
     'approach.label': 'Our promise',
-    'approach.title': 'We care about the details that matter',
-    'approach.intro': 'We believe good software should be easy to use, transparent, safe and good value, without making you pay for things you do not need.',
+    'approach.title': 'Every detail that matters, taken care of',
+    'approach.intro': 'Good software should be easy to use, transparent, safe and good value, without paying for what you do not need.',
     'approach.1.title': 'Clear at every step',
     'approach.1.text': 'Every tool tells you what it will do and why, and you always confirm it yourself.',
     'approach.2.title': 'No monthly fees',
