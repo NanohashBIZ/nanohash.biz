@@ -8,7 +8,7 @@ window.NH_COPY = {
     'nav.label': 'Main menu',
     'nav.products': 'Products',
     'nav.approach': 'Our promise',
-    'nav.about': 'About',
+    'nav.about': 'Why NanoHash',
     'nav.contact': 'Contact',
 
     'hero.eyebrow': 'Windows software',
@@ -61,7 +61,7 @@ window.NH_COPY = {
     'approach.3.title': 'Thai that never breaks',
     'approach.3.text': 'No floating vowels, no broken fonts, and Thai search that finds what you type.',
 
-    'about.label': 'About',
+    'about.label': 'Why NanoHash',
     'about.title': 'Nano by name.<br>Full-strength by design.',
     'about.text': 'NanoHash makes small, light Windows apps that come as a single file. Open them right away with no installer and no account, and they update themselves from inside the app.',
 
