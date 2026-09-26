@@ -12,7 +12,7 @@ window.NH_COPY = {
     'nav.contact': 'Contact',
 
     'hero.eyebrow': 'Windows software',
-    'hero.title': 'Simpler, faster Windows work, all in one place.',
+    'hero.title': "We're users too, so we get you.",
     'hero.lead': 'We build Windows software with one aim: tools that work in a straightforward way, stay safe, hide nothing and always keep your data on your PC, so your everyday work runs as smoothly as possible.',
     'hero.cta': 'See all tools',
     'hero.trial': 'Try it free',
@@ -52,7 +52,7 @@ window.NH_COPY = {
     'pdf.download': 'Download free',
 
     'approach.label': 'Our approach',
-    'approach.title': "We're users too, so we get it",
+    'approach.title': 'What we hold to in every app',
     'approach.intro': 'We build the software we would want to use ourselves: transparent, safe and never overpriced.',
     'approach.1.title': 'Clear from the first look',
     'approach.1.text': 'You stay fully in control, with an explanation for every tool.',
