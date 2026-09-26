@@ -62,17 +62,17 @@ window.NH_COPY = {
     'approach.3.text': 'No floating vowels, no broken fonts, and Thai search that finds what you type.',
 
     'about.label': 'About',
-    'about.title': 'A software company for Windows',
-    'about.text': 'NanoHash builds desktop software for Windows. We focus on a small number of products and keep improving them, with updates delivered from inside each app.',
+    'about.title': 'Nano by name.<br>Full-strength by design.',
+    'about.text': 'NanoHash makes small, light Windows apps that come as a single file. Open them right away with no installer and no account, and they update themselves from inside the app.',
 
-    'about.k1': 'Free trial',
-    'about.v1': '30 days',
-    'about.k2': 'Products',
-    'about.k3': 'Platform',
-    'about.k4': 'Languages',
-    'about.v4': 'Thai · English',
-    'about.k5': 'Updates',
-    'about.v5': 'Delivered inside each app',
+
+    'about.s1': 'Single .exe file, nothing to install',
+    'about.s2u': 'THB/month',
+    'about.s2': 'No subscription fees',
+    'about.s3u': 'days',
+    'about.s3': 'Free trial with every feature',
+    'about.s4u': 'languages',
+    'about.s4': 'Thai and English, switchable in the app',
 
     'contact.label': 'Contact',
     'contact.title': 'Questions, feedback or licenses for your team?',

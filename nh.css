@@ -175,6 +175,17 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-chip--tidy i { background: var(--tidy); }
 .nh-chip--pdf i { background: var(--lime); }
 
+.nh-hl { position: relative; z-index: 0; white-space: nowrap; }
+.nh-hl::after { content: ""; position: absolute; z-index: -1; left: -4px; right: -4px; bottom: .08em; height: .38em; border-radius: 6px; background: var(--lime); transform: rotate(-1.5deg); }
+.nh-about-products { margin-top: 28px; }
+.nh-chip--light { background: var(--alt); border: 1px solid var(--line); color: var(--ink); }
+.nh-chip--light:hover { background: #fff; border-color: #c9d2e3; }
+.nh-stats .nh-tile { min-height: 168px; justify-content: space-between; }
+.nh-stat { display: flex; align-items: baseline; gap: 8px; font-size: clamp(56px, 6vw, 80px) !important; font-weight: 800; line-height: 1 !important; letter-spacing: -.04em !important; font-variant-numeric: tabular-nums; }
+.nh-stat small { font-size: 18px; font-weight: 700; letter-spacing: 0; }
+.nh-stats .nh-tile-k { font-size: 15px; line-height: 1.45; }
+.nh-tile--ink .nh-stat { color: var(--lime); }
+.nh-tile--ink .nh-stat small { color: #fff; }
 /* ---------- Contact band ---------- */
 .nh-band#contact { position: relative; overflow: hidden; text-align: left; }
 .nh-band#contact::before, .nh-band#contact::after { content: ""; position: absolute; border-radius: 50%; filter: blur(10px); pointer-events: none; }
@@ -309,6 +320,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nh-about-text { font-size: 17px; }
   .nh-tile { min-height: 112px; padding: 20px; border-radius: 20px; }
   .nh-tile strong { font-size: 19px; }
+  .nh-stats .nh-tile { min-height: 136px; }
+  .nh-stat { font-size: 52px !important; }
   .nh-bento { gap: 10px; }
   .nh-contact-card { padding: 26px; border-radius: 22px; }
   .nh-chip { font-size: 16px; }
