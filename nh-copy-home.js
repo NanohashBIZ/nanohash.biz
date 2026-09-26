@@ -59,14 +59,14 @@ window.NH_COPY = {
     'approach.2.title': 'No monthly fees',
     'approach.2.text': 'Try every feature free for 30 days, then activate with an offline License Key. No account needed.',
     'approach.3.title': 'Thai that never breaks',
-    'approach.3.text': 'Made in Thailand: no floating vowels, no broken fonts, and Thai search that finds what you type.',
+    'approach.3.text': 'No floating vowels, no broken fonts, and Thai search that finds what you type.',
 
     'about.label': 'About',
-    'about.title': 'A software company in Bangkok',
+    'about.title': 'A software company for Windows',
     'about.text': 'NanoHash builds desktop software for Windows. We focus on a small number of products and keep improving them, with updates delivered from inside each app.',
 
-    'about.k1': 'Office',
-    'about.v1': 'Bangkok, Thailand',
+    'about.k1': 'Free trial',
+    'about.v1': '30 days',
     'about.k2': 'Products',
     'about.k3': 'Platform',
     'about.k4': 'Languages',
@@ -85,7 +85,6 @@ window.NH_COPY = {
 
     'footer.nav': 'Footer',
     'footer.contact': 'Contact',
-    'footer.copy': '© 2026 NanoHash. All rights reserved.',
-    'footer.location': 'Bangkok, Thailand'
+    'footer.copy': '© 2026 NanoHash. All rights reserved.'
   }
 };

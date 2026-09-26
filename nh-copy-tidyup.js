@@ -91,7 +91,6 @@ window.NH_COPY = {
 
     'footer.nav': 'Footer',
     'footer.contact': 'Contact',
-    'footer.copy': '© 2026 NanoHash. All rights reserved.',
-    'footer.location': 'Bangkok, Thailand'
+    'footer.copy': '© 2026 NanoHash. All rights reserved.'
   }
 };
