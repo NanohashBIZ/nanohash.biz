@@ -78,7 +78,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-header { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .92); border-bottom: 1px solid var(--line); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); }
 .nh-header .nh-wrap { display: flex; align-items: center; gap: 32px; height: 72px; }
 .nh-brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-size: 18px; font-weight: 700; letter-spacing: -.01em; text-decoration: none; }
-.nh-brand img { width: 32px; height: 32px; }
+.nh-brand img { width: 36px; height: 36px; }
 .nh-brand-product { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); font-size: 18px; font-weight: 700; white-space: nowrap; }
 .nh-brand-product::before { content: ""; width: 1px; height: 22px; background: var(--line); }
 .nh-nav { display: flex; gap: 28px; margin-left: auto; }
