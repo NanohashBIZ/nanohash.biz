@@ -1,0 +1,16 @@
+# internal notes and old versions
+_old/
+docs/
+.claude/
+.vercel/
+
+# old TidyUp PC site (not served on nanohash.biz)
+index.html
+site.css
+site.js
+content.js
+favicon.png
+tidyup-website-src.zip
+tidyup-website-src-index.css
+img/logo.png
+img/problem-cartoon.png
