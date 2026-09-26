@@ -52,7 +52,7 @@ window.NH_COPY = {
     'pdf.download': 'Download free',
 
     'approach.label': 'Our approach',
-    'approach.title': "Software that tells you what it's doing",
+    'approach.title': 'Trust you can see for yourself',
     'approach.intro': "You shouldn't have to guess what an app is doing to your PC. Every app we make follows three rules.",
     'approach.1.title': 'Explain before acting',
     'approach.1.text': 'Every recommendation comes with a plain-language reason, and you see what will change before you confirm.',
