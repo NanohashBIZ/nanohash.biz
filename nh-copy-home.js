@@ -7,7 +7,7 @@ window.NH_COPY = {
     'lang.label': 'Choose language',
     'nav.label': 'Main menu',
     'nav.products': 'Products',
-    'nav.approach': 'Our approach',
+    'nav.approach': 'Our promise',
     'nav.about': 'About',
     'nav.contact': 'Contact',
 
@@ -51,7 +51,7 @@ window.NH_COPY = {
     'pdf.more': 'Learn more',
     'pdf.download': 'Download free',
 
-    'approach.label': 'Our approach',
+    'approach.label': 'Our promise',
     'approach.title': 'We care about the details that matter',
     'approach.intro': 'We believe good software should be easy to use, transparent, safe and good value, without making you pay for things you do not need.',
     'approach.1.title': 'Clear from the first look',
