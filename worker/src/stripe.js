@@ -41,8 +41,9 @@ async function stripe(env, method, path, body) {
   });
   const data = await res.json();
   if (!res.ok) {
-    // log the Stripe error type/code only, never request data or keys
-    console.error('stripe error', res.status, data?.error?.type, data?.error?.code);
+    // log the Stripe error type/code and message with anything key-like masked; never request data or keys
+    const message = String(data?.error?.message || '').replace(/\b(sk|rk|pk|whsec)_[A-Za-z0-9_*]+/g, '$1_***');
+    console.error('stripe error', res.status, data?.error?.type, data?.error?.code, message);
     throw Object.assign(new Error('stripe'), { status: res.status });
   }
   return data;
