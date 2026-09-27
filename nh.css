@@ -329,6 +329,43 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-warn p { margin-top: 16px; color: var(--muted); }
 .nh-warn a { color: var(--ink); font-weight: 600; }
 .nh-meta a { color: var(--ink); font-weight: 600; text-underline-offset: 3px; }
+/* ---------- Install steps pop-up ---------- */
+.nh-ig { position: fixed; inset: 0; z-index: 200; }
+.nh-ig-backdrop { position: absolute; inset: 0; background: rgba(11, 20, 52, .55); opacity: 0; transition: opacity .25s var(--ease); }
+.nh-ig-panel { position: absolute; left: 50%; bottom: 20px; width: min(1160px, calc(100% - 32px)); max-height: calc(100% - 40px); overflow: auto; padding: 22px 24px 18px; border-radius: 24px; background: #fff; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .5); transform: translate(-50%, 40px); opacity: 0; transition: transform .3s var(--ease), opacity .25s var(--ease); }
+.nh-ig.is-open .nh-ig-backdrop { opacity: 1; }
+.nh-ig.is-open .nh-ig-panel { transform: translate(-50%, 0); opacity: 1; }
+.nh-ig-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.nh-ig-kicker { color: var(--muted); font-size: 13px; }
+.nh-ig-head h2 { margin-top: 2px; font-size: 22px; }
+.nh-ig-close { display: grid; flex: none; place-items: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--ink); cursor: pointer; }
+.nh-ig-close:hover { border-color: var(--ink); }
+.nh-ig-close svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.nh-ig-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 16px 0 0; padding: 0; list-style: none; }
+.nh-ig-card { display: flex; flex-direction: column; overflow: hidden; border: 2px solid var(--lime); border-radius: 16px; background: var(--alt); }
+.nh-ig-step { padding: 6px 12px; background: var(--ink); color: var(--lime); font-size: 13px; font-weight: 700; }
+.nh-ig-card h3 { padding: 10px 14px 0; font-size: 16px; }
+.nh-ig-visual { display: grid; place-items: center; min-height: 150px; margin: 10px 14px 0; }
+.nh-ig-text { padding: 10px 14px 14px; color: var(--muted); font-size: 13.5px; line-height: 1.5; }
+.nh-ig-shot { max-width: 100%; border-radius: 8px; box-shadow: none; }
+.nh-ig-shot .nh-ring { border-width: 2px; border-radius: 6px; }
+.nh-ig-chip { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff; box-shadow: 0 10px 24px -14px rgba(19, 35, 90, .4); }
+.nh-ig-chip span { display: grid; min-width: 0; }
+.nh-ig-chip b { overflow: hidden; color: var(--ink); font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.nh-ig-chip small { color: var(--muted); font-size: 12px; }
+.nh-ig-icon { display: grid; place-items: center; gap: 8px; }
+.nh-ig-icon svg { width: 64px; height: 64px; padding: 14px; border-radius: 18px; background: var(--ink); fill: none; stroke: var(--lime); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.nh-ig-icon span { color: var(--ink); font-weight: 700; }
+.nh-ig-more { display: inline-block; margin-top: 14px; color: var(--ink); font-size: 14px; font-weight: 600; text-underline-offset: 3px; }
+@media (max-width: 960px) {
+  .nh-ig-cards { grid-template-columns: repeat(4, minmax(220px, 1fr)); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
+  .nh-ig-card { scroll-snap-align: start; }
+}
+@media (max-width: 600px) {
+  .nh-ig-panel { bottom: 0; width: 100%; max-height: 88%; padding: 18px 16px 14px; border-radius: 22px 22px 0 0; }
+  .nh-ig-cards { grid-template-columns: repeat(4, minmax(78%, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) { .nh-ig-backdrop, .nh-ig-panel { transition: none; } }
 /* ---------- Motion ---------- */
 .nh-js .nh-reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
 .nh-js .nh-reveal.is-in { opacity: 1; transform: none; }

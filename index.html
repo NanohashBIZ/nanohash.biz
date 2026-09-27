@@ -237,6 +237,7 @@
 <script src="nh-copy-home.js"></script>
 <script src="nh-i18n.js"></script>
 <script src="nh-motion.js"></script>
+<script src="nh-install-guide.js"></script>
 <script>document.querySelectorAll('.nh-copy').forEach(function(b){b.addEventListener('click',function(){var live=b.nextElementSibling,done=function(){b.classList.add('is-copied');live.textContent=document.documentElement.lang==='en'?'Email address copied':'คัดลอกอีเมลแล้ว';setTimeout(function(){b.classList.remove('is-copied');live.textContent=''},1800)};if(navigator.clipboard){navigator.clipboard.writeText(b.dataset.copy).then(done,function(){})}})});</script>
 </body>
 </html>
