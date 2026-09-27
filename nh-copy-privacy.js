@@ -12,10 +12,11 @@ window.NH_COPY = {
     'head.label': 'Privacy',
     'head.title': 'Privacy policy',
     'head.lead': 'We collect only what we need, and say plainly what we keep, why, and how to have it deleted.',
-    'head.updated': 'Last updated 27 September 2026',
+    'head.updated': 'Last updated 28 September 2026',
 
     'apps.title': 'Our apps',
-    'apps.1': 'TidyUp PC, NanoPDF and NanoShare run on your computer. Your files, documents and data stay on your device and are not sent to us. License Keys are checked offline on your device.',
+    'apps.1': 'TidyUp PC, NanoPDF and NanoShare run on your computer. Your files, documents and data stay on your device and are not sent to us.',
+    'apps.4': 'When you enter a License Key, the app sends us the key, a hashed machine ID (SHA-256 of the Windows ID and hardware details, which cannot be turned back into the original values), the PC name and the app version. We use this to let one key work on 2 PCs, and the app checks again every 7 days when online. You can see and remove PCs on My account.',
     'apps.2': 'NanoShare sends files directly from one device to another, encrypted all the way. Our server only helps the two devices connect and does not store your files.',
     'apps.3': 'The apps check for new versions on GitHub, where our installers are hosted.',
 
@@ -26,6 +27,7 @@ window.NH_COPY = {
     'data.title': 'What we keep',
     'data.1': 'Your name and email from Google, and the date you last signed in',
     'data.2': 'License Keys issued to your email, including the name shown in the key and its expiry date',
+    'data.7': 'PCs using your License Keys: hashed machine ID, PC name, app version, date first used and date last checked',
     'data.3': 'Support requests you send, such as the transfer reference and your message',
     'data.4': 'Transfer slips you attach, deleted automatically after 90 days',
     'data.5': 'One sign-in cookie that lasts 30 days. We use no advertising or tracking cookies',

@@ -6,6 +6,9 @@
       never: 'ใช้ได้ตลอด', expires: 'ใช้ได้ถึง', expired: 'หมดอายุแล้ว', issued: 'ออกให้เมื่อ',
       copy: 'คัดลอก', copied: 'คัดลอกแล้ว',
       noLicenses: 'ยังไม่มี License Key ในบัญชีนี้ ถ้าสนับสนุนเราแล้ว แจ้งได้ในฟอร์มด้านล่าง',
+      machines: (n, max) => `เครื่องที่ใช้ Key นี้ ${n}/${max}`, noMachines: 'ยังไม่ได้ใส่ Key นี้ในเครื่องไหน',
+      firstUsed: 'เริ่มใช้', lastSeen: 'ใช้ล่าสุด', removeMachine: 'เอาเครื่องนี้ออก',
+      confirmRemove: name => `เอา ${name} ออกจาก Key นี้?\n\nเครื่องนั้นจะกลับเป็นยังไม่ได้เปิดใช้ภายใน 7 วัน และใส่ Key นี้ในเครื่องใหม่แทนได้`,
       noRequests: 'ยังไม่มีคำขอ',
       status: { pending: 'รอตรวจสอบ', approved: 'อนุมัติแล้ว', rejected: 'ไม่อนุมัติ' },
       toStripe: 'กำลังไปหน้าชำระเงิน…', paidOk: 'ชำระเงินเรียบร้อย License Key อยู่ในรายการด้านบนแล้ว ขอบคุณที่สนับสนุนเรา',
@@ -28,6 +31,9 @@
       never: 'Lifetime', expires: 'Valid until', expired: 'Expired', issued: 'Issued',
       copy: 'Copy', copied: 'Copied',
       noLicenses: 'No License Keys in this account yet. If you have supported us, tell us in the form below.',
+      machines: (n, max) => `PCs using this key ${n}/${max}`, noMachines: 'Not entered on any PC yet',
+      firstUsed: 'Since', lastSeen: 'Last seen', removeMachine: 'Remove this PC',
+      confirmRemove: name => `Remove ${name} from this key?\n\nThat PC goes back to not activated within 7 days, and you can enter the key on a new PC instead.`,
       noRequests: 'No requests yet',
       status: { pending: 'Being checked', approved: 'Approved', rejected: 'Not approved' },
       toStripe: 'Opening the payment page…', paidOk: 'Payment complete. Your License Key is in the list above. Thank you for supporting us.',
@@ -97,9 +103,39 @@
         setTimeout(() => { copy.textContent = t().copy; }, 1800);
       });
       actions.append(copy);
-      row.append(head, meta, key, actions);
+      row.append(head, meta, key, actions, machineList(lic));
       list.append(row);
     }
+  }
+
+  function machineList(lic) {
+    const box = el('div', 'nh-acc-machines');
+    const list = lic.machines || [];
+    box.append(el('p', 'nh-acc-machines-title', t().machines(list.length, state.maxMachines || 2)));
+    if (!list.length) box.append(el('p', 'nh-acc-meta', t().noMachines));
+    for (const m of list) {
+      const row = el('div', 'nh-acc-machine');
+      const who = el('div', 'nh-acc-machine-who');
+      who.append(el('strong', null, m.name), el('small', null, `${t().firstUsed} ${date(m.created_at)} · ${t().lastSeen} ${date(m.last_seen)}`));
+      const rm = el('button', 'nh-btn nh-btn--secondary nh-btn--small', t().removeMachine);
+      rm.type = 'button';
+      rm.addEventListener('click', async () => {
+        if (!confirm(t().confirmRemove(m.name))) return;
+        rm.disabled = true;
+        try {
+          await api(`/api/machines/${m.id}/remove`, { method: 'POST' });
+          const lic2 = await api('/api/licenses');
+          state.licenses = lic2.licenses;
+          renderLicenses();
+        } catch (err) {
+          rm.disabled = false;
+          showAlert(err.code);
+        }
+      });
+      row.append(who, rm);
+      box.append(row);
+    }
+    return box;
   }
 
   function selectText(node) {
@@ -149,6 +185,7 @@
       state.admin = me.admin;
       const [lic, req] = await Promise.all([api('/api/licenses'), api('/api/requests')]);
       state.licenses = lic.licenses;
+      state.maxMachines = lic.max_machines;
       state.requests = req.requests;
       for (const id of ['acc-f-name', 'acc-buy-name']) { const f = $(id); if (!f.value) f.value = state.user.name; }
     } catch (e) {

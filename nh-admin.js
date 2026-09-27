@@ -111,6 +111,20 @@
       head.append(el('strong', 'nh-acc-prod', `${PRODUCT[lic.product]} · ${lic.name}`), el('span', `nh-acc-badge is-${lic.status}`, `${STATUS[lic.status]} · ${expText(lic.exp)}`));
       card.append(head, el('p', 'nh-acc-meta', `${lic.email} · ออกเมื่อ ${when(lic.created_at)} โดย ${lic.created_by}${lic.note ? ` · ${lic.note}` : ''}`));
       card.append(el('code', 'nh-acc-key', lic.license_key));
+      const machines = el('div', 'nh-acc-machines');
+      machines.append(el('p', 'nh-acc-machines-title', `เครื่องที่ใช้ ${(lic.machines || []).length}/2`));
+      for (const m of lic.machines || []) {
+        const row = el('div', 'nh-acc-machine');
+        const who = el('div', 'nh-acc-machine-who');
+        who.append(el('strong', null, m.name), el('small', null, `v${m.version || '?'} · เริ่มใช้ ${when(m.created_at)} · ล่าสุด ${when(m.last_seen)}`));
+        row.append(who, button('เอาออก', 'nh-btn--secondary', async () => {
+          if (!confirm(`เอา ${m.name} ออกจาก Key นี้?`)) return;
+          await api(`/api/admin/machines/${m.id}/remove`, { method: 'POST' });
+          await loadKeys($('ad-search').q.value);
+        }));
+        machines.append(row);
+      }
+      card.append(machines);
       const actions = el('div', 'nh-acc-actions');
       actions.append(button('คัดลอก', 'nh-btn--secondary', () => navigator.clipboard.writeText(lic.license_key)));
       if (lic.status === 'active') {

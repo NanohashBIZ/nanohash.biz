@@ -1,4 +1,5 @@
 // What a signed-in user can see and do: their License Keys and support requests.
+import { MAX_MACHINES, machinesFor } from './activation.js';
 import { PRODUCTS } from './license.js';
 import { fail, json, nowIso, str } from './util.js';
 
@@ -14,7 +15,8 @@ export function me(user) {
 export async function myLicenses(user, env) {
   const { results } = await env.DB.prepare(`SELECT id, product, name, email, exp, plan, license_key, created_at FROM licenses
     WHERE email = ?1 AND status = 'active' ORDER BY created_at DESC`).bind(user.email).all();
-  return json({ licenses: results });
+  const machines = await machinesFor(env, results.map(l => l.id));
+  return json({ licenses: results.map(l => ({ ...l, machines: machines[l.id] || [] })), max_machines: MAX_MACHINES });
 }
 
 export async function myRequests(user, env) {

@@ -1,4 +1,5 @@
 // Admin tools: review support requests, issue, import and revoke License Keys.
+import { MAX_MACHINES, machinesFor } from './activation.js';
 import { PRODUCTS, expiryFor, readKey, signKey } from './license.js';
 import { fail, isEmail, json, nowIso, readJson, str } from './util.js';
 
@@ -62,7 +63,8 @@ export async function listLicenses(env, url) {
   const q = str(url.searchParams.get('q'), 120).toLowerCase();
   const { results } = await env.DB.prepare(`SELECT id, product, email, name, exp, plan, license_key, status, note, created_at, created_by
     FROM licenses WHERE ?1 = '' OR email LIKE ?2 OR lower(name) LIKE ?2 ORDER BY created_at DESC LIMIT 200`).bind(q, `%${q}%`).all();
-  return json({ licenses: results });
+  const machines = await machinesFor(env, results.map(l => l.id));
+  return json({ licenses: results.map(l => ({ ...l, machines: machines[l.id] || [] })), max_machines: MAX_MACHINES });
 }
 
 export async function create(req, env, admin) {
@@ -97,6 +99,7 @@ export async function importKeys(req, env, admin) {
 export async function removeLicense(env, id) {
   const res = await env.DB.prepare('DELETE FROM licenses WHERE id = ?1').bind(id).run();
   if (!res.meta.changes) return fail(404, 'not_found');
+  await env.DB.prepare('DELETE FROM activations WHERE license_id = ?1').bind(id).run();
   return json({ ok: true });
 }
 

@@ -24,7 +24,7 @@ window.NH_COPY = {
     'profile.logout': 'Sign out',
 
     'lic.title': 'License Keys',
-    'lic.howto': 'How to use: click Copy, then paste the key into the app’s License Key screen. No internet needed.',
+    'lic.howto': 'How to use: click Copy, then paste the key into the app’s License Key screen. The first time needs internet to activate. One key works on 2 PCs.',
 
     'buy.title': 'Buy a License',
     'buy.text': 'Pay with Stripe and the License Key appears in this account right away, with a receipt by email.',
