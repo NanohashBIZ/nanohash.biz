@@ -20,6 +20,7 @@ window.NH_COPY = {
     'hero.tidyAlt': 'TidyUp PC overview screen with the PC health score',
     'hero.pdfSrc': 'img/nanopdf/read-en-dark.png',
     'hero.pdfAlt': 'NanoPDF in dark mode, annotating a Thai document',
+    'hero.shareAlt': 'NanoShare with a drop area and a box for a receive code',
 
     'facts.label': 'At a glance',
     'facts.1': 'Windows 10 and 11',
