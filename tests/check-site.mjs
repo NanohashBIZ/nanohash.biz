@@ -58,10 +58,11 @@ for (const { html: page, copy } of PAGES) {
   for (const m of html.matchAll(/href="#([^"]*)"/g))
     if (m[1] && !new RegExp(`id="${m[1]}"`).test(html)) fail(page, `anchor #${m[1]} has no target`);
 
-  const text = html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ');
+  // the founder note (data-voice="founder") is the one place allowed to speak as "ผม" and mention AI
+const text = html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<section[^>]*data-voice="founder"[\s\S]*?<\/section>/g, '').replace(/<[^>]+>/g, ' ');
   for (const re of BANNED) {
     if (re.test(text)) fail(page, `banned word ${re} in page`);
-    if (Object.values(en).some(v => re.test(v))) fail(page, `banned word ${re} in ${copy}`);
+    if (Object.entries(en).some(([k, v]) => !k.startsWith('founder.') && re.test(v))) fail(page, `banned word ${re} in ${copy}`);
   }
 
   if (!/<html lang="th"/.test(html)) fail(page, '<html lang="th"> missing');

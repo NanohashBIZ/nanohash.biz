@@ -74,6 +74,16 @@ window.NH_COPY = {
     'about.s4u': 'languages',
     'about.s4': 'Thai and English, switchable in the app',
 
+    'founder.alt': "A desk at night with a TidyUp PC planning board on the wall and an AI assistant writing and testing code on the screens",
+    'founder.caption': "Where TidyUp PC and NanoPDF were made",
+    'founder.label': "From the founder",
+    'founder.title': "You don't have to be ready to start building",
+    'founder.p1': "I started NanoHash with problems I ran into every day: a PC that kept getting slower, and Thai PDF documents with vowels floating out of place. I had no big team and no funding, just one computer, curiosity, and AI as my assistant.",
+    'founder.p2': "AI does not think for me, but it lets one person try, fail and try again many times faster. I still choose what to build, decide what is good enough, and test every release before it reaches you.",
+    'founder.quote': "Start with a small problem you face yourself, then build something that really works.",
+    'founder.p3': "If you are a student or a young person with an idea in your head, every tool you need is already in front of you. You do not have to be good at everything or wait until you feel ready. Start today, and make it a little better every day.",
+    'founder.sign': "Founder, NanoHash",
+
     'contact.label': 'Contact',
     'contact.title': 'Questions, feedback or licenses for your team?',
     'contact.t1': 'Questions about our products',

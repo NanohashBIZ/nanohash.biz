@@ -187,6 +187,19 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-stats .nh-tile-k { font-size: 15px; line-height: 1.45; }
 .nh-tile--ink .nh-stat { color: var(--lime); }
 .nh-tile--ink .nh-stat small { color: #fff; }
+/* ---------- Founder note ---------- */
+.nh-founder { background: var(--alt); }
+.nh-founder-grid { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 72px; align-items: center; }
+.nh-founder-photo { position: relative; isolation: isolate; margin: 0; }
+.nh-founder-photo img { width: 100%; border-radius: 24px; box-shadow: 0 30px 60px -28px rgba(19, 35, 90, .55); }
+.nh-founder-photo::before { content: ""; position: absolute; z-index: -1; inset: 24px -18px -18px 24px; border-radius: 28px; background: var(--lime); }
+.nh-founder-photo figcaption { margin-top: 44px; color: var(--muted); font-size: 14px; }
+.nh-founder-letter h2 { margin-top: 16px; }
+.nh-founder-letter > p { margin-top: 18px; color: var(--text); font-size: 18px; }
+.nh-founder-quote { margin: 28px 0 8px; padding: 6px 0 6px 22px; border-left: 4px solid var(--lime); color: var(--ink); font-size: clamp(22px, 2.3vw, 28px); font-weight: 700; line-height: 1.4; }
+:lang(th) .nh-founder-quote { line-height: 1.55; }
+.nh-founder-sign { display: flex; align-items: center; gap: 12px; margin-top: 28px !important; color: var(--ink) !important; font-weight: 700; }
+.nh-founder-sign img { width: 36px; height: 36px; }
 /* ---------- Contact band ---------- */
 .nh-band#contact { position: relative; overflow: hidden; text-align: left; }
 .nh-band#contact::before, .nh-band#contact::after { content: ""; position: absolute; border-radius: 50%; filter: blur(10px); pointer-events: none; }
@@ -336,7 +349,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 @media (max-width: 960px) {
   .nh-section { padding: 88px 0; }
-  .nh-hero .nh-wrap, .nh-products, .nh-principles, .nh-about, .nh-contact, .nh-split, .nh-cards { grid-template-columns: minmax(0, 1fr); }
+  .nh-hero .nh-wrap, .nh-products, .nh-principles, .nh-about, .nh-contact, .nh-founder-grid, .nh-split, .nh-cards { grid-template-columns: minmax(0, 1fr); }
   .nh-hero { padding-top: 64px; }
   .nh-hero .nh-wrap { gap: 56px; }
   .nh-hero-shots { max-width: 640px; }
@@ -371,6 +384,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nh-dl-cards { grid-template-columns: minmax(0, 1fr); }
   .nh-new-cards { grid-template-columns: minmax(0, 1fr); margin-top: 64px; }
   .nh-new-card { padding: 26px 22px; }
+  .nh-founder-grid { gap: 48px; }
+  .nh-founder-letter > p { font-size: 17px; }
+  .nh-founder-photo::before { inset: 16px -10px -10px 16px; }
   .nh-warn { padding: 22px 20px; }
   .nh-about-text { font-size: 17px; }
   .nh-tile { min-height: 112px; padding: 20px; border-radius: 20px; }
