@@ -84,6 +84,7 @@ window.NH_COPY = {
     'contact.copy': 'Copy',
 
     'footer.nav': 'Footer',
+    'footer.install': 'Install guide',
     'footer.contact': 'Contact',
     'footer.copy': '© 2026 NanoHash. All rights reserved.'
   }

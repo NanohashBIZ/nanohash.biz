@@ -9,6 +9,7 @@ const PAGES = [
   { html: 'nanohash.html', copy: 'nh-copy-home.js' },
   { html: 'nanopdf.html', copy: 'nh-copy-nanopdf.js' },
   { html: 'tidyup.html', copy: 'nh-copy-tidyup.js' },
+  { html: 'install.html', copy: 'nh-copy-install.js' },
 ];
 const BANNED = [/ผม/, /\bsolo\b/i, /\bAI\b/];
 const REDIRECTS = new Set(existsSync(join(ROOT, '_redirects'))

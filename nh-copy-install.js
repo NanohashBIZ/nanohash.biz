@@ -1,0 +1,65 @@
+// English copy for install.html. Thai copy lives in the HTML.
+window.NH_COPY = {
+  en: {
+    'meta.title': 'Download and install — NanoHash',
+    'meta.description': 'How to download and install TidyUp PC and NanoPDF, why Windows shows a SmartScreen warning, and how to check the files yourself before opening them.',
+    'skip': 'Skip to content',
+    'lang.label': 'Choose language',
+    'brand.page': 'Install guide',
+    'nav.label': 'Install guide menu',
+    'nav.download': 'Download',
+    'nav.why': 'Why the warning',
+    'nav.steps': 'Steps',
+    'nav.verify': 'Check the file',
+
+    'hero.eyebrow': 'Install with confidence',
+    'hero.title': 'Download and install in two minutes',
+    'hero.lead': 'The first time you open an installer, Windows may show a red "Windows protected your PC" screen. This is normal for new programs from developers Microsoft does not know yet. This page explains why it happens, how to continue, and how to check the file yourself.',
+    'dl.tidy.text': 'PC care for Windows. Installs on your PC and can be removed from Settings > Apps. Windows asks for administrator permission during setup.',
+    'dl.tidy.cta': 'Download TidyUpSetup.exe',
+    'dl.pdf.text': 'PDF app. Installs for the current user without administrator rights and can be removed from Settings > Apps.',
+    'dl.pdf.cta': 'Download NanoPDF-Setup.exe',
+
+    'why.label': 'Why the warning',
+    'why.title': 'This warning does not mean a virus was found',
+    'why.intro': 'SmartScreen warns because it does not know the file yet, not because it found anything harmful.',
+    'why.1.title': 'It is based on popularity',
+    'why.1.text': 'SmartScreen rates files by how many people have downloaded and run them, so newly released files get a warning first even when nothing is wrong.',
+    'why.2.title': 'Why "Unknown publisher"',
+    'why.2.text': 'Our files are signed with NanoHash’s own certificate, which is not yet issued by an authority Windows knows, so Windows cannot show the publisher name yet.',
+    'why.3.title': 'A real threat looks different',
+    'why.3.text': 'When Microsoft Defender finds a real threat it says a threat was found and removes or quarantines the file right away, with no Run anyway button.',
+
+    'steps.label': 'Steps',
+    'steps.title': 'Open it the first time in two steps',
+    'steps.intro': 'You only need to do this once. After that the app opens normally.',
+    'steps.1.title': 'Click "More info"',
+    'steps.1.text': 'On the red "Windows protected your PC" screen, click More info below the warning. Do not click Don’t run yet.',
+    'steps.1.alt': 'The Windows protected your PC screen with the More info link',
+    'steps.2.title': 'Check the file name, then click "Run anyway"',
+    'steps.2.text': 'Make sure the App line says TidyUpSetup.exe or NanoPDF-Setup.exe, matching the file you downloaded here, then click Run anyway. For TidyUp PC, Windows then asks for administrator permission; click Yes.',
+    'steps.2.alt': 'The same screen after More info, showing the file name TidyUpSetup.exe and the Run anyway button',
+
+    'verify.label': 'Check the file',
+    'verify.title': 'Want to be sure? Check every file yourself',
+    'verify.intro': 'You do not have to take our word for it. Tools already built into Windows let you check before you open anything.',
+    'verify.1.title': 'Scan with Microsoft Defender',
+    'verify.1.text': 'Right-click the file in your Downloads folder and choose Scan with Microsoft Defender (on Windows 11 it is under Show more options).',
+    'verify.2.title': 'Compare the file fingerprint (SHA-256)',
+    'verify.2.text': 'Open PowerShell and run this command, then compare the result with the sha256 value of the same file on the Releases page. If they match, it is exactly the file we published.',
+    'verify.3.title': 'Scan online as well',
+    'verify.3.text': 'Upload the file to VirusTotal, which checks it with dozens of antivirus engines at once.',
+
+    'warn.title': 'When not to click Run anyway',
+    'warn.1': 'The file did not come from this page or from NanohashBIZ on GitHub',
+    'warn.2': 'The App line does not say TidyUpSetup.exe or NanoPDF-Setup.exe',
+    'warn.3': 'The SHA-256 value does not match the Releases page',
+    'warn.4': 'Microsoft Defender or your antivirus reports a threat',
+    'warn.contact': 'Not sure about something? Ask us at',
+
+    'footer.nav': 'Footer',
+    'footer.install': 'Install guide',
+    'footer.contact': 'Contact',
+    'footer.copy': '© 2026 NanoHash. All rights reserved.'
+  }
+};

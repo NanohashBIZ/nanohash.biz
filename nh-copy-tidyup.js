@@ -18,6 +18,7 @@ window.NH_COPY = {
     'hero.cta': 'Download free trial',
     'hero.more': 'See features',
     'hero.meta': 'Windows 10/11 64-bit · Easy install, uninstall from Settings · Every feature for 30 days',
+    'hero.install': 'Windows may warn the first time you open it. See how to install →',
     'hero.src': 'img/ui-home-en.jpg',
     'hero.alt': 'TidyUp PC overview with a PC health score of 100, free space, speed and security status',
 
@@ -90,6 +91,7 @@ window.NH_COPY = {
     'faq.6.a': 'Download TidyUpSetup.exe and double-click it to install. You can remove it from Settings > Apps. Prefer not to install? Get TidyUpPC.exe from the Releases page and run it directly.',
 
     'footer.nav': 'Footer',
+    'footer.install': 'Install guide',
     'footer.contact': 'Contact',
     'footer.copy': '© 2026 NanoHash. All rights reserved.'
   }

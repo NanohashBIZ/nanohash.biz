@@ -18,6 +18,7 @@ window.NH_COPY = {
     'hero.cta': 'Download free trial',
     'hero.more': 'See features',
     'hero.meta': 'Windows 10/11 64-bit · Installs without admin rights · Every feature for 30 days',
+    'hero.install': 'Windows may warn the first time you open it. See how to install →',
     'hero.src': 'img/nanopdf/read-en-dark.png',
     'hero.alt': 'NanoPDF in dark mode with a Thai report open and the annotation tools showing',
 
@@ -85,6 +86,7 @@ window.NH_COPY = {
     'faq.4.a': 'Windows 10 and Windows 11, 64-bit.',
 
     'footer.nav': 'Footer',
+    'footer.install': 'Install guide',
     'footer.contact': 'Contact',
     'footer.copy': '© 2026 NanoHash. All rights reserved.'
   }

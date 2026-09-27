@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){var d=document.documentElement,l=null;d.classList.add('nh-js');try{l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('nanohash-lang')}catch(e){}if(l==='en'){d.lang='en';d.classList.add('nh-i18n-pending');setTimeout(function(){d.classList.remove('nh-i18n-pending')},1500)}})();</script>
+<title data-i18n="meta.title">ดาวน์โหลดและติดตั้ง — NanoHash</title>
+<meta name="description" data-i18n-attr="content:meta.description" content="วิธีดาวน์โหลดและติดตั้ง TidyUp PC และ NanoPDF ทำไม Windows ถึงแสดงคำเตือน SmartScreen และวิธีตรวจไฟล์ด้วยตัวเองก่อนเปิดใช้">
+<meta name="theme-color" content="#13235a">
+<link rel="canonical" href="https://nanohash.biz/install">
+<meta property="og:url" content="https://nanohash.biz/install">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NanoHash">
+<meta property="og:title" content="ดาวน์โหลดและติดตั้ง — NanoHash">
+<meta property="og:description" content="ติดตั้ง TidyUp PC และ NanoPDF อย่างมั่นใจ พร้อมวิธีตรวจไฟล์ด้วยตัวเอง">
+<meta property="og:image" content="https://nanohash.biz/img/install/smartscreen-2.png">
+<link rel="icon" type="image/png" href="img/favicon-64.png">
+<link rel="apple-touch-icon" href="img/nh-logo-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="nh.css">
+</head>
+<body>
+<a class="nh-skip" href="#main" data-i18n="skip">ข้ามไปเนื้อหาหลัก</a>
+
+<header class="nh-header nh-header--product">
+  <div class="nh-wrap">
+    <a class="nh-brand" href="nanohash.html"><img src="img/nh-logo.png" alt="" width="36" height="36"><span class="nh-brand-name">NanoHash</span></a>
+    <span class="nh-brand-product" data-i18n="brand.page">วิธีติดตั้ง</span>
+    <nav class="nh-nav" aria-label="เมนูหน้าวิธีติดตั้ง" data-i18n-attr="aria-label:nav.label">
+      <a href="#download" data-i18n="nav.download">ดาวน์โหลด</a>
+      <a href="#why" data-i18n="nav.why">ทำไมถึงเตือน</a>
+      <a href="#steps" data-i18n="nav.steps">ขั้นตอน</a>
+      <a href="#verify" data-i18n="nav.verify">ตรวจไฟล์</a>
+    </nav>
+    <div class="nh-header-tools">
+      <div class="nh-lang" role="group" aria-label="เลือกภาษา" data-i18n-attr="aria-label:lang.label">
+        <button type="button" data-lang="th" aria-pressed="true">TH</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="nh-phero nh-install-hero">
+    <div class="nh-wrap">
+      <span class="nh-label" data-i18n="hero.eyebrow">ติดตั้งอย่างมั่นใจ</span>
+      <h1 data-i18n-html="hero.title"><span class="nh-line">ดาวน์โหลดและติดตั้ง</span> <span class="nh-line">ใน 2 นาที</span></h1>
+      <p class="nh-lead" data-i18n="hero.lead">ตอนเปิดตัวติดตั้งครั้งแรก Windows อาจแสดงหน้าจอสีแดง "Windows protected your PC" ซึ่งเป็นเรื่องปกติของโปรแกรมใหม่จากผู้พัฒนาที่ Microsoft ยังไม่รู้จัก หน้านี้อธิบายว่าเกิดจากอะไร เปิดใช้อย่างไร และตรวจไฟล์ด้วยตัวเองได้อย่างไร</p>
+    </div>
+    <div class="nh-wrap nh-dl-cards" id="download">
+      <article class="nh-dl-card">
+        <div class="nh-dl-head"><span class="nh-dl-dot nh-dl-dot--tidy"></span><h2>TidyUp PC</h2></div>
+        <p data-i18n="dl.tidy.text">ดูแลคอม Windows ติดตั้งลงเครื่องและถอนออกได้จาก Settings > Apps ตอนติดตั้ง Windows จะถามสิทธิ์ผู้ดูแล</p>
+        <a class="nh-btn nh-btn--primary" href="/download/TidyUpSetup.exe"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v10m-4-4 4 4 4-4M4 16.5h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="dl.tidy.cta">ดาวน์โหลด TidyUpSetup.exe</span></a>
+      </article>
+      <article class="nh-dl-card">
+        <div class="nh-dl-head"><span class="nh-dl-dot nh-dl-dot--pdf"></span><h2>NanoPDF</h2></div>
+        <p data-i18n="dl.pdf.text">โปรแกรม PDF ติดตั้งให้ผู้ใช้คนปัจจุบันโดยไม่ต้องใช้สิทธิ์ผู้ดูแล และถอนออกได้จาก Settings > Apps</p>
+        <a class="nh-btn nh-btn--primary" href="/download/NanoPDF-Setup.exe"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v10m-4-4 4 4 4-4M4 16.5h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="dl.pdf.cta">ดาวน์โหลด NanoPDF-Setup.exe</span></a>
+      </article>
+    </div>
+  </section>
+
+  <section class="nh-section nh-section--alt" id="why">
+    <div class="nh-wrap">
+      <div class="nh-section-head nh-reveal">
+        <span class="nh-label" data-i18n="why.label">ทำไมถึงเตือน</span>
+        <h2 data-i18n="why.title">คำเตือนนี้ไม่ได้แปลว่าเจอไวรัส</h2>
+        <p data-i18n="why.intro">SmartScreen เตือนเพราะยังไม่รู้จักไฟล์ ไม่ใช่เพราะพบสิ่งอันตราย</p>
+      </div>
+      <div class="nh-cards">
+        <div class="nh-principle nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></span>
+          <h3 data-i18n="why.1.title">ดูจากความนิยมของไฟล์</h3>
+          <p data-i18n="why.1.text">SmartScreen ให้คะแนนไฟล์จากจำนวนคนที่ดาวน์โหลดและเปิดใช้ ไฟล์ใหม่ที่เพิ่งปล่อยจึงถูกเตือนก่อน แม้จะไม่มีอะไรผิดปกติ</p>
+        </div>
+        <div class="nh-principle nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.5-3 8-7 9.5-4-1.5-7-5-7-9.5V6zM9 12l2 2 4-4"/></svg></span>
+          <h3 data-i18n="why.2.title">ทำไมขึ้น Unknown publisher</h3>
+          <p data-i18n="why.2.text">ไฟล์ของเราเซ็นด้วยใบรับรองของ NanoHash เอง ซึ่งยังไม่ได้ออกโดยหน่วยงานที่ Windows รู้จัก Windows จึงยังแสดงชื่อผู้พัฒนาไม่ได้</p>
+        </div>
+        <div class="nh-principle nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8.5 11l2 2 3.5-4"/></svg></span>
+          <h3 data-i18n="why.3.title">ถ้าเจอภัยจริง จะต่างออกไป</h3>
+          <p data-i18n="why.3.text">เมื่อ Microsoft Defender พบภัยจริง จะขึ้นว่าพบภัยคุกคาม และลบหรือกักไฟล์ทันที โดยไม่มีปุ่ม Run anyway ให้กด</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nh-section" id="steps">
+    <div class="nh-wrap">
+      <div class="nh-section-head nh-reveal">
+        <span class="nh-label" data-i18n="steps.label">ขั้นตอน</span>
+        <h2 data-i18n="steps.title">เปิดใช้ครั้งแรกใน 2 ขั้นตอน</h2>
+        <p data-i18n="steps.intro">ทำแค่ครั้งแรกครั้งเดียว ครั้งต่อไปจะเปิดได้ตามปกติ</p>
+      </div>
+      <div class="nh-splits">
+        <div class="nh-split nh-reveal">
+          <div class="nh-split-copy">
+            <span class="nh-num">01</span>
+            <h3 data-i18n="steps.1.title">กด "More info"</h3>
+            <p data-i18n="steps.1.text">เมื่อเห็นหน้าจอสีแดง "Windows protected your PC" ให้กดข้อความ More info ใต้ข้อความเตือน อย่าเพิ่งกด Don't run</p>
+          </div>
+          <div class="nh-shot nh-shot--ring"><img src="img/install/smartscreen-1.png" alt="หน้าจอ Windows protected your PC ที่มีลิงก์ More info" data-i18n-attr="alt:steps.1.alt" width="529" height="490" loading="lazy"><span class="nh-ring" style="left:2.5%;top:22.5%;width:15%;height:7%"></span></div>
+        </div>
+        <div class="nh-split nh-split--reverse nh-reveal">
+          <div class="nh-split-copy">
+            <span class="nh-num">02</span>
+            <h3 data-i18n="steps.2.title">ดูชื่อไฟล์ แล้วกด "Run anyway"</h3>
+            <p data-i18n="steps.2.text">ตรวจว่าช่อง App เป็น TidyUpSetup.exe หรือ NanoPDF-Setup.exe ตรงกับไฟล์ที่ดาวน์โหลดจากหน้านี้ แล้วกด Run anyway สำหรับ TidyUp PC Windows จะถามสิทธิ์ผู้ดูแลต่อ ให้กด Yes</p>
+          </div>
+          <div class="nh-shot nh-shot--ring"><img src="img/install/smartscreen-2.png" alt="หน้าจอเดียวกันหลังกด More info แสดงชื่อไฟล์ TidyUpSetup.exe และปุ่ม Run anyway" data-i18n-attr="alt:steps.2.alt" width="529" height="495" loading="lazy"><span class="nh-ring" style="left:51.5%;top:87.5%;width:21.5%;height:9%"></span><span class="nh-ring nh-ring--soft" style="left:2.5%;top:27%;width:40%;height:6%"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nh-section nh-section--alt" id="verify">
+    <div class="nh-wrap">
+      <div class="nh-section-head nh-reveal">
+        <span class="nh-label" data-i18n="verify.label">ตรวจไฟล์</span>
+        <h2 data-i18n="verify.title">อยากมั่นใจ ตรวจเองได้ทุกไฟล์</h2>
+        <p data-i18n="verify.intro">ไม่ต้องเชื่อคำพูดของเรา ใช้เครื่องมือที่มีอยู่แล้วใน Windows ตรวจได้ก่อนเปิด</p>
+      </div>
+      <div class="nh-cards">
+        <div class="nh-principle nh-reveal">
+          <span class="nh-num">A</span>
+          <h3 data-i18n="verify.1.title">สแกนด้วย Microsoft Defender</h3>
+          <p data-i18n="verify.1.text">คลิกขวาที่ไฟล์ในโฟลเดอร์ Downloads เลือก Scan with Microsoft Defender (บน Windows 11 อยู่ใน Show more options)</p>
+        </div>
+        <div class="nh-principle nh-reveal">
+          <span class="nh-num">B</span>
+          <h3 data-i18n="verify.2.title">เทียบลายนิ้วมือไฟล์ (SHA-256)</h3>
+          <p data-i18n="verify.2.text">เปิด PowerShell แล้วรันคำสั่งนี้ จากนั้นเทียบตัวเลขกับค่า sha256 ของไฟล์เดียวกันในหน้า Releases ถ้าตรงกัน แปลว่าเป็นไฟล์เดียวกับที่เราปล่อย</p>
+          <code class="nh-code">Get-FileHash "$env:USERPROFILE\Downloads\TidyUpSetup.exe"</code>
+          <p class="nh-links"><a href="https://github.com/NanohashBIZ/TidyUP/releases/latest">TidyUp PC Releases ↗</a> · <a href="https://github.com/NanohashBIZ/NanoPDF/releases/latest">NanoPDF Releases ↗</a></p>
+        </div>
+        <div class="nh-principle nh-reveal">
+          <span class="nh-num">C</span>
+          <h3 data-i18n="verify.3.title">สแกนออนไลน์เพิ่มเติม</h3>
+          <p data-i18n="verify.3.text">อัปโหลดไฟล์ไปตรวจที่ VirusTotal ซึ่งสแกนด้วยโปรแกรมป้องกันไวรัสหลายสิบตัวพร้อมกัน</p>
+          <p class="nh-links"><a href="https://www.virustotal.com/gui/home/upload">virustotal.com ↗</a></p>
+        </div>
+      </div>
+
+      <div class="nh-warn nh-reveal">
+        <h3 data-i18n="warn.title">กรณีที่ไม่ควรกด Run anyway</h3>
+        <ul>
+          <li data-i18n="warn.1">ไฟล์ไม่ได้ดาวน์โหลดจากหน้านี้ หรือจาก GitHub ของ NanohashBIZ</li>
+          <li data-i18n="warn.2">ชื่อในช่อง App ไม่ใช่ TidyUpSetup.exe หรือ NanoPDF-Setup.exe</li>
+          <li data-i18n="warn.3">ค่า SHA-256 ไม่ตรงกับในหน้า Releases</li>
+          <li data-i18n="warn.4">Microsoft Defender หรือโปรแกรมป้องกันไวรัสของคุณแจ้งว่าพบภัย</li>
+        </ul>
+        <p><span data-i18n="warn.contact">ไม่แน่ใจตรงไหน ถามเราได้ที่</span> <a href="mailto:support@nanohash.biz">support@nanohash.biz</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="nh-footer">
+  <div class="nh-wrap">
+    <a class="nh-brand" href="nanohash.html"><img src="img/nh-logo.png" alt="" width="36" height="36">NanoHash</a>
+    <nav aria-label="ส่วนท้าย" data-i18n-attr="aria-label:footer.nav">
+      <a href="tidyup.html">TidyUp PC</a>
+      <a href="nanopdf.html">NanoPDF</a>
+      <a href="install.html" data-i18n="footer.install">วิธีติดตั้ง</a>
+      <a href="nanohash.html#contact" data-i18n="footer.contact">ติดต่อ</a>
+    </nav>
+    <div class="nh-footer-meta">
+      <span data-i18n="footer.copy">© 2026 NanoHash สงวนลิขสิทธิ์</span>
+    </div>
+  </div>
+</footer>
+
+<script src="nh-copy-install.js"></script>
+<script src="nh-i18n.js"></script>
+<script src="nh-motion.js"></script>
+</body>
+</html>
