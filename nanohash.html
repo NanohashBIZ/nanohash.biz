@@ -7,6 +7,8 @@
 <title data-i18n="meta.title">NanoHash — ซอฟต์แวร์สำหรับงานประจำวันบน Windows</title>
 <meta name="description" data-i18n-attr="content:meta.description" content="NanoHash พัฒนาโปรแกรมบน Windows สำหรับดูแลเครื่องและจัดการเอกสาร PDF ได้แก่ TidyUp PC และ NanoPDF ใช้งานเข้าใจง่าย ข้อมูลอยู่ในเครื่องคุณ รองรับภาษาไทยและอังกฤษเต็มรูปแบบ">
 <meta name="theme-color" content="#13235a">
+<link rel="canonical" href="https://nanohash.biz/">
+<meta property="og:url" content="https://nanohash.biz/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NanoHash">
 <meta property="og:title" content="NanoHash — ซอฟต์แวร์สำหรับงานประจำวันบน Windows">
@@ -162,15 +164,15 @@
           <span class="nh-tile-k" data-i18n="about.s1">ไฟล์ .exe เดียว ไม่ต้องติดตั้ง</span>
         </div>
         <div class="nh-tile nh-tile--lime">
-          <strong class="nh-stat">0<small data-i18n="about.s2u">บาท/เดือน</small></strong>
+          <strong class="nh-stat">0 <small data-i18n="about.s2u">บาท/เดือน</small></strong>
           <span class="nh-tile-k" data-i18n="about.s2">ไม่มีค่าสมาชิกรายเดือน</span>
         </div>
         <div class="nh-tile nh-tile--soft">
-          <strong class="nh-stat">30<small data-i18n="about.s3u">วัน</small></strong>
+          <strong class="nh-stat">30 <small data-i18n="about.s3u">วัน</small></strong>
           <span class="nh-tile-k" data-i18n="about.s3">ทดลองใช้ฟรีครบทุกฟีเจอร์</span>
         </div>
         <div class="nh-tile">
-          <strong class="nh-stat">2<small data-i18n="about.s4u">ภาษา</small></strong>
+          <strong class="nh-stat">2 <small data-i18n="about.s4u">ภาษา</small></strong>
           <span class="nh-tile-k" data-i18n="about.s4">ไทยและอังกฤษ สลับได้ในโปรแกรม</span>
         </div>
       </div>
@@ -192,7 +194,7 @@
         <a class="nh-contact-email" href="mailto:support@nanohash.biz">support@nanohash.biz</a>
         <div class="nh-contact-actions">
           <a class="nh-btn nh-btn--lime" href="mailto:support@nanohash.biz"><span data-i18n="contact.cta">ส่งอีเมลถึงเรา</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <button class="nh-btn nh-btn--ghost-light nh-copy" type="button" data-copy="support@nanohash.biz"><svg class="nh-copy-i" viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M13 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><svg class="nh-copy-ok" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="contact.copy">คัดลอก</span></button>
+          <button class="nh-btn nh-btn--ghost-light nh-copy" type="button" data-copy="support@nanohash.biz"><svg class="nh-copy-i" viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M13 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><svg class="nh-copy-ok" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="contact.copy">คัดลอก</span></button><span class="nh-sr" aria-live="polite"></span>
         </div>
       </div>
     </div>
@@ -216,6 +218,6 @@
 <script src="nh-copy-home.js"></script>
 <script src="nh-i18n.js"></script>
 <script src="nh-motion.js"></script>
-<script>document.querySelectorAll('.nh-copy').forEach(function(b){b.addEventListener('click',function(){var done=function(){b.classList.add('is-copied');setTimeout(function(){b.classList.remove('is-copied')},1800)};if(navigator.clipboard){navigator.clipboard.writeText(b.dataset.copy).then(done,function(){})}})});</script>
+<script>document.querySelectorAll('.nh-copy').forEach(function(b){b.addEventListener('click',function(){var live=b.nextElementSibling,done=function(){b.classList.add('is-copied');live.textContent=document.documentElement.lang==='en'?'Email address copied':'คัดลอกอีเมลแล้ว';setTimeout(function(){b.classList.remove('is-copied');live.textContent=''},1800)};if(navigator.clipboard){navigator.clipboard.writeText(b.dataset.copy).then(done,function(){})}})});</script>
 </body>
 </html>
