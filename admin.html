@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ผู้ดูแล License — NanoHash</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="img/favicon-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="nh.css">
+</head>
+<body class="nh-page-account nh-page-admin">
+<header class="nh-header">
+  <div class="nh-wrap">
+    <a class="nh-brand" href="/"><img src="img/nh-logo.png" alt="" width="36" height="36"><span class="nh-brand-name">NanoHash</span></a>
+    <span class="nh-brand-product">Admin</span>
+    <div class="nh-header-tools">
+      <a class="nh-btn nh-btn--secondary nh-btn--small" href="account.html">บัญชีของฉัน</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="nh-acc">
+    <div class="nh-wrap">
+      <div class="nh-acc-head">
+        <span class="nh-label">ผู้ดูแล</span>
+        <h1>จัดการ License Key</h1>
+      </div>
+      <p class="nh-acc-alert" id="ad-alert" role="alert" hidden></p>
+      <div class="nh-acc-card nh-acc-loading" id="ad-loading">กำลังโหลด…</div>
+
+      <div class="nh-acc-card nh-acc-signin" id="ad-out" hidden>
+        <h2>เข้าสู่ระบบผู้ดูแล</h2>
+        <p id="ad-out-text">เข้าสู่ระบบด้วยบัญชี Google ของผู้ดูแล</p>
+        <a class="nh-btn nh-btn--primary" href="/api/auth/google?next=/admin">เข้าสู่ระบบด้วย Google</a>
+      </div>
+
+      <div id="ad-in" hidden>
+        <nav class="nh-ad-tabs" role="tablist">
+          <button type="button" role="tab" data-tab="pending" aria-selected="true">คำขอรอตรวจ <b id="ad-count"></b></button>
+          <button type="button" role="tab" data-tab="issue" aria-selected="false">ออก Key ใหม่</button>
+          <button type="button" role="tab" data-tab="keys" aria-selected="false">Key ทั้งหมด</button>
+          <button type="button" role="tab" data-tab="import" aria-selected="false">นำเข้า Key เดิม</button>
+          <button type="button" role="tab" data-tab="history" aria-selected="false">คำขอทั้งหมด</button>
+        </nav>
+
+        <section class="nh-acc-block" data-panel="pending">
+          <h2>คำขอรอตรวจ</h2>
+          <div class="nh-acc-list" id="ad-pending"></div>
+        </section>
+
+        <section class="nh-acc-block" data-panel="issue" hidden>
+          <h2>ออก Key ใหม่</h2>
+          <p class="nh-acc-sub">Key จะขึ้นในบัญชีของอีเมลนี้ทันทีเมื่อเจ้าของเข้าสู่ระบบด้วย Google</p>
+          <form class="nh-acc-form" id="ad-issue">
+            <fieldset class="nh-acc-products">
+              <legend>โปรแกรม</legend>
+              <label><input type="radio" name="product" value="tidyup" checked><span><i class="nh-dl-dot nh-dl-dot--tidy"></i>TidyUp PC</span></label>
+              <label><input type="radio" name="product" value="nanopdf"><span><i class="nh-dl-dot nh-dl-dot--pdf"></i>NanoPDF</span></label>
+            </fieldset>
+            <label class="nh-field"><span>อีเมล Google ของผู้ใช้</span><input type="email" name="email" required maxlength="200"></label>
+            <label class="nh-field"><span>ชื่อที่แสดงใน Key</span><input type="text" name="name" required maxlength="80"></label>
+            <fieldset class="nh-acc-products">
+              <legend>อายุ</legend>
+              <label><input type="radio" name="term" value="1y" checked><span>1 ปี</span></label>
+              <label><input type="radio" name="term" value="never"><span>ตลอดชีพ</span></label>
+            </fieldset>
+            <label class="nh-field"><span>บันทึกภายใน (ไม่บังคับ)</span><input type="text" name="note" maxlength="500"></label>
+            <div class="nh-acc-submit">
+              <button type="submit" class="nh-btn nh-btn--primary">ออก Key</button>
+              <p class="nh-acc-msg" id="ad-issue-msg" aria-live="polite"></p>
+            </div>
+          </form>
+        </section>
+
+        <section class="nh-acc-block" data-panel="keys" hidden>
+          <h2>Key ทั้งหมด</h2>
+          <form class="nh-ad-search" id="ad-search"><input type="search" name="q" placeholder="ค้นหาอีเมลหรือชื่อ" aria-label="ค้นหาอีเมลหรือชื่อ"><button class="nh-btn nh-btn--secondary nh-btn--small" type="submit">ค้นหา</button></form>
+          <div class="nh-acc-list" id="ad-keys"></div>
+        </section>
+
+        <section class="nh-acc-block" data-panel="import" hidden>
+          <h2>นำเข้า Key เดิม</h2>
+          <p class="nh-acc-sub">วาง Key ที่เคยออกด้วยสคริปต์ PowerShell ได้หลายอันพร้อมกัน คั่นด้วยการขึ้นบรรทัดใหม่ ระบบตรวจลายเซ็นทุก Key และผูกกับอีเมลที่อยู่ใน Key</p>
+          <form class="nh-acc-form" id="ad-import">
+            <label class="nh-field"><span>License Key</span><textarea name="keys" rows="6" required spellcheck="false"></textarea></label>
+            <div class="nh-acc-submit">
+              <button type="submit" class="nh-btn nh-btn--primary">นำเข้า</button>
+              <p class="nh-acc-msg" id="ad-import-msg" aria-live="polite"></p>
+            </div>
+          </form>
+        </section>
+
+        <section class="nh-acc-block" data-panel="history" hidden>
+          <h2>คำขอทั้งหมด</h2>
+          <div class="nh-acc-list" id="ad-history"></div>
+        </section>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="nh-admin.js"></script>
+</body>
+</html>

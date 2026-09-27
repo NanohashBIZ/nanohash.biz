@@ -5,6 +5,7 @@ window.NH_COPY = {
     'meta.description': 'How to download and install TidyUp PC, NanoPDF and NanoShare, why Windows shows a SmartScreen warning, and how to check the files yourself before opening them.',
     'skip': 'Skip to content',
     'lang.label': 'Choose language',
+    'nav.account': 'My account',
     'brand.page': 'Install guide',
     'nav.label': 'Install guide menu',
     'nav.download': 'Download',

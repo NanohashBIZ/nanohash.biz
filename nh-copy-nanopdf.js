@@ -5,6 +5,7 @@ window.NH_COPY = {
     'meta.description': "Read, edit, convert, OCR, certify copies, sign and send PDFs on Windows. Full Thai support. Every feature free, no account needed.",
     'skip': 'Skip to content',
     'lang.label': 'Choose language',
+    'nav.account': 'My account',
     'nav.label': 'NanoPDF menu',
     'nav.features': 'Features',
     'nav.thai': 'Thai',

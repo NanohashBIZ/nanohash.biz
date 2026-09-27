@@ -1,0 +1,30 @@
+{
+  // nanohash.biz: static site (built into ./public by build.mjs) plus the account API under /api/.
+  "name": "nanohash",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-25",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "routes": [
+    { "pattern": "nanohash.biz", "custom_domain": true, "zone_id": "8b792a1eebc5fbb1ab906b09ef40b9b9" },
+    { "pattern": "www.nanohash.biz", "custom_domain": true, "zone_id": "8b792a1eebc5fbb1ab906b09ef40b9b9" }
+  ],
+  "d1_databases": [
+    { "binding": "DB", "database_name": "nanohash", "database_id": "d195481e-4ac8-4fbf-a450-05b480d09e10", "migrations_dir": "migrations" }
+  ],
+  "kv_namespaces": [
+    { "binding": "SLIPS", "id": "e83f2522c9d5470c838610564fdaf492" }
+  ],
+  "vars": {
+    "ADMIN_EMAILS": "madee.n34@gmail.com",
+    // OAuth client ID from Google Cloud Console. GOOGLE_CLIENT_SECRET and LICENSE_PRIVATE_JWK are Worker secrets.
+    "GOOGLE_CLIENT_ID": ""
+  },
+  "observability": { "enabled": true }
+}

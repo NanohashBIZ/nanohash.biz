@@ -13,3 +13,10 @@ tidyup-website-src.zip
 tidyup-website-src-index.css
 img/logo.png
 img/problem-cartoon.png
+
+# Worker build output and local state
+worker/public/
+worker/node_modules/
+worker/.wrangler/
+worker/.dev.vars
+worker/.site.tar

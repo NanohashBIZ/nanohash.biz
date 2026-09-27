@@ -37,6 +37,7 @@
     if (url.searchParams.has('lang')) { url.searchParams.set('lang', lang); history.replaceState(null, '', url); }
     api.lang = lang;
     root.classList.remove('nh-i18n-pending');
+    document.dispatchEvent(new CustomEvent('nh:lang', { detail: lang }));
   }
 
   function initial() {

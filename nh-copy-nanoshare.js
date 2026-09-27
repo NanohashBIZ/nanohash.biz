@@ -5,6 +5,7 @@ window.NH_COPY = {
     'meta.description': 'Send files, whole folders, messages and links straight from one device to another. Encrypted end to end, never stored on a server. Free, as a Windows app or in your browser.',
     'skip': 'Skip to content',
     'lang.label': 'Choose language',
+    'nav.account': 'My account',
     'nav.label': 'NanoShare menu',
     'nav.how': 'How it works',
     'nav.features': 'Features',

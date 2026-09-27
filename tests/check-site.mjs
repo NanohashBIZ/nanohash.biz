@@ -11,6 +11,7 @@ const PAGES = [
   { html: 'nanoshare.html', copy: 'nh-copy-nanoshare.js' },
   { html: 'tidyup.html', copy: 'nh-copy-tidyup.js' },
   { html: 'install.html', copy: 'nh-copy-install.js' },
+  { html: 'account.html', copy: 'nh-copy-account.js' },
 ];
 const BANNED = [/ผม/, /\bsolo\b/i, /\bAI\b/];
 const REDIRECTS = new Set(existsSync(join(ROOT, '_redirects'))
@@ -49,6 +50,7 @@ for (const { html: page, copy } of PAGES) {
   for (const ref of refs.filter(isLocal)) {
     const path = ref.split(/[?#]/)[0];
     if (path === '/') { if (!existsSync(join(ROOT, 'index.html'))) fail(page, 'link to / but index.html is missing'); continue; }
+    if (path.startsWith('/api/')) continue; // served by the Worker
     if (path.startsWith('/')) {
       if (!REDIRECTS.has(path)) fail(page, `"${ref}" is not a file or a path in _redirects`);
       continue;

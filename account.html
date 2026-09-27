@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){var d=document.documentElement,l=null;d.classList.add('nh-js');try{l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('nanohash-lang')}catch(e){}if(l==='en'){d.lang='en';d.classList.add('nh-i18n-pending');setTimeout(function(){d.classList.remove('nh-i18n-pending')},1500)}})();</script>
+<title data-i18n="meta.title">บัญชีของฉัน — NanoHash</title>
+<meta name="description" data-i18n-attr="content:meta.description" content="เข้าสู่ระบบด้วย Google เพื่อดูและคัดลอก License Key ของ TidyUp PC และ NanoPDF และแจ้งการสนับสนุน">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#13235a">
+<link rel="canonical" href="https://nanohash.biz/account">
+<link rel="icon" type="image/png" href="img/favicon-64.png">
+<link rel="apple-touch-icon" href="img/nh-logo-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="nh.css">
+</head>
+<body class="nh-page-account">
+<a class="nh-skip" href="#main" data-i18n="skip">ข้ามไปเนื้อหาหลัก</a>
+
+<header class="nh-header">
+  <div class="nh-wrap">
+    <a class="nh-brand" href="/"><img src="img/nh-logo.png" alt="" width="36" height="36"><span class="nh-brand-name">NanoHash</span></a>
+    <nav class="nh-nav" aria-label="เมนูหลัก" data-i18n-attr="aria-label:nav.label">
+      <a href="tidyup.html">TidyUp PC</a>
+      <a href="nanopdf.html">NanoPDF</a>
+      <a href="nanoshare.html">NanoShare</a>
+      <a href="install.html" data-i18n="nav.install">วิธีติดตั้ง</a>
+    </nav>
+    <div class="nh-header-tools">
+      <a class="nh-account-link" href="account.html" aria-label="บัญชีของฉัน" data-i18n-attr="aria-label:nav.account"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1-4 4-6 7.5-6s6.5 2 7.5 6"/></svg><span data-i18n="nav.account">บัญชีของฉัน</span></a>
+      <div class="nh-lang" role="group" aria-label="เลือกภาษา" data-i18n-attr="aria-label:lang.label">
+        <button type="button" data-lang="th" aria-pressed="true">TH</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="nh-acc">
+    <div class="nh-wrap">
+      <div class="nh-acc-head">
+        <span class="nh-label" data-i18n="head.label">บัญชีของฉัน</span>
+        <h1 data-i18n="head.title">License Key ของคุณ อยู่ที่นี่ทั้งหมด</h1>
+        <p class="nh-lead" data-i18n="head.lead">ดูและคัดลอก License Key ของทุกโปรแกรม แจ้งการสนับสนุน และติดตามสถานะได้ในที่เดียว</p>
+      </div>
+
+      <p class="nh-acc-alert" id="acc-alert" role="alert" hidden></p>
+
+      <div class="nh-acc-card nh-acc-loading" id="acc-loading" data-i18n="state.loading">กำลังโหลด…</div>
+
+      <div class="nh-acc-card nh-acc-signin" id="acc-out" hidden>
+        <h2 data-i18n="signin.title">เข้าสู่ระบบ</h2>
+        <p data-i18n="signin.text">ใช้บัญชี Google ที่มีอยู่ได้เลย ไม่ต้องตั้งรหัสผ่านใหม่</p>
+        <a class="nh-gbtn" href="/api/auth/google?next=/account">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+          <span data-i18n="signin.google">เข้าสู่ระบบด้วย Google</span>
+        </a>
+        <p class="nh-acc-fine" data-i18n="signin.fine">เราใช้เพียงชื่อและอีเมลของคุณ เพื่อแสดง License Key ที่ออกให้อีเมลนั้น</p>
+      </div>
+
+      <div id="acc-in" hidden>
+        <div class="nh-acc-profile">
+          <span class="nh-acc-avatar" id="acc-avatar" aria-hidden="true"></span>
+          <div class="nh-acc-who"><strong id="acc-name"></strong><small id="acc-email"></small></div>
+          <a class="nh-btn nh-btn--secondary nh-btn--small" id="acc-admin" href="admin.html" hidden data-i18n="profile.admin">หน้าผู้ดูแล</a>
+          <button type="button" class="nh-btn nh-btn--secondary nh-btn--small" id="acc-logout" data-i18n="profile.logout">ออกจากระบบ</button>
+        </div>
+
+        <section class="nh-acc-block" aria-labelledby="lic-title">
+          <h2 id="lic-title" data-i18n="lic.title">License Key</h2>
+          <div class="nh-acc-list" id="acc-licenses"></div>
+          <p class="nh-acc-fine" data-i18n="lic.howto">วิธีใช้: กดคัดลอก แล้ววาง Key ในหน้าใส่ License Key ของโปรแกรม ไม่ต้องต่ออินเทอร์เน็ต</p>
+        </section>
+
+        <section class="nh-acc-block" id="support" aria-labelledby="req-title">
+          <h2 id="req-title" data-i18n="req.title">แจ้งการสนับสนุน</h2>
+          <p class="nh-acc-sub" data-i18n="req.text">สนับสนุนเราแล้ว? แจ้งที่นี่ เราจะตรวจสอบและออก License Key เข้าบัญชีนี้ให้ สอบถามช่องทางสนับสนุนได้ที่ support@nanohash.biz</p>
+          <form class="nh-acc-form" id="acc-form" novalidate>
+            <fieldset class="nh-acc-products">
+              <legend data-i18n="req.product">โปรแกรม</legend>
+              <label><input type="radio" name="product" value="tidyup" checked><span><i class="nh-dl-dot nh-dl-dot--tidy"></i>TidyUp PC</span></label>
+              <label><input type="radio" name="product" value="nanopdf"><span><i class="nh-dl-dot nh-dl-dot--pdf"></i>NanoPDF</span></label>
+            </fieldset>
+            <label class="nh-field">
+              <span data-i18n="req.name">ชื่อที่จะแสดงใน License Key</span>
+              <input type="text" name="name" id="acc-f-name" maxlength="80" required autocomplete="name">
+            </label>
+            <label class="nh-field">
+              <span data-i18n="req.reference">เลขอ้างอิงการโอน</span>
+              <input type="text" name="reference" maxlength="200" autocomplete="off">
+            </label>
+            <label class="nh-field">
+              <span data-i18n="req.slip">หรือแนบสลิป (JPG, PNG, WebP หรือ PDF ไม่เกิน 2 MB)</span>
+              <input type="file" name="slip" accept="image/jpeg,image/png,image/webp,application/pdf">
+            </label>
+            <label class="nh-field">
+              <span data-i18n="req.note">ข้อความถึงเรา (ไม่บังคับ)</span>
+              <textarea name="note" rows="3" maxlength="500"></textarea>
+            </label>
+            <div class="nh-acc-submit">
+              <button type="submit" class="nh-btn nh-btn--primary" data-i18n="req.submit">ส่งคำขอ</button>
+              <p class="nh-acc-msg" id="acc-form-msg" aria-live="polite"></p>
+            </div>
+          </form>
+        </section>
+
+        <section class="nh-acc-block" aria-labelledby="hist-title">
+          <h2 id="hist-title" data-i18n="hist.title">คำขอของคุณ</h2>
+          <div class="nh-acc-list" id="acc-requests"></div>
+        </section>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="nh-footer">
+  <div class="nh-wrap">
+    <a class="nh-brand" href="/"><img src="img/nh-logo.png" alt="" width="36" height="36">NanoHash</a>
+    <nav aria-label="ส่วนท้าย" data-i18n-attr="aria-label:footer.nav">
+      <a href="tidyup.html">TidyUp PC</a>
+      <a href="nanopdf.html">NanoPDF</a>
+      <a href="nanoshare.html">NanoShare</a>
+      <a href="install.html" data-i18n="footer.install">วิธีติดตั้ง</a>
+      <a href="/#contact" data-i18n="footer.contact">ติดต่อ</a>
+    </nav>
+    <div class="nh-footer-meta">
+      <span data-i18n="footer.copy">© 2026 NanoHash สงวนลิขสิทธิ์</span>
+    </div>
+  </div>
+</footer>
+
+<script src="nh-copy-account.js"></script>
+<script src="nh-i18n.js"></script>
+<script src="nh-account.js"></script>
+</body>
+</html>

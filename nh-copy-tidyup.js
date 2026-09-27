@@ -5,6 +5,7 @@ window.NH_COPY = {
     'meta.description': "Clean junk, speed up startup, update programs and drivers, repair hijacked browsers and scan for malware on Windows. Full Thai support. Every feature free, no account needed.",
     'skip': 'Skip to content',
     'lang.label': 'Choose language',
+    'nav.account': 'My account',
     'nav.label': 'TidyUp PC menu',
     'nav.features': 'Features',
     'nav.how': 'How it works',

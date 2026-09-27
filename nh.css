@@ -462,3 +462,75 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nh-product--share { flex-direction: column; }
   .nh-product--share .nh-product-media { padding: 24px 24px 0; }
 }
+
+/* ---------- Account link ---------- */
+.nh-account-link { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px 0 10px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink); font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: border-color .2s var(--ease); }
+.nh-account-link:hover { border-color: var(--ink); }
+.nh-account-link svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.nh-page-account .nh-account-link { border-color: var(--ink); }
+@media (max-width: 1080px) { .nh-account-link span { display: none; } .nh-account-link { width: 40px; padding: 0; justify-content: center; } }
+
+/* ---------- Account and admin ---------- */
+.nh-acc { padding: 72px 0 104px; background: linear-gradient(180deg, var(--alt), #fff 420px); }
+.nh-acc .nh-wrap { max-width: 880px; }
+.nh-acc-head h1 { margin-top: 18px; font-size: clamp(32px, 4.4vw, 46px); letter-spacing: -.02em; }
+.nh-acc-head .nh-lead { max-width: 640px; }
+.nh-acc-card, .nh-acc-block, .nh-acc-profile { margin-top: 28px; padding: 32px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 1px 2px rgba(19, 35, 90, .04), 0 20px 40px -28px rgba(19, 35, 90, .25); }
+.nh-acc-loading { color: var(--muted); }
+.nh-acc-signin { display: grid; justify-items: start; gap: 14px; }
+.nh-acc-signin h2, .nh-acc-block h2 { font-size: 24px; letter-spacing: -.01em; }
+.nh-acc-signin p { color: var(--muted); }
+.nh-acc-fine { color: var(--muted); font-size: 14px; }
+.nh-acc-block .nh-acc-fine { margin-top: 16px; }
+.nh-gbtn { display: inline-flex; align-items: center; gap: 12px; min-height: 50px; padding: 0 22px 0 16px; border: 1px solid #c9d2e3; border-radius: 999px; background: #fff; color: #1f1f1f; font-weight: 600; text-decoration: none; box-shadow: 0 1px 2px rgba(19, 35, 90, .08); transition: border-color .2s var(--ease), box-shadow .2s var(--ease); }
+.nh-gbtn:hover { border-color: var(--ink); box-shadow: 0 6px 18px -8px rgba(19, 35, 90, .35); }
+.nh-gbtn svg { width: 22px; height: 22px; }
+.nh-acc-alert { margin-top: 24px; padding: 14px 18px; border: 1px solid #f3c1bb; border-radius: var(--radius); background: #fff4f2; color: #9b2c1f; font-weight: 500; }
+.nh-acc-profile { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 20px 24px; }
+.nh-acc-avatar { display: grid; place-items: center; flex: none; width: 48px; height: 48px; border-radius: 50%; background: var(--ink); color: var(--lime); font-size: 20px; font-weight: 700; }
+.nh-acc-who { display: grid; flex: 1; min-width: 0; }
+.nh-acc-who strong, .nh-acc-who small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nh-acc-who small { color: var(--muted); font-size: 14px; }
+.nh-acc-sub { margin-top: 8px; color: var(--muted); }
+.nh-acc-list { display: grid; gap: 14px; margin-top: 20px; }
+.nh-acc-empty { padding: 20px; border: 1px dashed #c9d2e3; border-radius: var(--radius); color: var(--muted); text-align: center; }
+.nh-acc-item { display: grid; gap: 8px; padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--alt); }
+.nh-acc-item-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.nh-acc-prod { display: inline-flex; align-items: center; gap: 10px; font-size: 17px; }
+.nh-acc-prod .nh-dl-dot { flex: none; }
+.nh-acc-badge { padding: 4px 12px; border-radius: 999px; background: #e6ebf5; color: var(--ink); font-size: 13px; font-weight: 600; }
+.nh-acc-badge.is-ok, .nh-acc-badge.is-approved, .nh-acc-badge.is-active { background: var(--lime-soft); color: #3b5200; box-shadow: inset 0 0 0 1px #c8e67a; }
+.nh-acc-badge.is-pending { background: var(--tidy-soft); color: #1a4fa8; }
+.nh-acc-badge.is-bad, .nh-acc-badge.is-rejected, .nh-acc-badge.is-revoked { background: #fff0ee; color: #9b2c1f; }
+.nh-acc-meta { color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
+.nh-acc-note { font-size: 14px; overflow-wrap: anywhere; }
+.nh-acc-key { display: block; max-height: 88px; overflow: auto; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); font: 12px/1.5 ui-monospace, "Cascadia Mono", Consolas, monospace; word-break: break-all; user-select: all; }
+.nh-acc-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.nh-acc-form { display: grid; gap: 18px; margin-top: 22px; }
+.nh-acc-products { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; border: 0; }
+.nh-acc-products legend { margin-bottom: 8px; font-size: 14px; font-weight: 600; }
+.nh-acc-products label { cursor: pointer; }
+.nh-acc-products input { position: absolute; opacity: 0; pointer-events: none; }
+.nh-acc-products span { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 18px; border: 1.5px solid #c9d2e3; border-radius: 999px; background: #fff; font-weight: 600; }
+.nh-acc-products input:checked + span { border-color: var(--ink); background: var(--ink); color: #fff; }
+.nh-acc-products input:focus-visible + span { outline: 3px solid var(--tidy); outline-offset: 2px; }
+.nh-field { display: grid; gap: 8px; font-size: 14px; font-weight: 600; }
+.nh-field input, .nh-field textarea, .nh-ad-search input { width: 100%; min-height: 46px; padding: 10px 14px; border: 1.5px solid #c9d2e3; border-radius: 12px; background: #fff; color: var(--ink); font: 400 16px/1.4 var(--font); }
+.nh-field input[type="file"] { padding: 9px 12px; }
+.nh-field textarea { resize: vertical; }
+.nh-field input:focus, .nh-field textarea:focus, .nh-ad-search input:focus { border-color: var(--ink); outline: none; box-shadow: 0 0 0 3px var(--tidy-soft); }
+.nh-acc-submit { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.nh-acc-submit button:disabled { opacity: .6; cursor: wait; }
+.nh-acc-msg { color: var(--muted); font-size: 14px; }
+.nh-acc-msg.is-ok { color: #2f6b00; font-weight: 600; }
+.nh-acc-msg.is-bad { color: #9b2c1f; font-weight: 600; }
+.nh-ad-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.nh-ad-tabs button { min-height: 40px; padding: 0 16px; border: 1.5px solid #c9d2e3; border-radius: 999px; background: #fff; color: var(--ink); font: 600 14px/1 var(--font); cursor: pointer; }
+.nh-ad-tabs button[aria-selected="true"] { border-color: var(--ink); background: var(--ink); color: #fff; }
+.nh-ad-search { display: flex; gap: 10px; margin-top: 18px; }
+@media (max-width: 600px) {
+  .nh-acc { padding: 48px 0 72px; }
+  .nh-acc-card, .nh-acc-block { padding: 22px 18px; }
+  .nh-acc-profile { padding: 16px 18px; }
+  .nh-acc-item { padding: 16px; }
+}

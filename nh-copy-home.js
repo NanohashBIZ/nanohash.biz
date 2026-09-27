@@ -5,6 +5,7 @@ window.NH_COPY = {
     'meta.description': 'NanoHash makes Windows software for PC care, PDF documents and file sharing: TidyUp PC, NanoPDF and NanoShare. Clear to use, private by default, fully in Thai and English.',
     'skip': 'Skip to content',
     'lang.label': 'Choose language',
+    'nav.account': 'My account',
     'nav.label': 'Main menu',
     'nav.products': 'Products',
     'nav.approach': 'Our standards',
