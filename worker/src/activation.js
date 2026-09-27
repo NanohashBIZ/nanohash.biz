@@ -51,7 +51,7 @@ export async function activate(req, env) {
   const name = str(body.name, 64).replace(/[\u0000-\u001f]/g, '') || 'PC';
   const app = str(body.app, 20);
   const version = str(body.version, 32);
-  const mode = body.mode === 'refresh' ? 'refresh' : 'activate';
+  const mode = ['refresh', 'release'].includes(body.mode) ? body.mode : 'activate';
   if (!/^[0-9a-f]{64}$/.test(machine) || !PRODUCTS[app] || !body.key) return fail(400, 'bad_request');
 
   const lic = await readKey(body.key);
@@ -60,6 +60,13 @@ export async function activate(req, env) {
   const kh = await keyHash(lic.key);
   if (!(await allow(env, `key:${kh}`, RATE.perKey))) return fail(429, 'rate');
   const now = nowIso();
+
+  if (mode === 'release') {
+    // the app removed the key: free this machine's slot (needs both the key and this machine's id)
+    await env.DB.prepare(`UPDATE activations SET status = 'removed', removed_at = ?3 WHERE status = 'active' AND machine = ?2
+      AND license_id IN (SELECT id FROM licenses WHERE license_key = ?1)`).bind(lic.key, machine, now).run();
+    return json({ ok: true, released: true });
+  }
   if (lic.exp !== 'never' && lic.exp < now.slice(0, 10)) return fail(403, 'expired');
 
   let row = await env.DB.prepare('SELECT id, status FROM licenses WHERE license_key = ?1').bind(lic.key).first();
