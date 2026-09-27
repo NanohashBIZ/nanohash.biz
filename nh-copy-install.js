@@ -2,7 +2,7 @@
 window.NH_COPY = {
   en: {
     'meta.title': 'Download and install — NanoHash',
-    'meta.description': 'How to download and install TidyUp PC and NanoPDF, why Windows shows a SmartScreen warning, and how to check the files yourself before opening them.',
+    'meta.description': 'How to download and install TidyUp PC, NanoPDF and NanoShare, why Windows shows a SmartScreen warning, and how to check the files yourself before opening them.',
     'skip': 'Skip to content',
     'lang.label': 'Choose language',
     'brand.page': 'Install guide',
@@ -19,6 +19,8 @@ window.NH_COPY = {
     'dl.tidy.cta': 'Download TidyUpSetup.exe',
     'dl.pdf.text': 'PDF app. Installs for the current user without administrator rights and can be removed from Settings > Apps.',
     'dl.pdf.cta': 'Download NanoPDF-Setup.exe',
+    'dl.share.text': 'File sharing between devices. Installs for the current user without administrator rights and can be removed from Settings > Apps.',
+    'dl.share.cta': 'Download NanoShareSetup.exe',
 
     'why.label': 'Why the warning',
     'why.title': 'This warning does not mean a virus was found',
@@ -37,7 +39,7 @@ window.NH_COPY = {
     'steps.1.text': 'On the red "Windows protected your PC" screen, click More info below the warning. Do not click Don’t run yet.',
     'steps.1.alt': 'The Windows protected your PC screen with the More info link',
     'steps.2.title': 'Check the file name, then click "Run anyway"',
-    'steps.2.text': 'Make sure the App line says TidyUpSetup.exe or NanoPDF-Setup.exe, matching the file you downloaded from nanohash.biz, then click Run anyway. For TidyUp PC, Windows then asks for administrator permission; click Yes.',
+    'steps.2.text': 'Make sure the App line says TidyUpSetup.exe, NanoPDF-Setup.exe or NanoShareSetup.exe, matching the file you downloaded from nanohash.biz, then click Run anyway. For TidyUp PC, Windows then asks for administrator permission; click Yes.',
     'steps.2.alt': 'The same screen after More info, showing the file name TidyUpSetup.exe and the Run anyway button',
 
     'verify.label': 'Check the file',
@@ -52,7 +54,7 @@ window.NH_COPY = {
 
     'warn.title': 'When not to click Run anyway',
     'warn.1': 'The file was not downloaded from nanohash.biz',
-    'warn.2': 'The App line does not say TidyUpSetup.exe or NanoPDF-Setup.exe',
+    'warn.2': 'The App line does not say TidyUpSetup.exe, NanoPDF-Setup.exe or NanoShareSetup.exe',
     'warn.3': 'The SHA-256 value does not match the Releases page',
     'warn.4': 'Microsoft Defender or your antivirus reports a threat',
     'warn.contact': 'Not sure about something? Ask us at',

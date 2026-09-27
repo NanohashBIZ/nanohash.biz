@@ -8,6 +8,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PAGES = [
   { html: 'index.html', copy: 'nh-copy-home.js' },
   { html: 'nanopdf.html', copy: 'nh-copy-nanopdf.js' },
+  { html: 'nanoshare.html', copy: 'nh-copy-nanoshare.js' },
   { html: 'tidyup.html', copy: 'nh-copy-tidyup.js' },
   { html: 'install.html', copy: 'nh-copy-install.js' },
 ];

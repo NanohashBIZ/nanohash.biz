@@ -13,6 +13,8 @@
   --lime-soft: #f3ffd0;
   --tidy: #2a78f0;
   --tidy-soft: #eaf2ff;
+  --share: #0e9f8e;
+  --share-soft: #e0f6f2;
   --radius: 12px;
   --radius-lg: 18px;
   --shadow: 0 1px 2px rgba(19, 35, 90, .06), 0 18px 40px -12px rgba(19, 35, 90, .18);
@@ -132,6 +134,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-points li { display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start; font-size: 16px; }
 .nh-points .nh-check { margin-top: 2px; }
 .nh-product--tidy .nh-check { background: var(--tidy-soft); color: var(--tidy); }
+.nh-product--share { --accent: var(--share); --accent-soft: var(--share-soft); grid-column: 1 / -1; flex-direction: row; }
+.nh-product--share .nh-product-media { display: flex; flex: 1.15; align-items: flex-end; padding: 40px 40px 0; }
+.nh-product--share .nh-product-body { flex: 1; }
+.nh-product--share .nh-check { background: var(--share-soft); color: var(--share); }
 .nh-product .nh-actions { margin-top: auto; }
 
 /* ---------- Principles ---------- */
@@ -175,6 +181,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-chip i { width: 14px; height: 14px; border-radius: 5px; }
 .nh-chip--tidy i { background: var(--tidy); }
 .nh-chip--pdf i { background: var(--lime); }
+.nh-chip--share i { background: var(--share); }
 
 .nh-hl { position: relative; z-index: 0; white-space: nowrap; }
 .nh-hl::after { content: ""; position: absolute; z-index: -1; left: -4px; right: -4px; bottom: .08em; height: .38em; border-radius: 6px; background: var(--lime); transform: rotate(-1.5deg); }
@@ -249,6 +256,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-modes--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .nh-modes--3 .nh-mode--cta { grid-column: 1 / -1; flex-direction: row; align-items: center; }
 .nh-page-tidy .nh-phero-shot::before { background: linear-gradient(180deg, var(--tidy-soft), #bcd4ff 180%); }
+.nh-page-share .nh-phero-shot::before { background: linear-gradient(180deg, var(--share-soft), #a6e6dc 180%); }
 .nh-mode--cta { display: flex; flex-direction: column; justify-content: space-between; gap: 24px; border-color: var(--ink); background: var(--ink); text-decoration: none; }
 .nh-mode--cta:hover { border-color: var(--ink-2); background: var(--ink-2); }
 .nh-mode--cta h3 { margin-top: 0; color: #fff; font-size: 20px; }
@@ -305,7 +313,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-emoji { font-size: 30px; line-height: 1; font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif; }
 /* ---------- Install guide ---------- */
 .nh-install-hero { padding-bottom: 88px; }
-.nh-dl-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 880px; margin-top: 48px; text-align: left; }
+.nh-dl-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; max-width: 1120px; margin-top: 48px; text-align: left; }
 .nh-dl-card { display: flex; flex-direction: column; gap: 14px; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 1px 2px rgba(19, 35, 90, .04), 0 20px 40px -24px rgba(19, 35, 90, .22); }
 .nh-dl-card p { flex: 1; color: var(--muted); font-size: 15px; }
 .nh-dl-card .nh-btn { align-self: flex-start; }
@@ -314,6 +322,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-dl-dot { width: 14px; height: 14px; border-radius: 5px; }
 .nh-dl-dot--tidy { background: var(--tidy); }
 .nh-dl-dot--pdf { background: var(--lime); box-shadow: inset 0 0 0 1px rgba(19, 35, 90, .2); }
+.nh-dl-dot--share { background: var(--share); }
 .nh-split-copy .nh-num + h3 { margin-top: 16px; }
 .nh-shot--ring { justify-self: center; width: 100%; max-width: 529px; background: #c42b1c; }
 .nh-shot--ring img { width: 100%; }
@@ -447,4 +456,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 420px) {
   .nh-header-cta { display: none; }
   .nh-header--product .nh-brand-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+@media (max-width: 960px) {
+  .nh-product--share { flex-direction: column; }
+  .nh-product--share .nh-product-media { padding: 24px 24px 0; }
 }

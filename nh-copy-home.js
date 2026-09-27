@@ -2,7 +2,7 @@
 window.NH_COPY = {
   en: {
     'meta.title': 'NanoHash — Software for everyday work on Windows',
-    'meta.description': 'NanoHash makes Windows software for PC care and PDF documents: TidyUp PC and NanoPDF. Clear to use, private by default, fully in Thai and English.',
+    'meta.description': 'NanoHash makes Windows software for PC care, PDF documents and file sharing: TidyUp PC, NanoPDF and NanoShare. Clear to use, private by default, fully in Thai and English.',
     'skip': 'Skip to content',
     'lang.label': 'Choose language',
     'nav.label': 'Main menu',
@@ -32,7 +32,7 @@ window.NH_COPY = {
     'facts.4s': 'Download and start right away',
 
     'products.label': 'Products',
-    'products.title': 'Tools for your PC and your documents',
+    'products.title': 'Tools for your PC, your documents and sharing files',
     'tidy.src': 'img/ui-pm-en.jpg',
     'tidy.alt': 'TidyUp PC Program Manager listing installed programs and available updates',
     'tidy.kicker': 'PC care',
@@ -50,6 +50,14 @@ window.NH_COPY = {
     'pdf.f3': 'True redaction, passwords and digital signatures',
     'pdf.more': 'Learn more',
     'pdf.download': 'Download free',
+    'share.alt': 'The NanoShare app on Windows with a drop area and a box for a receive code',
+    'share.kicker': 'Send files between devices · Free',
+    'share.desc': 'Send files, whole folders and messages straight from one device to another, encrypted all the way. Receivers open it on the web, no app needed.',
+    'share.f1': 'Send with a three-word code, a QR code or a link',
+    'share.f2': 'Send from your phone to your PC with no phone app',
+    'share.f3': 'Never stored on a server. Free for personal and business use',
+    'share.more': 'Learn more',
+    'share.download': 'Download free',
 
     'approach.label': 'Our standards',
     'approach.title': 'Every detail that matters, taken care of',

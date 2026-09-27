@@ -14,6 +14,7 @@
       s3: ['เช็กชื่อไฟล์ แล้วกด "Run anyway"', 'ช่อง App ต้องเป็นชื่อไฟล์เดียวกับที่ดาวน์โหลด'],
       s4tidy: ['กด "Yes"', 'Windows จะขอสิทธิ์ผู้ดูแลเพื่อติดตั้ง TidyUp PC กด Yes แล้วรอจนติดตั้งเสร็จ'],
       s4pdf: ['ติดตั้งเสร็จ พร้อมใช้', 'NanoPDF ติดตั้งให้เองโดยไม่ต้องใช้สิทธิ์ผู้ดูแล เปิดได้จาก Start menu'],
+      s4share: ['ติดตั้งเสร็จ พร้อมส่ง', 'NanoShare ติดตั้งให้เองโดยไม่ต้องใช้สิทธิ์ผู้ดูแล เปิดได้จาก Start menu หรือไอคอนมุมขวาล่าง'],
     },
     en: {
       title: 'Install in 4 steps',
@@ -27,6 +28,7 @@
       s3: ['Check the name, then "Run anyway"', 'The App line must match the file you downloaded'],
       s4tidy: ['Click "Yes"', 'Windows asks for administrator permission to install TidyUp PC. Click Yes and wait for setup to finish'],
       s4pdf: ['Installed and ready', 'NanoPDF installs itself without administrator rights. Open it from the Start menu'],
+      s4share: ['Installed and ready to send', 'NanoShare installs itself without administrator rights. Open it from the Start menu or the icon at the bottom right'],
     },
   };
   let panel = null;
@@ -37,14 +39,15 @@
   function build(file) {
     const t = copy[document.documentElement.lang === 'en' ? 'en' : 'th'];
     const tidy = /tidy/i.test(file);
-    const s4 = tidy ? t.s4tidy : t.s4pdf;
+    const share = /share/i.test(file);
+    const s4 = tidy ? t.s4tidy : share ? t.s4share : t.s4pdf;
     const card = (n, [title, text], visual) =>
       `<li class="nh-ig-card"><p class="nh-ig-step">${t.step} ${n}</p><h3>${esc(title)}</h3><div class="nh-ig-visual">${visual}</div><p class="nh-ig-text">${esc(text)}</p></li>`;
     const chip = `<div class="nh-ig-chip"><img src="img/favicon-64.png" alt="" width="28" height="28"><span><b>${esc(file)}</b><small>${t.done}</small></span></div>`;
     const shot = (src, ring) => `<div class="nh-shot nh-shot--ring nh-ig-shot"><img src="${src}" alt="" width="529" height="495"><span class="nh-ring" style="${ring}"></span></div>`;
     const finish = tidy
       ? `<div class="nh-ig-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.5-3 8-7 9.5-4-1.5-7-5-7-9.5V6zM9 12l2 2 4-4"/></svg><span>Yes</span></div>`
-      : `<div class="nh-ig-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>NanoPDF</span></div>`;
+      : `<div class="nh-ig-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>${share ? 'NanoShare' : 'NanoPDF'}</span></div>`;
 
     const el = document.createElement('div');
     el.className = 'nh-ig';

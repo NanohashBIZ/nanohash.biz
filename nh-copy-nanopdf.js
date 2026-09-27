@@ -64,6 +64,7 @@ window.NH_COPY = {
     'new.phone.alt': "The NanoPDF photos-from-phone window with a QR code and two received photos",
     'new.share.title': "Share with NanoShare",
     'new.share.text': "The other person scans a QR code, opens a link or types a short code, and the file goes straight from your PC to theirs.",
+    'new.share.link': 'Meet NanoShare',
     'new.share.1': "AES-256 encrypted on the device, never stored on a server",
     'new.share.2': "No file size limit, no account for the receiver",
     'new.stickers.title': "Shapes and stickers",

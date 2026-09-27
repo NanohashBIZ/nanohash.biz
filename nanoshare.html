@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){var d=document.documentElement,l=null;d.classList.add('nh-js');try{l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('nanohash-lang')}catch(e){}if(l==='en'){d.lang='en';d.classList.add('nh-i18n-pending');setTimeout(function(){d.classList.remove('nh-i18n-pending')},1500)}})();</script>
+<title data-i18n="meta.title">NanoShare — ส่งไฟล์ข้ามเครื่อง แค่ลากแล้ววาง</title>
+<meta name="description" data-i18n-attr="content:meta.description" content="ส่งไฟล์ ทั้งโฟลเดอร์ ข้อความ และลิงก์ จากเครื่องถึงเครื่องโดยตรง เข้ารหัสตลอดทาง ไม่ถูกเก็บไว้บนเซิร์ฟเวอร์ ใช้ฟรีทั้งแอป Windows และบนเว็บ">
+<meta name="theme-color" content="#13235a">
+<link rel="canonical" href="https://nanohash.biz/nanoshare">
+<meta property="og:url" content="https://nanohash.biz/nanoshare">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NanoHash">
+<meta property="og:title" content="NanoShare — ส่งไฟล์ข้ามเครื่อง แค่ลากแล้ววาง">
+<meta property="og:description" content="ส่งไฟล์จากเครื่องถึงเครื่องโดยตรง เข้ารหัสตลอดทาง ไม่ถูกเก็บไว้บนเซิร์ฟเวอร์ ใช้ฟรี">
+<meta property="og:image" content="https://nanohash.biz/img/nanoshare/app-home.png">
+<link rel="icon" type="image/png" href="img/favicon-64.png">
+<link rel="apple-touch-icon" href="img/nh-logo-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="nh.css">
+</head>
+<body class="nh-page-share">
+<a class="nh-skip" href="#main" data-i18n="skip">ข้ามไปเนื้อหาหลัก</a>
+
+<header class="nh-header nh-header--product">
+  <div class="nh-wrap">
+    <a class="nh-brand" href="/"><img src="img/nh-logo.png" alt="" width="36" height="36"><span class="nh-brand-name">NanoHash</span></a>
+    <span class="nh-brand-product">NanoShare</span>
+    <nav class="nh-nav" aria-label="เมนู NanoShare" data-i18n-attr="aria-label:nav.label">
+      <a href="#how" data-i18n="nav.how">ใช้ยังไง</a>
+      <a href="#features" data-i18n="nav.features">ฟีเจอร์</a>
+      <a href="#security" data-i18n="nav.security">ความปลอดภัย</a>
+      <a href="#faq" data-i18n="nav.faq">คำถามที่พบบ่อย</a>
+    </nav>
+    <div class="nh-header-tools">
+      <div class="nh-lang" role="group" aria-label="เลือกภาษา" data-i18n-attr="aria-label:lang.label">
+        <button type="button" data-lang="th" aria-pressed="true">TH</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="nh-btn nh-btn--primary nh-btn--small nh-header-cta" href="/download/NanoShareSetup.exe" data-i18n="nav.download">ดาวน์โหลดฟรี</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="nh-phero">
+    <div class="nh-wrap">
+      <span class="nh-label" data-i18n="hero.eyebrow">ใช้ฟรี · แอป Windows และบนเว็บ</span>
+      <h1 data-i18n-html="hero.title"><span class="nh-line">ส่งไฟล์ข้ามเครื่อง</span> <span class="nh-line">แค่ลากแล้ววาง</span></h1>
+      <p class="nh-lead" data-i18n="hero.lead">ส่งไฟล์ ทั้งโฟลเดอร์ ข้อความ และลิงก์ จากเครื่องถึงเครื่องโดยตรง เข้ารหัสตลอดทาง ไม่ถูกเก็บไว้ที่ไหน และไม่ต้องสมัครสมาชิก</p>
+      <div class="nh-actions">
+        <a class="nh-btn nh-btn--primary" href="/download/NanoShareSetup.exe"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v10m-4-4 4 4 4-4M4 16.5h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="hero.cta">ดาวน์โหลดสำหรับ Windows</span></a>
+        <a class="nh-btn nh-btn--secondary" href="https://share.nanohash.biz"><span data-i18n="hero.web">ใช้บนเว็บ ไม่ต้องติดตั้ง</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 13 13 7M8 7h5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <p class="nh-meta" data-i18n="hero.meta">ฟรีทั้งส่วนตัวและธุรกิจ · Windows 10/11 64-bit · ติดตั้งโดยไม่ต้องใช้สิทธิ์ผู้ดูแล</p>
+      <p class="nh-meta"><a href="install.html" data-i18n="hero.install">Windows อาจแสดงคำเตือนตอนเปิดครั้งแรก ดูวิธีติดตั้ง →</a></p>
+    </div>
+    <div class="nh-phero-shot">
+      <div class="nh-shot"><img src="img/nanoshare/app-home.png" alt="แอป NanoShare บน Windows พร้อมช่องลากไฟล์มาวาง ช่องข้อความ และช่องใส่รหัสรับไฟล์" data-i18n-attr="alt:hero.alt" width="980" height="700"></div>
+    </div>
+  </section>
+
+  <section class="nh-section" id="how">
+    <div class="nh-wrap">
+      <div class="nh-section-head nh-section-head--center nh-reveal">
+        <span class="nh-label" data-i18n="how.label">ใช้ยังไง</span>
+        <h2 data-i18n="how.title">ส่งได้ใน 3 ขั้นตอน</h2>
+      </div>
+      <div class="nh-principles">
+        <div class="nh-principle nh-reveal">
+          <span class="nh-num">01</span>
+          <h3 data-i18n="how.1.title">ลากไฟล์มาวาง</h3>
+          <p data-i18n="how.1.text">ลากไฟล์หรือทั้งโฟลเดอร์มาวาง จะพิมพ์ข้อความหรือวางลิงก์ส่งไปด้วยก็ได้</p>
+        </div>
+        <div class="nh-principle nh-reveal">
+          <span class="nh-num">02</span>
+          <h3 data-i18n="how.2.title">ให้อีกเครื่องเชื่อมต่อ</h3>
+          <p data-i18n="how.2.text">สแกน QR ด้วยมือถือ เปิดลิงก์ หรือพิมพ์รหัสสั้น ๆ เช่น 7-tiger-blue-moon</p>
+        </div>
+        <div class="nh-principle nh-reveal">
+          <span class="nh-num">03</span>
+          <h3 data-i18n="how.3.title">ไฟล์วิ่งตรงถึงกัน</h3>
+          <p data-i18n="how.3.text">ไฟล์ส่งจากเครื่องคุณถึงเครื่องปลายทางโดยตรง เห็นความเร็วและเวลาที่เหลือตลอดทาง</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nh-section nh-section--alt" id="features">
+    <div class="nh-wrap">
+      <div class="nh-section-head nh-section-head--center nh-reveal">
+        <span class="nh-label" data-i18n="features.label">ฟีเจอร์</span>
+        <h2 data-i18n="features.title">ส่งอะไรก็ได้ ส่งให้ใครก็ได้</h2>
+      </div>
+      <div class="nh-modes">
+        <div class="nh-mode nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H9l2 2h8.5A1.5 1.5 0 0 1 21 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/></svg></span>
+          <h3 data-i18n="f.folder.name">ส่งทั้งโฟลเดอร์</h3>
+          <p data-i18n="f.folder.text">ลากทั้งโฟลเดอร์มาวางได้เลย ไม่ต้องบีบอัดเป็น zip ก่อน</p>
+        </div>
+        <div class="nh-mode nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4zM8 9.5h8M8 12.5h5"/></svg></span>
+          <h3 data-i18n="f.message.name">ข้อความและลิงก์</h3>
+          <p data-i18n="f.message.text">ส่งข้อความหรือลิงก์ไปพร้อมไฟล์ หรือส่งอย่างเดียวก็ได้ ยาวได้ถึง 100,000 ตัวอักษร</p>
+        </div>
+        <div class="nh-mode nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="3"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3 19c.6-3 2.6-5 5-5s4.4 2 5 5M14 14.5c2.4 0 4.4 1.7 5 4.5"/></svg></span>
+          <h3 data-i18n="f.many.name">ส่งให้ 20 เครื่องพร้อมกัน</h3>
+          <p data-i18n="f.many.text">ส่งครั้งเดียว รับได้หลายเครื่อง เห็นความคืบหน้าของแต่ละเครื่องแยกกัน</p>
+        </div>
+        <div class="nh-mode nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4.5h-4.5"/></svg></span>
+          <h3 data-i18n="f.resume.name">ต่อเองเมื่อเน็ตหลุด</h3>
+          <p data-i18n="f.resume.text">ถ้าเน็ตหลุดระหว่างส่ง จะเชื่อมต่อใหม่เองภายใน 60 วินาที แล้วส่งต่อจากจุดเดิม</p>
+        </div>
+        <div class="nh-mode nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 1 1 16 0M12 16l4-5"/></svg></span>
+          <h3 data-i18n="f.speed.name">ความเร็วและเวลาที่เหลือ</h3>
+          <p data-i18n="f.speed.text">เห็นความเร็วและเวลาที่เหลือทั้งฝั่งส่งและฝั่งรับ</p>
+        </div>
+        <div class="nh-mode nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <h3 data-i18n="f.preview.name">ดูตัวอย่างก่อนโหลด</h3>
+          <p data-i18n="f.preview.text">บนเว็บเปิดดูรูป PDF วิดีโอ เสียง และไฟล์ข้อความได้ก่อนกดบันทึก</p>
+        </div>
+        <div class="nh-mode nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h4"/></svg></span>
+          <h3 data-i18n="f.explorer.name">คลิกขวาแล้วส่ง</h3>
+          <p data-i18n="f.explorer.text">คลิกขวาที่ไฟล์ใน File Explorer เลือก "ส่งด้วย NanoShare" หรือกด Ctrl+Alt+N เพื่อรับไฟล์ด้วยรหัส</p>
+        </div>
+        <a class="nh-mode nh-mode--cta nh-reveal" href="/download/NanoShareSetup.exe">
+          <h3 data-i18n="features.cta.title">ใช้ได้ทุกฟีเจอร์ ฟรีตลอด</h3>
+          <span class="nh-mode-link"><span data-i18n="features.cta.link">ดาวน์โหลด NanoShare</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="nh-section">
+    <div class="nh-wrap">
+      <div class="nh-splits">
+        <div class="nh-split nh-reveal">
+          <div class="nh-split-copy">
+            <h3 data-i18n="hl.phone.title">รับไฟล์จากมือถือ ไม่ต้องลงแอป</h3>
+            <p data-i18n="hl.phone.text">เปิดกล่องรับบนคอม แล้วสแกน QR ด้วยมือถือ เลือกรูปหรือไฟล์ ส่งเข้าคอมได้ทันที ไฟล์ถูกบันทึกลงเครื่องให้อัตโนมัติ</p>
+            <ul class="nh-checks">
+              <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="hl.phone.1">ใช้เบราว์เซอร์บนมือถือได้เลย</span></li>
+              <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="hl.phone.2">เลือกโฟลเดอร์ที่จะบันทึกได้เอง</span></li>
+            </ul>
+          </div>
+          <div class="nh-shot"><img src="img/nanoshare/app-inbox.png" alt="หน้ารับไฟล์จากมือถือของ NanoShare พร้อม QR code และรหัสสำหรับพิมพ์บน share.nanohash.biz" data-i18n-attr="alt:hl.phone.alt" width="980" height="700" loading="lazy"></div>
+        </div>
+        <div class="nh-split nh-split--reverse nh-reveal">
+          <div class="nh-split-copy">
+            <h3 data-i18n="hl.web.title">ไม่มีแอป ก็ใช้บนเว็บได้</h3>
+            <p data-i18n="hl.web.text">เปิด share.nanohash.biz บนเบราว์เซอร์ไหนก็ได้ ทั้งคอมและมือถือ ส่งและรับได้เหมือนในแอป ผู้รับไม่ต้องลงอะไรเลย</p>
+            <p class="nh-links"><a href="https://share.nanohash.biz">share.nanohash.biz ↗</a></p>
+          </div>
+          <div class="nh-shot"><img src="img/nanoshare/web-home.png" alt="NanoShare บนเว็บ share.nanohash.biz พร้อมช่องลากไฟล์มาวางและช่องใส่รหัส" data-i18n-attr="alt:hl.web.alt" width="1280" height="860" loading="lazy"></div>
+        </div>
+        <div class="nh-split nh-reveal">
+          <div class="nh-split-copy">
+            <h3 data-i18n="hl.app.title">แอป Windows ที่อยู่เงียบ ๆ ข้างตัว</h3>
+            <p data-i18n="hl.app.text">ปิดหน้าต่างแล้วยังส่งต่อจากไอคอนมุมขวาล่าง เปิดพร้อม Windows ได้ เลือกโฟลเดอร์ที่จะบันทึกเอง และมีทั้งธีมสว่างและธีมมืด</p>
+            <ul class="nh-checks">
+              <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="hl.app.1">NanoPDF ส่งไฟล์ผ่าน NanoShare ได้ในคลิกเดียว</span></li>
+              <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="hl.app.2">ภาษาไทยและอังกฤษ</span></li>
+            </ul>
+          </div>
+          <div class="nh-shot"><img src="img/nanoshare/app-home-dark.png" alt="แอป NanoShare ในธีมมืด" data-i18n-attr="alt:hl.app.alt" width="980" height="700" loading="lazy"></div>
+        </div>
+      </div>
+
+      <div class="nh-new-cards">
+        <div class="nh-new-card nh-new-card--ink nh-reveal">
+          <h3 data-i18n="pair.title">เครื่องของฉัน</h3>
+          <p data-i18n="pair.text">จับคู่เครื่องที่ใช้ประจำด้วยรหัสครั้งเดียว ครั้งต่อไปกด "ส่งไปเครื่องนี้" ได้เลย อีกเครื่องจะมีแจ้งเตือนให้กดรับ</p>
+          <ul class="nh-checks">
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="pair.1">เปิดรับอัตโนมัติสำหรับเครื่องที่ไว้ใจได้</span></li>
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="pair.2">ไม่ต้องพิมพ์รหัสทุกครั้ง</span></li>
+          </ul>
+        </div>
+        <div class="nh-new-card nh-reveal">
+          <h3 data-i18n="lan.title">เครื่องใกล้ ๆ ในวงเดียวกัน</h3>
+          <p data-i18n="lan.text">คอมที่เปิด NanoShare อยู่ใน Wi-Fi หรือ LAN เดียวกันจะขึ้นมาให้เห็นเอง ส่งตรงผ่านเครือข่ายในบ้านหรือออฟฟิศ ไม่ต้องผ่านอินเทอร์เน็ต</p>
+          <ul class="nh-checks">
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="lan.1">เครื่องที่ยังไม่จับคู่ ต้องกดรับก่อนทุกครั้ง</span></li>
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="lan.2">เฉพาะแอป Windows ระหว่างคอมกับคอม</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nh-section nh-section--alt" id="security">
+    <div class="nh-wrap">
+      <div class="nh-section-head nh-reveal">
+        <span class="nh-label" data-i18n="security.label">ความปลอดภัย</span>
+        <h2 data-i18n="security.title">ไฟล์ของคุณ ไม่ผ่านมือใคร</h2>
+      </div>
+      <div class="nh-cards">
+        <div class="nh-principle nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="7" height="11" rx="1.5"/><rect x="14.5" y="5" width="7" height="11" rx="1.5"/><path d="M9.5 10.5h5M4 19.5h4M16 19.5h4"/></svg></span>
+          <h3 data-i18n="security.1.title">ส่งตรงเครื่องต่อเครื่อง</h3>
+          <p data-i18n="security.1.text">เซิร์ฟเวอร์ทำหน้าที่แค่แนะนำสองเครื่องให้รู้จักกัน ตัวไฟล์วิ่งตรงถึงกันและไม่ถูกเก็บไว้ที่ไหน</p>
+        </div>
+        <div class="nh-principle nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+          <h3 data-i18n="security.2.title">เข้ารหัส 2 ชั้น</h3>
+          <p data-i18n="security.2.text">เข้ารหัส AES-256-GCM บนเครื่องก่อนส่ง ซ้อนกับการเข้ารหัสของ WebRTC กุญแจมาจากรหัส 3 คำ ซึ่งไม่เคยถูกส่งไปที่เซิร์ฟเวอร์</p>
+        </div>
+        <div class="nh-principle nh-reveal">
+          <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5c2 0 3.7.7 5 1.6M21.5 12S18 18.5 12 18.5c-2 0-3.7-.7-5-1.6M4 20 20 4"/></svg></span>
+          <h3 data-i18n="security.3.title">เซิร์ฟเวอร์มองไม่เห็นไฟล์</h3>
+          <p data-i18n="security.3.text">ชื่อไฟล์ถูกเข้ารหัสไปด้วย ใส่รหัสผิด 5 ครั้งการส่งจะปิดเอง และการส่งแต่ละครั้งเปิดอยู่ได้ไม่เกิน 24 ชั่วโมง</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nh-band" id="free">
+    <div class="nh-wrap nh-reveal">
+      <span class="nh-label" data-i18n="free.label">ฟรี</span>
+      <h2 data-i18n="free.title">ใช้ฟรี ทั้งส่วนตัวและธุรกิจ</h2>
+      <p data-i18n="free.text">ไม่มีช่วงทดลอง ไม่ต้องใช้ License Key และติดตั้งได้ทุกเครื่องของคุณ</p>
+      <div class="nh-actions">
+        <a class="nh-btn nh-btn--lime" href="/download/NanoShareSetup.exe"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v10m-4-4 4 4 4-4M4 16.5h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="free.cta">ดาวน์โหลดสำหรับ Windows</span></a>
+        <a class="nh-btn nh-btn--ghost-light" href="https://share.nanohash.biz" data-i18n="free.web">ใช้บนเว็บ</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="nh-section" id="faq">
+    <div class="nh-wrap">
+      <div class="nh-section-head nh-section-head--center nh-reveal">
+        <span class="nh-label" data-i18n="faq.label">ช่วยเหลือ</span>
+        <h2 data-i18n="faq.title">คำถามที่พบบ่อย</h2>
+      </div>
+      <div class="nh-faq nh-reveal">
+        <details>
+          <summary data-i18n="faq.1.q">ผู้รับต้องลงแอปหรือสมัครสมาชิกไหม?</summary>
+          <p data-i18n="faq.1.a">ไม่ต้อง ผู้รับเปิดลิงก์ สแกน QR หรือพิมพ์รหัสที่ share.nanohash.biz บนเบราว์เซอร์ได้เลย ทั้งคอมและมือถือ</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.2.q">ส่งไฟล์ใหญ่ได้แค่ไหน?</summary>
+          <p data-i18n="faq.2.a">แอป Windows และเบราว์เซอร์ Chrome หรือ Edge ไม่จำกัดขนาด บนเบราว์เซอร์อื่นและมือถือ ไฟล์ที่ใหญ่กว่า 200 MB จะถูกพักไว้ในหน่วยความจำก่อนบันทึก ไฟล์ที่ใหญ่มากจึงอาจรับไม่สำเร็จ</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.3.q">ทำไมบางครั้งเชื่อมต่อไม่ได้?</summary>
+          <p data-i18n="faq.3.a">เพราะไฟล์ส่งตรงถึงกันโดยไม่ผ่านเซิร์ฟเวอร์กลาง เครือข่ายบางแห่ง เช่น ในองค์กร จึงอาจไม่ยอมให้เชื่อมต่อตรง ลองเปลี่ยนไปใช้ Wi-Fi อื่นหรือเน็ตมือถือ</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.4.q">ปิดหน้าต่างแล้วยังส่งอยู่ไหม?</summary>
+          <p data-i18n="faq.4.a">ในแอป Windows ยังส่งต่อจากไอคอนมุมขวาล่าง ถ้ากดออกจากโปรแกรมการส่งจะหยุด บนเว็บต้องเปิดหน้านั้นค้างไว้จนอีกฝั่งรับเสร็จ</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.5.q">เครื่องต้องมีอะไรบ้าง?</summary>
+          <p data-i18n="faq.5.a">Windows 10 (เวอร์ชัน 1809 ขึ้นไป) หรือ Windows 11 แบบ 64-bit และ Microsoft Edge WebView2 ซึ่งมีอยู่แล้วใน Windows 11 ถ้า Windows 10 ยังไม่มี ดาวน์โหลดได้ฟรีจาก Microsoft ส่วนการส่งผ่านเครื่องใกล้ ๆ ใน LAN ต้องต่ออินเทอร์เน็ตครั้งแรกหนึ่งครั้ง</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.6.q">ใช้ในบริษัทได้ไหม มีค่าใช้จ่ายไหม?</summary>
+          <p data-i18n="faq.6.a">ใช้ได้ฟรีทั้งส่วนตัวและธุรกิจ ติดตั้งได้ทุกเครื่องของคุณ ไม่มีช่วงทดลองและไม่ต้องใช้ License Key</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="nh-footer">
+  <div class="nh-wrap">
+    <a class="nh-brand" href="/"><img src="img/nh-logo.png" alt="" width="36" height="36">NanoHash</a>
+    <nav aria-label="ส่วนท้าย" data-i18n-attr="aria-label:footer.nav">
+      <a href="tidyup.html">TidyUp PC</a>
+      <a href="nanopdf.html">NanoPDF</a>
+      <a href="nanoshare.html">NanoShare</a>
+      <a href="install.html" data-i18n="footer.install">วิธีติดตั้ง</a>
+      <a href="/#contact" data-i18n="footer.contact">ติดต่อ</a>
+    </nav>
+    <div class="nh-footer-meta">
+      <span data-i18n="footer.copy">© 2026 NanoHash สงวนลิขสิทธิ์</span>
+    </div>
+  </div>
+</footer>
+
+<script src="nh-copy-nanoshare.js"></script>
+<script src="nh-i18n.js"></script>
+<script src="nh-motion.js"></script>
+<script src="nh-install-guide.js"></script>
+</body>
+</html>
