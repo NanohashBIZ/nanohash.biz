@@ -15,7 +15,7 @@ window.NH_COPY = {
     'hero.title': "We're users too, so we get you.",
     'hero.lead': 'We build Windows software with one aim: tools that work in a straightforward way, stay safe, hide nothing and always keep your data on your PC, so your everyday work runs as smoothly as possible.',
     'hero.cta': 'See all tools',
-    'hero.trial': 'Try it free',
+    'hero.trial': "Download free",
     'hero.tidySrc': 'img/ui-home-en.jpg',
     'hero.tidyAlt': 'TidyUp PC overview screen with the PC health score',
     'hero.pdfSrc': 'img/nanopdf/read-en-dark.png',
@@ -26,8 +26,8 @@ window.NH_COPY = {
     'facts.1s': '64-bit editions',
     'facts.2': 'Thai and English',
     'facts.2s': 'Easy to use and easy to understand',
-    'facts.3': '30-day free trial',
-    'facts.3s': 'Every feature, no limits',
+    'facts.3': "Free, every feature",
+    'facts.3s': "Support us after 30 days",
     'facts.4': 'No account needed',
     'facts.4s': 'Download and start right away',
 
@@ -57,7 +57,7 @@ window.NH_COPY = {
     'approach.1.title': 'Clear at every step',
     'approach.1.text': 'Every tool tells you what it will do and why, and you always confirm it yourself.',
     'approach.2.title': 'No monthly fees',
-    'approach.2.text': 'Try every feature free for 30 days, then activate with an offline License Key. No account needed.',
+    'approach.2.text': "Every feature is free to use. After 30 days you can support us with an offline License Key. No account needed.",
     'approach.3.title': 'Thai that never breaks',
     'approach.3.text': 'No floating vowels, no broken fonts, and Thai search that finds what you type.',
 
@@ -70,7 +70,7 @@ window.NH_COPY = {
     'about.s2u': 'THB/month',
     'about.s2': 'No subscription fees',
     'about.s3u': 'days',
-    'about.s3': 'Free trial with every feature',
+    'about.s3': "Free with every feature, then support us",
     'about.s4u': 'languages',
     'about.s4': 'Thai and English, switchable in the app',
 

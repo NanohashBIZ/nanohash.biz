@@ -2,7 +2,7 @@
 window.NH_COPY = {
   en: {
     'meta.title': 'NanoPDF — Every PDF task, in one Windows app',
-    'meta.description': 'Read, annotate, edit, convert, OCR and sign PDFs on Windows. Full Thai support. Free 30-day trial, no account needed.',
+    'meta.description': "Read, annotate, edit, convert, OCR and sign PDFs on Windows. Full Thai support. Every feature free, no account needed.",
     'skip': 'Skip to content',
     'lang.label': 'Choose language',
     'nav.label': 'NanoPDF menu',
@@ -15,9 +15,9 @@ window.NH_COPY = {
     'hero.eyebrow': 'NanoPDF for Windows',
     'hero.title': 'Every PDF task, in one Windows app.',
     'hero.lead': 'Read, annotate, edit text, organize pages, fill forms, convert to Office formats and sign digitally. Thai works everywhere, including OCR.',
-    'hero.cta': 'Download free trial',
+    'hero.cta': "Download free",
     'hero.more': 'See features',
-    'hero.meta': 'Windows 10/11 64-bit · Installs without admin rights · Every feature for 30 days',
+    'hero.meta': "Windows 10/11 64-bit · Installs without admin rights · Every feature free",
     'hero.install': 'Windows may warn the first time you open it. See how to install →',
     'hero.src': 'img/nanopdf/read-en-dark.png',
     'hero.alt': 'NanoPDF in dark mode with a Thai report open and the annotation tools showing',
@@ -38,7 +38,7 @@ window.NH_COPY = {
     'mode.convert.text': 'PDF to Word, Excel, PowerPoint, images or text, and images or Office files to PDF.',
     'mode.protect.name': 'Protect',
     'mode.protect.text': 'Passwords, true redaction and digital signatures.',
-    'modes.cta.title': 'Try all seven modes free for 30 days',
+    'modes.cta.title': "Use all seven modes for free",
     'modes.cta.link': 'Download NanoPDF',
 
     'hl.a.title': "Edit the text that's already there",
@@ -68,11 +68,11 @@ window.NH_COPY = {
     'privacy.3.title': 'No document content in logs',
     'privacy.3.text': 'Logs record what the app did, never what your documents say.',
 
-    'trial.label': 'Trial and license',
-    'trial.title': 'Try every feature free for 30 days',
-    'trial.text': "No account, no card. When you're ready, activate NanoPDF with a License Key. Activation works offline.",
-    'trial.cta': 'Download free trial',
-    'trial.ask': 'Ask about pricing',
+    'trial.label': "Free, with support",
+    'trial.title': "Free to use. Support us after 30 days.",
+    'trial.text': "No account, no card. After 30 days every feature keeps working. If you like it, support us with a License Key, which activates offline.",
+    'trial.cta': "Download free",
+    'trial.ask': "Ask about a License Key",
 
     'faq.label': 'Help',
     'faq.title': 'Common questions',
@@ -81,7 +81,7 @@ window.NH_COPY = {
     'faq.2.q': 'Are my documents uploaded anywhere?',
     'faq.2.a': 'No. Documents are processed on your PC. NanoPDF goes online only to check for updates and, if you use it, to timestamp a digital signature.',
     'faq.3.q': 'What happens after 30 days?',
-    'faq.3.a': "Everything keeps working. You'll see a reminder at startup until you enter a License Key.",
+    'faq.3.a': "Everything keeps working. You will see a note at startup inviting you to support us; it goes away once you enter a License Key.",
     'faq.4.q': 'Which Windows versions are supported?',
     'faq.4.a': 'Windows 10 and Windows 11, 64-bit.',
 

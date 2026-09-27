@@ -2,7 +2,7 @@
 window.NH_COPY = {
   en: {
     'meta.title': 'TidyUp PC — Keep your Windows PC fast, clean and safe',
-    'meta.description': 'Clean junk, speed up startup, update programs and drivers, repair hijacked browsers and scan for malware on Windows. Full Thai support. Free 30-day trial, no account needed.',
+    'meta.description': "Clean junk, speed up startup, update programs and drivers, repair hijacked browsers and scan for malware on Windows. Full Thai support. Every feature free, no account needed.",
     'skip': 'Skip to content',
     'lang.label': 'Choose language',
     'nav.label': 'TidyUp PC menu',
@@ -15,9 +15,9 @@ window.NH_COPY = {
     'hero.eyebrow': 'TidyUp PC for Windows',
     'hero.title': 'Keep your Windows PC fast, clean and safe.',
     'hero.lead': 'TidyUp PC cleans junk, speeds up startup, updates programs and drivers, repairs hijacked browsers and scans for malware. Every tool shows what it found and why before it changes anything.',
-    'hero.cta': 'Download free trial',
+    'hero.cta': "Download free",
     'hero.more': 'See features',
-    'hero.meta': 'Windows 10/11 64-bit · Easy install, uninstall from Settings · Every feature for 30 days',
+    'hero.meta': "Windows 10/11 64-bit · Easy install, uninstall from Settings · Every feature free",
     'hero.install': 'Windows may warn the first time you open it. See how to install →',
     'hero.src': 'img/ui-home-en.jpg',
     'hero.alt': 'TidyUp PC overview with a PC health score of 100, free space, speed and security status',
@@ -37,7 +37,7 @@ window.NH_COPY = {
     'tool.drv.text': 'Checks drivers against Windows Update and vendor tools, and backs up drivers plus a restore point before every update.',
     'tool.doc.text': 'Repairs Chrome, Edge and Brave when the search page, extensions or pop-up ads have been hijacked. Everything can be undone.',
     'tool.guard.text': 'Scans for malware with the bundled ClamAV engine and abuse.ch databases, plus Spy Check for hidden connections.',
-    'tools.cta.title': 'Try every tool free for 30 days',
+    'tools.cta.title': "Use every tool for free",
     'tools.cta.link': 'Download TidyUp PC',
 
     'hl.a.title': 'See everything before it is removed',
@@ -69,11 +69,11 @@ window.NH_COPY = {
     'privacy.3.title': 'Every action logged',
     'privacy.3.text': 'Every action goes into a log you can open from the app, and can be reversed: quarantined files, changed settings and stopped services.',
 
-    'trial.label': 'Trial and license',
-    'trial.title': 'Try every feature free for 30 days',
-    'trial.text': "No account, no card. When you're ready, activate TidyUp PC with a License Key. Activation works offline.",
-    'trial.cta': 'Download free trial',
-    'trial.ask': 'Ask about pricing',
+    'trial.label': "Free, with support",
+    'trial.title': "Free to use. Support us after 30 days.",
+    'trial.text': "No account, no card. After 30 days every feature keeps working. If you like it, support us with a License Key, which activates offline.",
+    'trial.cta': "Download free",
+    'trial.ask': "Ask about a License Key",
 
     'faq.label': 'Help',
     'faq.title': 'Common questions',
@@ -86,7 +86,7 @@ window.NH_COPY = {
     'faq.4.q': 'Can it replace my antivirus?',
     'faq.4.a': 'No. Guard scans on demand and does not watch continuously. Keep Microsoft Defender or another antivirus on; TidyUp PC works alongside it.',
     'faq.5.q': 'What happens after 30 days?',
-    'faq.5.a': "Everything keeps working. You'll see a reminder at startup until you enter a License Key.",
+    'faq.5.a': "Everything keeps working. You will see a note at startup inviting you to support us; it goes away once you enter a License Key.",
     'faq.6.q': 'How do I install it?',
     'faq.6.a': 'Download TidyUpSetup.exe and double-click it to install. You can remove it from Settings > Apps. Prefer not to install? Get TidyUpPC.exe from the Releases page and run it directly.',
 
