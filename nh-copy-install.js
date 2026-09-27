@@ -37,7 +37,7 @@ window.NH_COPY = {
     'steps.1.text': 'On the red "Windows protected your PC" screen, click More info below the warning. Do not click Don’t run yet.',
     'steps.1.alt': 'The Windows protected your PC screen with the More info link',
     'steps.2.title': 'Check the file name, then click "Run anyway"',
-    'steps.2.text': 'Make sure the App line says TidyUpSetup.exe or NanoPDF-Setup.exe, matching the file you downloaded here, then click Run anyway. For TidyUp PC, Windows then asks for administrator permission; click Yes.',
+    'steps.2.text': 'Make sure the App line says TidyUpSetup.exe or NanoPDF-Setup.exe, matching the file you downloaded from nanohash.biz, then click Run anyway. For TidyUp PC, Windows then asks for administrator permission; click Yes.',
     'steps.2.alt': 'The same screen after More info, showing the file name TidyUpSetup.exe and the Run anyway button',
 
     'verify.label': 'Check the file',
@@ -51,7 +51,7 @@ window.NH_COPY = {
     'verify.3.text': 'Upload the file to VirusTotal, which checks it with dozens of antivirus engines at once.',
 
     'warn.title': 'When not to click Run anyway',
-    'warn.1': 'The file did not come from this page or from NanohashBIZ on GitHub',
+    'warn.1': 'The file was not downloaded from nanohash.biz',
     'warn.2': 'The App line does not say TidyUpSetup.exe or NanoPDF-Setup.exe',
     'warn.3': 'The SHA-256 value does not match the Releases page',
     'warn.4': 'Microsoft Defender or your antivirus reports a threat',
