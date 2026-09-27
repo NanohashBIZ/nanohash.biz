@@ -26,8 +26,14 @@ window.NH_COPY = {
     'lic.title': 'License Keys',
     'lic.howto': 'How to use: click Copy, then paste the key into the app’s License Key screen. No internet needed.',
 
-    'req.title': 'Tell us about your support',
-    'req.text': 'Supported us? Let us know here. We will check it and add a License Key to this account. Ask about ways to support us at support@nanohash.biz.',
+    'buy.title': 'Buy a License',
+    'buy.text': 'Pay with Stripe and the License Key appears in this account right away, with a receipt by email.',
+    'buy.name': 'Name to show in the License Key',
+    'buy.1y': '1 year',
+    'buy.never': 'Lifetime',
+
+    'req.title': 'Paid another way? Tell us here',
+    'req.text': 'If you transferred money or supported us another way, let us know here. We will check it and add a License Key to this account.',
     'req.product': 'App',
     'req.name': 'Name to show in the License Key',
     'req.reference': 'Transfer reference number',

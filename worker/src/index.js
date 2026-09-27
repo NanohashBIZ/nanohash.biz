@@ -1,6 +1,7 @@
 // nanohash.biz: static pages from ./public, plus the account API under /api/.
 import * as admin from './admin.js';
 import { callback, currentUser, logout, start } from './auth.js';
+import * as pay from './stripe.js';
 import * as user from './user.js';
 import { fail } from './util.js';
 
@@ -8,6 +9,10 @@ async function route(req, env, url) {
   const { pathname: path } = url;
   const site = new URL(env.SITE_ORIGIN || url.origin);
   const method = req.method;
+
+  // Stripe calls the webhook server to server (no Origin); it is authenticated by its signature instead.
+  if (method === 'POST' && path === '/api/stripe/webhook') return pay.webhook(req, env);
+  if (method === 'GET' && path === '/api/prices') return pay.prices();
 
   // Browsers always send Origin on POST; refusing other origins blocks cross-site form posts.
   const origin = req.headers.get('origin');
@@ -24,6 +29,9 @@ async function route(req, env, url) {
   if (method === 'GET' && path === '/api/licenses') return user.myLicenses(me, env);
   if (method === 'GET' && path === '/api/requests') return user.myRequests(me, env);
   if (method === 'POST' && path === '/api/requests') return user.createRequest(req, me, env);
+  if (method === 'POST' && path === '/api/checkout') return pay.createCheckout(req, me, env, site);
+  let c;
+  if (method === 'POST' && (c = path.match(/^\/api\/checkout\/(cs_[A-Za-z0-9_]+)\/confirm$/))) return pay.confirm(me, env, c[1]);
 
   if (!path.startsWith('/api/admin/')) return fail(404, 'not_found');
   if (!me.admin) return fail(403, 'not_admin');

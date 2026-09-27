@@ -24,6 +24,8 @@
   "vars": {
     "ADMIN_EMAILS": "madee.n34@gmail.com",
     "SITE_ORIGIN": "https://nanohash.biz",
+    // "true" once Stripe Tax registrations are set up in the Dashboard; checkout fails if enabled before that
+    "STRIPE_AUTOMATIC_TAX": "false",
     // OAuth client ID from Google Cloud Console. GOOGLE_CLIENT_SECRET and LICENSE_PRIVATE_JWK are Worker secrets.
     "GOOGLE_CLIENT_ID": "80445359965-p14fnceddq1vp8nsvh7atai9lhtppj65.apps.googleusercontent.com"
   },

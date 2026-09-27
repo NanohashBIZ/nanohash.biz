@@ -75,9 +75,35 @@
           <p class="nh-acc-fine" data-i18n="lic.howto">วิธีใช้: กดคัดลอก แล้ววาง Key ในหน้าใส่ License Key ของโปรแกรม ไม่ต้องต่ออินเทอร์เน็ต</p>
         </section>
 
+        <section class="nh-acc-block" id="buy" aria-labelledby="buy-title">
+          <h2 id="buy-title" data-i18n="buy.title">ซื้อ License</h2>
+          <p class="nh-acc-sub" data-i18n="buy.text">ชำระเงินผ่าน Stripe แล้ว License Key จะขึ้นในบัญชีนี้ทันที พร้อมใบเสร็จทางอีเมล</p>
+          <label class="nh-field nh-buy-name">
+            <span data-i18n="buy.name">ชื่อที่จะแสดงใน License Key</span>
+            <input type="text" id="acc-buy-name" maxlength="80" autocomplete="name">
+          </label>
+          <div class="nh-buy-grid">
+            <article class="nh-buy-card">
+              <h3><i class="nh-dl-dot nh-dl-dot--tidy"></i>TidyUp PC</h3>
+              <div class="nh-buy-options">
+                <button type="button" class="nh-buy-opt" data-product="tidyup" data-term="1y"><span data-i18n="buy.1y">1 ปี</span><strong>฿199</strong></button>
+                <button type="button" class="nh-buy-opt nh-buy-opt--best" data-product="tidyup" data-term="never"><span data-i18n="buy.never">ตลอดชีพ</span><strong>฿599</strong></button>
+              </div>
+            </article>
+            <article class="nh-buy-card">
+              <h3><i class="nh-dl-dot nh-dl-dot--pdf"></i>NanoPDF</h3>
+              <div class="nh-buy-options">
+                <button type="button" class="nh-buy-opt" data-product="nanopdf" data-term="1y"><span data-i18n="buy.1y">1 ปี</span><strong>฿199</strong></button>
+                <button type="button" class="nh-buy-opt nh-buy-opt--best" data-product="nanopdf" data-term="never"><span data-i18n="buy.never">ตลอดชีพ</span><strong>฿599</strong></button>
+              </div>
+            </article>
+          </div>
+          <p class="nh-acc-msg" id="acc-buy-msg" aria-live="polite"></p>
+        </section>
+
         <section class="nh-acc-block" id="support" aria-labelledby="req-title">
-          <h2 id="req-title" data-i18n="req.title">แจ้งการสนับสนุน</h2>
-          <p class="nh-acc-sub" data-i18n="req.text">สนับสนุนเราแล้ว? แจ้งที่นี่ เราจะตรวจสอบและออก License Key เข้าบัญชีนี้ให้ สอบถามช่องทางสนับสนุนได้ที่ support@nanohash.biz</p>
+          <h2 id="req-title" data-i18n="req.title">โอนเงินเองแล้ว? แจ้งที่นี่</h2>
+          <p class="nh-acc-sub" data-i18n="req.text">ถ้าคุณโอนเงินหรือสนับสนุนเราด้วยช่องทางอื่น แจ้งที่นี่ เราจะตรวจสอบและออก License Key เข้าบัญชีนี้ให้</p>
           <form class="nh-acc-form" id="acc-form" novalidate>
             <fieldset class="nh-acc-products">
               <legend data-i18n="req.product">โปรแกรม</legend>

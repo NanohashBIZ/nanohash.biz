@@ -8,6 +8,9 @@
       noLicenses: 'ยังไม่มี License Key ในบัญชีนี้ ถ้าสนับสนุนเราแล้ว แจ้งได้ในฟอร์มด้านล่าง',
       noRequests: 'ยังไม่มีคำขอ',
       status: { pending: 'รอตรวจสอบ', approved: 'อนุมัติแล้ว', rejected: 'ไม่อนุมัติ' },
+      toStripe: 'กำลังไปหน้าชำระเงิน…', paidOk: 'ชำระเงินเรียบร้อย License Key อยู่ในรายการด้านบนแล้ว ขอบคุณที่สนับสนุนเรา',
+      paidWait: 'ได้รับการชำระเงินแล้ว กำลังออก License Key รีเฟรชหน้านี้อีกครั้งในอีกสักครู่', payCancelled: 'ยกเลิกการชำระเงินแล้ว ยังไม่มีการตัดเงิน',
+      payNotDone: 'ยังไม่ได้รับการชำระเงิน ถ้าจ่ายด้วย PromptPay อาจใช้เวลาสักครู่',
       ref: 'อ้างอิง', slip: 'แนบสลิปแล้ว', sent: 'ส่งคำขอแล้ว เราจะตรวจสอบและแจ้งผลในหน้านี้', sending: 'กำลังส่ง…',
       errors: {
         cancelled: 'ยกเลิกการเข้าสู่ระบบแล้ว', state: 'การเข้าสู่ระบบหมดเวลา ลองใหม่อีกครั้ง',
@@ -17,6 +20,7 @@
         slip_size: 'ไฟล์สลิปใหญ่เกิน 2 MB', slip_type: 'รองรับเฉพาะไฟล์ JPG, PNG, WebP หรือ PDF',
         too_many_pending: 'มีคำขอรอตรวจสอบอยู่แล้ว 3 รายการ รอผลก่อนนะ', too_many: 'ส่งคำขอบ่อยเกินไป ลองใหม่พรุ่งนี้',
         signed_out: 'หมดเวลาการเข้าสู่ระบบ เข้าสู่ระบบอีกครั้ง', other: 'ส่งไม่สำเร็จ ลองใหม่อีกครั้ง',
+        payments_off: 'ระบบชำระเงินยังไม่เปิดใช้งาน', server: 'ระบบชำระเงินขัดข้อง ลองใหม่อีกครั้ง',
       },
     },
     en: {
@@ -26,6 +30,9 @@
       noLicenses: 'No License Keys in this account yet. If you have supported us, tell us in the form below.',
       noRequests: 'No requests yet',
       status: { pending: 'Being checked', approved: 'Approved', rejected: 'Not approved' },
+      toStripe: 'Opening the payment page…', paidOk: 'Payment complete. Your License Key is in the list above. Thank you for supporting us.',
+      paidWait: 'Payment received. Your License Key is being issued; refresh this page in a moment.', payCancelled: 'Payment cancelled. You have not been charged.',
+      payNotDone: 'Payment not received yet. PromptPay payments can take a moment.',
       ref: 'Reference', slip: 'Slip attached', sent: 'Request sent. We will check it and show the result here.', sending: 'Sending…',
       errors: {
         cancelled: 'Sign-in was cancelled.', state: 'Sign-in timed out. Please try again.',
@@ -35,6 +42,7 @@
         slip_size: 'The slip file is larger than 2 MB.', slip_type: 'Only JPG, PNG, WebP or PDF files are accepted.',
         too_many_pending: 'You already have 3 requests being checked. Please wait for the result.', too_many: 'Too many requests. Please try again tomorrow.',
         signed_out: 'Your session has ended. Please sign in again.', other: 'Could not send. Please try again.',
+        payments_off: 'Payments are not available yet.', server: 'The payment system had a problem. Please try again.',
       },
     },
   };
@@ -142,8 +150,7 @@
       const [lic, req] = await Promise.all([api('/api/licenses'), api('/api/requests')]);
       state.licenses = lic.licenses;
       state.requests = req.requests;
-      const name = $('acc-f-name');
-      if (!name.value) name.value = state.user.name;
+      for (const id of ['acc-f-name', 'acc-buy-name']) { const f = $(id); if (!f.value) f.value = state.user.name; }
     } catch (e) {
       state.user = null;
       if (e.status !== 401) state.error = 'load';
@@ -187,6 +194,40 @@
     }
   });
 
+  document.querySelectorAll('.nh-buy-opt').forEach(b => b.addEventListener('click', async () => {
+    const msg = $('acc-buy-msg');
+    msg.className = 'nh-acc-msg';
+    msg.textContent = t().toStripe;
+    document.querySelectorAll('.nh-buy-opt').forEach(x => { x.disabled = true; });
+    try {
+      const { url } = await api('/api/checkout', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ product: b.dataset.product, term: b.dataset.term, name: $('acc-buy-name').value, lang: document.documentElement.lang }),
+      });
+      location.href = url;
+    } catch (err) {
+      msg.textContent = t().errors[err.code] || t().errors.other;
+      msg.classList.add('is-bad');
+      document.querySelectorAll('.nh-buy-opt').forEach(x => { x.disabled = false; });
+    }
+  }));
+
+  // back from Stripe Checkout: confirm the payment so the key is issued even before the webhook arrives
+  async function afterCheckout(sessionId) {
+    const msg = $('acc-buy-msg');
+    try {
+      const r = await api(`/api/checkout/${encodeURIComponent(sessionId)}/confirm`, { method: 'POST' });
+      msg.textContent = r.paid ? (r.issued ? t().paidOk : t().paidWait) : t().payNotDone;
+      msg.classList.add(r.paid ? 'is-ok' : 'is-bad');
+      state.licenses = (await api('/api/licenses')).licenses;
+      renderLicenses();
+    } catch (err) {
+      msg.textContent = t().errors[err.code] || t().errors.other;
+      msg.classList.add('is-bad');
+    }
+    $('buy').scrollIntoView({ block: 'center' });
+  }
+
   document.addEventListener('nh:lang', () => { if (!$('acc-loading').hidden) return; render(); });
 
   const params = new URLSearchParams(location.search);
@@ -195,5 +236,12 @@
     params.delete('error');
     history.replaceState(null, '', location.pathname + (params.toString() ? `?${params}` : '') + location.hash);
   }
-  load();
+  const paid = params.get('paid');
+  const cancelled = params.has('cancelled');
+  if (paid || cancelled) history.replaceState(null, '', location.pathname);
+  load().then(() => {
+    if (!state.user) return;
+    if (paid) afterCheckout(paid);
+    else if (cancelled) { $('acc-buy-msg').textContent = t().payCancelled; $('buy').scrollIntoView({ block: 'center' }); }
+  });
 })();
