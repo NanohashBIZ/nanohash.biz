@@ -11,6 +11,9 @@ const PAGES = [
   { html: 'tidyup.html', copy: 'nh-copy-tidyup.js' },
 ];
 const BANNED = [/ผม/, /\bsolo\b/i, /\bAI\b/];
+const REDIRECTS = new Set(existsSync(join(ROOT, '_redirects'))
+  ? readFileSync(join(ROOT, '_redirects'), 'utf8').split('\n').map(l => l.trim().split(/\s+/)[0]).filter(p => p && p.startsWith('/'))
+  : []);
 const problems = [];
 const fail = (page, msg) => problems.push(`${page}: ${msg}`);
 
@@ -43,6 +46,10 @@ for (const { html: page, copy } of PAGES) {
   for (const v of Object.values(en)) if (/\.(png|jpe?g|svg|webp)$/.test(v)) refs.push(v);
   for (const ref of refs.filter(isLocal)) {
     const path = ref.split(/[?#]/)[0];
+    if (path.startsWith('/')) {
+      if (!REDIRECTS.has(path)) fail(page, `"${ref}" is not a file or a path in _redirects`);
+      continue;
+    }
     if (!existsSync(join(ROOT, path))) fail(page, `broken local reference "${ref}"`);
   }
 
