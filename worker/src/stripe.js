@@ -10,6 +10,14 @@ export const PRICES = { '1y': 19900, never: 59900 }; // satang: 199 and 599 THB
 const TERM_LABEL = { '1y': { th: '1 ปี', en: '1 year' }, never: { th: 'ตลอดชีพ', en: 'Lifetime' } };
 const WEBHOOK_TOLERANCE = 300; // seconds
 
+/** Describes a Stripe key without revealing it, e.g. "sk_test", "pk_live", "unknown (length 42, starts with quote)". */
+export function keyKind(key) {
+  const m = String(key).match(/^(sk|rk|pk)_(test|live)_/);
+  if (m) return `${m[1]}_${m[2]}`;
+  const s = String(key);
+  return `unknown (length ${s.length}${/^\s/.test(s) ? ', starts with space' : ''}${/^["']/.test(s) ? ', starts with quote' : ''})`;
+}
+
 /** Flattens { a: { b: [x] } } into Stripe's form encoding: a[b][0]=x */
 export function formEncode(obj, prefix = '', out = new URLSearchParams()) {
   for (const [k, v] of Object.entries(obj)) {
@@ -46,6 +54,11 @@ export function prices() {
 
 export async function createCheckout(req, user, env, site) {
   if (!env.STRIPE_SECRET_KEY) return fail(503, 'payments_off');
+  const kind = keyKind(env.STRIPE_SECRET_KEY);
+  if (!/^(sk|rk)_/.test(kind)) {
+    console.error(`STRIPE_SECRET_KEY must be a secret (sk_) or restricted (rk_) key, found: ${kind}`);
+    return fail(503, 'payments_off');
+  }
   const body = await readJson(req);
   const product = str(body.product, 20);
   const term = str(body.term, 10);
