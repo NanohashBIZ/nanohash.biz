@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node build.mjs",
     "dev": "node build.mjs && wrangler dev",
-    "deploy": "node build.mjs && wrangler d1 migrations apply nanohash --remote && wrangler deploy",
+    "deploy": "node tools/deploy.mjs",
     "test": "node --test \"test/*.test.mjs\""
   },
   "devDependencies": {
