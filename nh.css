@@ -559,3 +559,5 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-buy-opt:disabled { opacity: .6; cursor: wait; transform: none; }
 #acc-buy-msg { margin-top: 14px; }
 @media (max-width: 600px) { .nh-buy-grid { grid-template-columns: minmax(0, 1fr); } }
+.nh-btn--danger { margin-left: auto; border-color: #f3c1bb; background: #fff; color: #9b2c1f; }
+.nh-btn--danger:hover { border-color: #9b2c1f; background: #fff4f2; }

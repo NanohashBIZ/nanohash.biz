@@ -93,6 +93,21 @@ export async function importKeys(req, env, admin) {
   return json(out);
 }
 
+/** Removes a key from the database for good. A key already entered in an app keeps working (offline check). */
+export async function removeLicense(env, id) {
+  const res = await env.DB.prepare('DELETE FROM licenses WHERE id = ?1').bind(id).run();
+  if (!res.meta.changes) return fail(404, 'not_found');
+  return json({ ok: true });
+}
+
+/** Removes a decided request and its slip. Pending requests must be approved or rejected first. */
+export async function removeRequest(env, id) {
+  const res = await env.DB.prepare("DELETE FROM requests WHERE id = ?1 AND status != 'pending'").bind(id).run();
+  if (!res.meta.changes) return fail(404, 'not_found');
+  await env.SLIPS.delete(`slip:${id}`);
+  return json({ ok: true });
+}
+
 export async function revoke(env, id) {
   const res = await env.DB.prepare("UPDATE licenses SET status = 'revoked' WHERE id = ?1 AND status = 'active'").bind(id).run();
   if (!res.meta.changes) return fail(404, 'not_found');

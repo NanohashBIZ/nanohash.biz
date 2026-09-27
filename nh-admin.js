@@ -1,4 +1,4 @@
-// Admin page: review support requests, issue, import and revoke License Keys. Thai only.
+// Admin page: review support requests, issue, import, revoke and delete License Keys. Thai only.
 (() => {
   const PRODUCT = { tidyup: 'TidyUp PC', nanopdf: 'NanoPDF' };
   const STATUS = { pending: 'รอตรวจสอบ', approved: 'อนุมัติแล้ว', rejected: 'ไม่อนุมัติ', active: 'ใช้งาน', revoked: 'ยกเลิกแล้ว' };
@@ -77,6 +77,13 @@
         }),
       );
     }
+    if (!withActions && r.status !== 'pending') {
+      actions.append(button('ลบ', 'nh-btn--danger', async () => {
+        if (!confirm(`ลบคำขอของ ${r.email} ออกจากรายการ? (สลิปที่แนบจะถูกลบด้วย ส่วน License Key ที่ออกไปแล้วไม่ถูกลบ)`)) return;
+        await api(`/api/admin/requests/${r.id}/delete`, { method: 'POST' });
+        await loadHistory();
+      }));
+    }
     if (actions.childNodes.length) card.append(actions);
     return card;
   }
@@ -113,6 +120,14 @@
           await loadKeys($('ad-search').q.value);
         }));
       }
+      actions.append(button('ลบ', 'nh-btn--danger', async () => {
+        const warn = lic.status === 'active'
+          ? `ลบ Key ${PRODUCT[lic.product]} ของ ${lic.email} ถาวร?\n\nKey นี้ยังใช้งานอยู่ ผู้ใช้จะไม่เห็นในบัญชีอีก แต่ถ้าใส่ในโปรแกรมไปแล้วจะยังใช้ได้ (ตรวจแบบออฟไลน์)`
+          : `ลบ Key ${PRODUCT[lic.product]} ของ ${lic.email} ถาวร?`;
+        if (!confirm(warn)) return;
+        await api(`/api/admin/licenses/${lic.id}/delete`, { method: 'POST' });
+        await loadKeys($('ad-search').q.value);
+      }));
       card.append(actions);
       return card;
     }, 'ไม่พบ Key');
