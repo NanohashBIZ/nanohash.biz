@@ -17,6 +17,7 @@ window.NH_COPY = {
     'signin.title': 'Sign in',
     'signin.text': 'Use the Google account you already have. No new password needed.',
     'signin.google': 'Sign in with Google',
+    'signin.privacy': 'Read our privacy policy',
     'signin.fine': 'We only use your name and email, to show the License Keys issued to that email.',
 
     'profile.admin': 'Admin',
@@ -38,6 +39,7 @@ window.NH_COPY = {
 
     'footer.nav': 'Footer',
     'footer.install': 'Install guide',
+    'footer.privacy': 'Privacy',
     'footer.contact': 'Contact',
     'footer.copy': '© 2026 NanoHash. All rights reserved.'
   }

@@ -117,6 +117,7 @@ window.NH_COPY = {
 
     'footer.nav': 'Footer',
     'footer.install': 'Install guide',
+    'footer.privacy': 'Privacy',
     'footer.contact': 'Contact',
     'footer.copy': '© 2026 NanoHash. All rights reserved.'
   }

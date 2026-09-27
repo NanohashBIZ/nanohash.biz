@@ -12,6 +12,7 @@ const PAGES = [
   { html: 'tidyup.html', copy: 'nh-copy-tidyup.js' },
   { html: 'install.html', copy: 'nh-copy-install.js' },
   { html: 'account.html', copy: 'nh-copy-account.js' },
+  { html: 'privacy.html', copy: 'nh-copy-privacy.js' },
 ];
 const BANNED = [/ผม/, /\bsolo\b/i, /\bAI\b/];
 const REDIRECTS = new Set(existsSync(join(ROOT, '_redirects'))

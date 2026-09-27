@@ -535,3 +535,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nh-acc-profile { padding: 16px 18px; }
   .nh-acc-item { padding: 16px; }
 }
+
+/* ---------- Legal pages ---------- */
+.nh-legal { display: grid; gap: 14px; }
+.nh-legal h2 { margin-top: 18px; font-size: 21px; }
+.nh-legal h2:first-child { margin-top: 0; }
+.nh-legal p, .nh-legal li { color: var(--ink-2, var(--ink)); line-height: 1.75; }
+.nh-legal a { color: var(--tidy); }
+.nh-legal-list { display: grid; gap: 8px; padding-left: 22px; list-style: disc; }
+.nh-acc-fine a { color: var(--tidy); }
