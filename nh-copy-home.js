@@ -7,7 +7,7 @@ window.NH_COPY = {
     'lang.label': 'Choose language',
     'nav.label': 'Main menu',
     'nav.products': 'Products',
-    'nav.approach': 'Our promise',
+    'nav.approach': 'Our standards',
     'nav.about': 'Why NanoHash',
     'nav.contact': 'Contact',
 
@@ -51,7 +51,7 @@ window.NH_COPY = {
     'pdf.more': 'Learn more',
     'pdf.download': 'Download free',
 
-    'approach.label': 'Our promise',
+    'approach.label': 'Our standards',
     'approach.title': 'Every detail that matters, taken care of',
     'approach.intro': 'Good software should be easy to use, transparent, safe and good value, without paying for what you do not need.',
     'approach.1.title': 'Clear at every step',
