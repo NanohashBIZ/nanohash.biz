@@ -75,7 +75,7 @@ window.NH_COPY = {
     'about.s4': 'Thai and English, switchable in the app',
 
     'founder.alt': "A desk at night with a TidyUp PC planning board on the wall and an AI assistant writing and testing code on the screens",
-    'founder.caption': "Where TidyUp PC and NanoPDF were made",
+    'founder.caption': "Where every NanoHash app is made",
     'founder.label': "From the founder",
     'founder.title': "You don't have to be ready to start building",
     'founder.p1': "I started NanoHash with problems I ran into every day: a PC that kept getting slower, and Thai PDF documents with vowels floating out of place. I had no big team and no funding, just one computer, curiosity, and AI as my assistant.",
