@@ -14,7 +14,8 @@ const SKIP = ['worker', 'tests', 'README.md', '.gitignore', 'vercel.json', '.ver
 rmSync(out, { recursive: true, force: true });
 mkdirSync(out);
 execFileSync('git', ['-C', site, 'archive', '--format=tar', '-o', tar, 'HEAD']);
-execFileSync('tar', ['-xf', tar, '-C', out]);
+// relative paths: GNU tar reads "C:" as a remote host
+execFileSync('tar', ['-xf', '.site.tar', '-C', 'public'], { cwd: here });
 rmSync(tar);
 for (const p of SKIP) rmSync(join(out, p), { recursive: true, force: true });
 console.log(`site copied to ${out}`);

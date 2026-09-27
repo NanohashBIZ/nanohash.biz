@@ -29,7 +29,9 @@ export function expiryFor(term, today = new Date()) {
 export async function signKey(privateJwk, product, name, email, exp, plan = 'pro') {
   const p = PRODUCTS[product];
   if (!p) throw new Error('unknown product');
-  const jwk = typeof privateJwk === 'string' ? JSON.parse(privateJwk) : privateJwk;
+  // the secret holds the JWK as base64 JSON (plain JSON also accepted)
+  const jwk = typeof privateJwk !== 'string' ? privateJwk
+    : JSON.parse(privateJwk.trim().startsWith('{') ? privateJwk : atob(privateJwk.trim()));
   const key = await crypto.subtle.importKey('jwk', { ...jwk, alg: 'RS256', ext: true }, ALG, false, ['sign']);
   const payload = new TextEncoder().encode(p.payload(clean(name), clean(email), exp, clean(plan)));
   const sig = new Uint8Array(await crypto.subtle.sign(ALG.name, key, payload));

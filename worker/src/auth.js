@@ -8,14 +8,17 @@ const NEXT = new Set(['/account', '/admin']);
 const SESSION = 'nh_session';
 const OAUTH = 'nh_oauth';
 
-const secure = url => url.protocol === 'https:';
-const callbackUrl = url => `${url.origin}/api/auth/callback`;
+// `site` is the public origin (SITE_ORIGIN): Google only accepts the callback URL registered for it.
+const secure = site => site.protocol === 'https:';
+const callbackUrl = site => `${site.origin}/api/auth/callback`;
 
 export function isAdmin(env, email) {
   return String(env.ADMIN_EMAILS || '').toLowerCase().split(',').map(s => s.trim()).filter(Boolean).includes(email);
 }
 
-export async function start(req, env, url) {
+export async function start(req, env, url, site) {
+  // www: start again on the main origin so the cookies land on one host
+  if (url.hostname.startsWith('www.')) return redirect(`${site.origin}${url.pathname}${url.search}`);
   if (!env.GOOGLE_CLIENT_ID || !env.GOOGLE_CLIENT_SECRET) return redirect('/account?error=setup');
   const next = NEXT.has(url.searchParams.get('next')) ? url.searchParams.get('next') : '/account';
   const state = randomToken(24);
@@ -23,7 +26,7 @@ export async function start(req, env, url) {
   const challenge = b64url(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier))));
   const q = new URLSearchParams({
     client_id: env.GOOGLE_CLIENT_ID,
-    redirect_uri: callbackUrl(url),
+    redirect_uri: callbackUrl(site),
     response_type: 'code',
     scope: 'openid email profile',
     state,
@@ -32,13 +35,13 @@ export async function start(req, env, url) {
     prompt: 'select_account',
   });
   return redirect(`${GOOGLE_AUTH}?${q}`, [
-    ['set-cookie', cookie(OAUTH, `${state} ${verifier} ${next}`, { maxAge: 600, path: '/api/auth', secure: secure(url) })],
+    ['set-cookie', cookie(OAUTH, `${state} ${verifier} ${next}`, { maxAge: 600, path: '/api/auth', secure: secure(site) })],
   ]);
 }
 
-export async function callback(req, env, url) {
+export async function callback(req, env, url, site) {
   const [state, verifier, next] = (readCookies(req)[OAUTH] || '').split(' ');
-  const clear = ['set-cookie', cookie(OAUTH, '', { maxAge: 0, path: '/api/auth', secure: secure(url) })];
+  const clear = ['set-cookie', cookie(OAUTH, '', { maxAge: 0, path: '/api/auth', secure: secure(site) })];
   const back = code => redirect(`${next === '/admin' ? '/admin' : '/account'}?error=${code}`, [clear]);
   if (url.searchParams.get('error')) return back('cancelled');
   if (!state || url.searchParams.get('state') !== state || !url.searchParams.get('code')) return back('state');
@@ -50,7 +53,7 @@ export async function callback(req, env, url) {
       code: url.searchParams.get('code'),
       client_id: env.GOOGLE_CLIENT_ID,
       client_secret: env.GOOGLE_CLIENT_SECRET,
-      redirect_uri: callbackUrl(url),
+      redirect_uri: callbackUrl(site),
       grant_type: 'authorization_code',
       code_verifier: verifier,
     }),
@@ -78,7 +81,7 @@ export async function callback(req, env, url) {
     env.DB.prepare('INSERT INTO sessions (token_hash, user_id, created_at, expires_at) VALUES (?1, ?2, ?3, ?4)')
       .bind(await sha256(token), claims.sub, now, expires),
   ]);
-  return redirect(next || '/account', [clear, ['set-cookie', cookie(SESSION, token, { maxAge: SESSION_DAYS * 86400, secure: secure(url) })]]);
+  return redirect(next || '/account', [clear, ['set-cookie', cookie(SESSION, token, { maxAge: SESSION_DAYS * 86400, secure: secure(site) })]]);
 }
 
 export async function currentUser(req, env) {
@@ -90,10 +93,10 @@ export async function currentUser(req, env) {
   return { ...row, admin: isAdmin(env, row.email) };
 }
 
-export async function logout(req, env, url) {
+export async function logout(req, env, site) {
   const token = readCookies(req)[SESSION];
   if (token) await env.DB.prepare('DELETE FROM sessions WHERE token_hash = ?1').bind(await sha256(token)).run();
-  return json({ ok: true }, 200, [['set-cookie', cookie(SESSION, '', { maxAge: 0, secure: secure(url) })]]);
+  return json({ ok: true }, 200, [['set-cookie', cookie(SESSION, '', { maxAge: 0, secure: secure(site) })]]);
 }
 
 export const needUser = user => (user ? null : fail(401, 'signed_out'));

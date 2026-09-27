@@ -1,4 +1,4 @@
-// Turns the .NET RSA private key XML into the JWK the Worker signs with, and writes it to stdout
+// Turns the .NET RSA private key XML into the JWK the Worker signs with, and writes it (base64) to stdout
 // so it can be piped straight into `wrangler secret put LICENSE_PRIVATE_JWK` without being shown.
 //   node tools/private-key-secret.mjs ../../TidyUpPC/dev/keys/private.xml | npx wrangler secret put LICENSE_PRIVATE_JWK
 import { readFileSync } from 'node:fs';
@@ -15,4 +15,4 @@ export function xmlToJwk(xml) {
   };
 }
 
-if (process.argv[2]) process.stdout.write(JSON.stringify(xmlToJwk(readFileSync(process.argv[2], 'utf8'))));
+if (process.argv[2]) process.stdout.write(Buffer.from(JSON.stringify(xmlToJwk(readFileSync(process.argv[2], 'utf8')))).toString('base64'));

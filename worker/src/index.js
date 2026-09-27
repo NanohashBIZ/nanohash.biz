@@ -6,14 +6,16 @@ import { fail } from './util.js';
 
 async function route(req, env, url) {
   const { pathname: path } = url;
+  const site = new URL(env.SITE_ORIGIN || url.origin);
   const method = req.method;
 
   // Browsers always send Origin on POST; refusing other origins blocks cross-site form posts.
-  if (method !== 'GET' && method !== 'HEAD' && req.headers.get('origin') !== url.origin) return fail(403, 'origin');
+  const origin = req.headers.get('origin');
+  if (method !== 'GET' && method !== 'HEAD' && origin !== site.origin && origin !== url.origin) return fail(403, 'origin');
 
-  if (method === 'GET' && path === '/api/auth/google') return start(req, env, url);
-  if (method === 'GET' && path === '/api/auth/callback') return callback(req, env, url);
-  if (method === 'POST' && path === '/api/auth/logout') return logout(req, env, url);
+  if (method === 'GET' && path === '/api/auth/google') return start(req, env, url, site);
+  if (method === 'GET' && path === '/api/auth/callback') return callback(req, env, url, site);
+  if (method === 'POST' && path === '/api/auth/logout') return logout(req, env, site);
 
   const me = await currentUser(req, env);
   if (!me) return fail(401, 'signed_out');

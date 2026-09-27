@@ -23,6 +23,7 @@
   ],
   "vars": {
     "ADMIN_EMAILS": "madee.n34@gmail.com",
+    "SITE_ORIGIN": "https://nanohash.biz",
     // OAuth client ID from Google Cloud Console. GOOGLE_CLIENT_SECRET and LICENSE_PRIVATE_JWK are Worker secrets.
     "GOOGLE_CLIENT_ID": ""
   },
