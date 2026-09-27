@@ -6,7 +6,7 @@ Static HTML with no build step. Thai copy lives in the HTML; English copy lives 
 
 | Page | File |
 |---|---|
-| Company | `nanohash.html` (served at `/`) |
+| Company | `index.html` (served at `/`) |
 | TidyUp PC | `tidyup.html` |
 | NanoPDF | `nanopdf.html` |
 

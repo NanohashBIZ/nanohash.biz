@@ -6,7 +6,7 @@ import vm from 'node:vm';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PAGES = [
-  { html: 'nanohash.html', copy: 'nh-copy-home.js' },
+  { html: 'index.html', copy: 'nh-copy-home.js' },
   { html: 'nanopdf.html', copy: 'nh-copy-nanopdf.js' },
   { html: 'tidyup.html', copy: 'nh-copy-tidyup.js' },
   { html: 'install.html', copy: 'nh-copy-install.js' },
@@ -47,6 +47,7 @@ for (const { html: page, copy } of PAGES) {
   for (const v of Object.values(en)) if (/\.(png|jpe?g|svg|webp)$/.test(v)) refs.push(v);
   for (const ref of refs.filter(isLocal)) {
     const path = ref.split(/[?#]/)[0];
+    if (path === '/') { if (!existsSync(join(ROOT, 'index.html'))) fail(page, 'link to / but index.html is missing'); continue; }
     if (path.startsWith('/')) {
       if (!REDIRECTS.has(path)) fail(page, `"${ref}" is not a file or a path in _redirects`);
       continue;

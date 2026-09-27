@@ -5,7 +5,6 @@ docs/
 .vercel/
 
 # old TidyUp PC site (not served on nanohash.biz)
-index.html
 site.css
 site.js
 content.js

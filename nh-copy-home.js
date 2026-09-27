@@ -1,4 +1,4 @@
-// English copy for nanohash.html. Thai copy lives in the HTML.
+// English copy for index.html (the home page). Thai copy lives in the HTML.
 window.NH_COPY = {
   en: {
     'meta.title': 'NanoHash — Software for everyday work on Windows',
