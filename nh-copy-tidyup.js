@@ -17,7 +17,7 @@ window.NH_COPY = {
     'hero.lead': 'TidyUp PC cleans junk, speeds up startup, updates programs and drivers, repairs hijacked browsers and scans for malware. Every tool shows what it found and why before it changes anything.',
     'hero.cta': 'Download free trial',
     'hero.more': 'See features',
-    'hero.meta': 'Windows 10/11 64-bit · Single file, nothing to install · Every feature for 30 days',
+    'hero.meta': 'Windows 10/11 64-bit · Easy install, uninstall from Settings · Every feature for 30 days',
     'hero.src': 'img/ui-home-en.jpg',
     'hero.alt': 'TidyUp PC overview with a PC health score of 100, free space, speed and security status',
 
@@ -79,7 +79,7 @@ window.NH_COPY = {
     'faq.1.q': 'Which Windows versions are supported?',
     'faq.1.a': 'Windows 10 and Windows 11, 64-bit. TidyUp PC runs as Administrator because it cleans system files and changes Windows settings.',
     'faq.2.q': 'Why does Windows warn "Unknown publisher" when I open it?',
-    'faq.2.a': "TidyUp PC is not code-signed yet, so Windows shows this warning for new programs. Download it only from this site or the NanohashBIZ GitHub Releases page, and check that the file's SHA-256 matches the version.json in that release. Only then click “More info” and “Run anyway”. If you are not sure, do not open the file.",
+    'faq.2.a': "TidyUp PC is signed with NanoHash's own certificate, which Windows does not know yet, so it may show this warning. Download it only from this site or the NanohashBIZ GitHub Releases page, and check that the file's SHA-256 matches the version.json in that release. Only then click “More info” and “Run anyway”. If you are not sure, do not open the file.",
     'faq.3.q': 'Will cleaning delete my personal files?',
     'faq.3.a': 'No. It cleans temporary files and system and program caches. Every item has a safety level and only safe ones are ticked. Your own files, such as old downloads, go to the Recycle Bin and only when you choose them.',
     'faq.4.q': 'Can it replace my antivirus?',
@@ -87,7 +87,7 @@ window.NH_COPY = {
     'faq.5.q': 'What happens after 30 days?',
     'faq.5.a': "Everything keeps working. You'll see a reminder at startup until you enter a License Key.",
     'faq.6.q': 'How do I install it?',
-    'faq.6.a': 'Download the single file TidyUpPC.exe, put it anywhere and double-click. There is no installer.',
+    'faq.6.a': 'Download TidyUpSetup.exe and double-click it to install. You can remove it from Settings > Apps. Prefer not to install? Get TidyUpPC.exe from the Releases page and run it directly.',
 
     'footer.nav': 'Footer',
     'footer.contact': 'Contact',

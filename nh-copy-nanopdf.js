@@ -17,7 +17,7 @@ window.NH_COPY = {
     'hero.lead': 'Read, annotate, edit text, organize pages, fill forms, convert to Office formats and sign digitally. Thai works everywhere, including OCR.',
     'hero.cta': 'Download free trial',
     'hero.more': 'See features',
-    'hero.meta': 'Windows 10/11 64-bit · Single file, nothing to install · Every feature for 30 days',
+    'hero.meta': 'Windows 10/11 64-bit · Installs without admin rights · Every feature for 30 days',
     'hero.src': 'img/nanopdf/read-en-dark.png',
     'hero.alt': 'NanoPDF in dark mode with a Thai report open and the annotation tools showing',
 
@@ -75,8 +75,8 @@ window.NH_COPY = {
 
     'faq.label': 'Help',
     'faq.title': 'Common questions',
-    'faq.1.q': 'Do I need to install anything?',
-    'faq.1.a': "No. NanoPDF is a single .exe file. Download it, put it anywhere and double-click. OCR needs the Microsoft Visual C++ runtime; if it's missing, NanoPDF links you to the download.",
+    'faq.1.q': 'How do I install it?',
+    'faq.1.a': "Download NanoPDF-Setup.exe and double-click it. It installs for the current user without admin rights, and you can remove it from Settings > Apps. Prefer not to install? Get NanoPDF.exe from the Releases page and run it directly. OCR needs the Microsoft Visual C++ runtime; if it's missing, NanoPDF links you to the download.",
     'faq.2.q': 'Are my documents uploaded anywhere?',
     'faq.2.a': 'No. Documents are processed on your PC. NanoPDF goes online only to check for updates and, if you use it, to timestamp a digital signature.',
     'faq.3.q': 'What happens after 30 days?',

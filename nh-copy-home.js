@@ -63,10 +63,10 @@ window.NH_COPY = {
 
     'about.label': 'Why NanoHash',
     'about.title': 'Nano by name.<br>Full-strength by design.',
-    'about.text': 'NanoHash makes small, light Windows apps that come as a single file. Open them right away with no installer and no account, and they update themselves from inside the app.',
+    'about.text': 'NanoHash makes small, light Windows apps that install from a single file. No account needed, and they update themselves from inside the app.',
 
 
-    'about.s1': 'Single .exe file, nothing to install',
+    'about.s1': 'One setup file, uninstall from Settings',
     'about.s2u': 'THB/month',
     'about.s2': 'No subscription fees',
     'about.s3u': 'days',
