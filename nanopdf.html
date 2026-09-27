@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var d=document.documentElement,l=null;d.classList.add('nh-js');try{l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('nanohash-lang')}catch(e){}if(l==='en'){d.lang='en';d.classList.add('nh-i18n-pending');setTimeout(function(){d.classList.remove('nh-i18n-pending')},1500)}})();</script>
 <title data-i18n="meta.title">NanoPDF — ทุกงาน PDF จบในโปรแกรมเดียว</title>
-<meta name="description" data-i18n-attr="content:meta.description" content="อ่าน เขียนคำอธิบาย แก้ไข แปลงไฟล์ OCR และลงลายเซ็น PDF บน Windows รองรับภาษาไทยเต็มรูปแบบ ใช้ฟรีทุกฟีเจอร์ ไม่ต้องสมัครสมาชิก">
+<meta name="description" data-i18n-attr="content:meta.description" content="อ่าน แก้ไข แปลงไฟล์ OCR รับรองสำเนา ลงลายเซ็น และส่ง PDF บน Windows รองรับภาษาไทยเต็มรูปแบบ ใช้ฟรีทุกฟีเจอร์ ไม่ต้องสมัครสมาชิก">
 <meta name="theme-color" content="#13235a">
 <link rel="canonical" href="https://nanohash.biz/nanopdf">
 <meta property="og:url" content="https://nanohash.biz/nanopdf">
@@ -47,9 +47,9 @@
 <main id="main">
   <section class="nh-phero">
     <div class="nh-wrap">
-      <span class="nh-label" data-i18n="hero.eyebrow">NanoPDF สำหรับ Windows</span>
+      <a class="nh-label nh-label--link" href="#new" data-i18n="hero.eyebrow">ใหม่ในเวอร์ชัน 4.6 · รับรองสำเนา ส่ง และแชร์</a>
       <h1 data-i18n-html="hero.title"><span class="nh-line">ทุกงาน PDF</span> <span class="nh-line">จบในโปรแกรมเดียว</span></h1>
-      <p class="nh-lead" data-i18n="hero.lead">อ่าน เขียนคำอธิบาย แก้ข้อความ จัดหน้า กรอกฟอร์ม แปลงเป็นไฟล์ Office และลงลายเซ็นดิจิทัล ภาษาไทยใช้ได้ทุกส่วน รวมถึง OCR</p>
+      <p class="nh-lead" data-i18n="hero.lead">อ่าน แก้ไข แปลงไฟล์ OCR รับรองสำเนา เซ็น และส่งต่อ ครบในที่เดียว ภาษาไทยใช้ได้ทุกส่วน</p>
       <div class="nh-actions">
         <a class="nh-btn nh-btn--primary" href="/download/NanoPDF-Setup.exe"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v10m-4-4 4 4 4-4M4 16.5h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="hero.cta">ดาวน์โหลดฟรี</span></a>
         <a class="nh-btn nh-btn--secondary" href="#features" data-i18n="hero.more">ดูฟีเจอร์</a>
@@ -77,7 +77,7 @@
         <div class="nh-mode nh-reveal">
           <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 4.5l5 5L9 20H4v-5zM12.5 6.5l5 5"/></svg></span>
           <h3 data-i18n="mode.annotate.name">คำอธิบาย</h3>
-          <p data-i18n="mode.annotate.text">ไฮไลต์ ขีดเส้นใต้ แปะโน้ต วาด กล่องข้อความ และตราประทับ</p>
+          <p data-i18n="mode.annotate.text">ไฮไลต์ แปะโน้ต วาดรูปทรง ลูกศร กล่องข้อความ ตราประทับ และสติกเกอร์</p>
         </div>
         <div class="nh-mode nh-reveal">
           <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7V5h11v2M9.5 5v14M7 19h5M18 10v10M16 10h4M16 20h4"/></svg></span>
@@ -108,6 +108,80 @@
           <h3 data-i18n="modes.cta.title">ใช้ครบทั้ง 7 โหมดได้ฟรี</h3>
           <span class="nh-mode-link"><span data-i18n="modes.cta.link">ดาวน์โหลด NanoPDF</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="nh-section nh-section--new" id="new">
+    <div class="nh-wrap">
+      <div class="nh-section-head nh-section-head--center nh-reveal">
+        <span class="nh-label" data-i18n="new.label">ใหม่ในเวอร์ชัน 4.6</span>
+        <h2 data-i18n="new.title">รับรอง ส่ง และแชร์เอกสาร จบในโปรแกรมเดียว</h2>
+        <p data-i18n="new.intro">งานเอกสารที่ทำกันทุกวัน ตั้งแต่เซ็นสำเนาบัตรประชาชนไปจนถึงส่งไฟล์เข้าแชต ทำได้ใน NanoPDF โดยไม่ต้องพิมพ์ ไม่ต้องสแกน</p>
+      </div>
+      <div class="nh-splits">
+        <div class="nh-split nh-reveal">
+          <div class="nh-split-copy">
+            <span class="nh-new-tag" data-i18n="new.tag">ใหม่</span>
+            <h3 data-i18n="new.certify.title">รับรองสำเนาได้ ไม่ต้องพิมพ์</h3>
+            <p data-i18n="new.certify.text">ใส่ข้อความ "สำเนาถูกต้อง" พร้อมลายเซ็น ชื่อ วันที่ และขีดคร่อมระบุว่าใช้สำหรับอะไร จัดบัตรหน้าหลังขนาดจริงลง A4 หน้าเดียว และปิดส่วนที่ไม่ต้องการให้เห็น เช่น เลขหลังบัตร</p>
+            <ul class="nh-checks">
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="new.certify.1">จัดบัตรขนาดจริง 2 ใบต่อหน้า A4 และตัดขอบบัตรให้อัตโนมัติ</span></li>
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="new.certify.2">เลือกวัตถุประสงค์สำเร็จรูป เช่น สมัครงาน เปิดบัญชีธนาคาร ยื่นวีซ่า</span></li>
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="new.certify.3">หมึกน้ำเงินหรือดำ และสลับเป็นข้อความภาษาอังกฤษได้</span></li>
+            </ul>
+          </div>
+          <div class="nh-shot"><img src="img/nanopdf/certified-copy.png" alt="NanoPDF รับรองสำเนาบัตรหน้าหลังบน A4 หน้าเดียว พร้อมขีดคร่อมว่าใช้สำหรับเปิดบัญชีธนาคารเท่านั้น" data-i18n-attr="alt:new.certify.alt" width="1280" height="820" loading="lazy"></div>
+        </div>
+        <div class="nh-split nh-split--reverse nh-reveal">
+          <div class="nh-split-copy">
+            <span class="nh-new-tag" data-i18n="new.tag">ใหม่</span>
+            <h3 data-i18n="new.send.title">ส่งไฟล์ ไม่หลุดข้อมูลส่วนตัว</h3>
+            <p data-i18n="new.send.text">ก่อนส่ง NanoPDF ตรวจหาเลขบัตรประชาชน เบอร์โทร เลขบัญชี และอีเมลในเอกสาร แล้วลบออกจากไฟล์ที่ส่งได้ในคลิกเดียว ไฟล์ต้นฉบับของคุณไม่เปลี่ยน</p>
+            <ul class="nh-checks">
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="new.send.1">ส่งเป็น PDF รูปทีละหน้า หรือรูปยาวรูปเดียว</span></li>
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="new.send.2">ส่งทางอีเมล LINE Teams หรือ NanoShare</span></li>
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="new.send.3">ใส่รหัสผ่านและลดขนาดไฟล์ก่อนส่งได้</span></li>
+            </ul>
+          </div>
+          <div class="nh-shot nh-shot--fit"><img src="img/nanopdf/send.png" alt="หน้าต่างส่งของ NanoPDF พบเลขบัตรประชาชนและเบอร์โทรในเอกสาร พร้อมตัวเลือกปิดข้อมูลในไฟล์ที่ส่ง" data-i18n-attr="alt:new.send.alt" width="664" height="734" loading="lazy"></div>
+        </div>
+        <div class="nh-split nh-reveal">
+          <div class="nh-split-copy">
+            <span class="nh-new-tag" data-i18n="new.tag">ใหม่</span>
+            <h3 data-i18n="new.phone.title">ถ่ายจากมือถือ ได้ PDF ทันที</h3>
+            <p data-i18n="new.phone.text">สแกน QR บนจอด้วยมือถือ แล้วถ่ายรูปเอกสารหรือบัตร รูปจะเข้ามาที่ NanoPDF ทันที รวมเป็น PDF หรือแทรกในเอกสารที่เปิดอยู่ ไม่ต้องติดตั้งแอปบนมือถือ</p>
+            <ul class="nh-checks">
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="new.phone.1">ส่งผ่าน Wi-Fi ในบ้านหรือออฟฟิศ ไม่ผ่านอินเทอร์เน็ต</span></li>
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="new.phone.2">ใช้ได้ทั้ง iPhone และ Android</span></li>
+            </ul>
+          </div>
+          <div class="nh-shot nh-shot--fit"><img src="img/nanopdf/phone.png" alt="หน้าต่างรับรูปจากมือถือของ NanoPDF พร้อม QR code และรูปที่ได้รับแล้ว 2 รูป" data-i18n-attr="alt:new.phone.alt" width="704" height="647" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="nh-new-cards">
+        <div class="nh-new-card nh-new-card--ink nh-reveal">
+          <span class="nh-new-tag" data-i18n="new.tag">ใหม่</span>
+          <h3 data-i18n="new.share.title">แชร์ด้วย NanoShare</h3>
+          <p data-i18n="new.share.text">ให้อีกฝ่ายสแกน QR เปิดลิงก์ หรือพิมพ์รหัสสั้น ๆ ไฟล์จะส่งตรงจากเครื่องคุณถึงเครื่องเขา</p>
+          <ul class="nh-checks">
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="new.share.1">เข้ารหัส AES-256 บนเครื่อง ไม่มีไฟล์เก็บบนเซิร์ฟเวอร์</span></li>
+            <li><svg class="nh-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="new.share.2">ไม่จำกัดขนาดไฟล์ ผู้รับไม่ต้องสมัครสมาชิก</span></li>
+          </ul>
+          <a class="nh-new-link" href="https://share.nanohash.biz"><span>share.nanohash.biz</span> ↗</a>
+        </div>
+        <div class="nh-new-card nh-reveal">
+          <span class="nh-new-tag" data-i18n="new.tag">ใหม่</span>
+          <h3 data-i18n="new.stickers.title">รูปทรงและสติกเกอร์</h3>
+          <p data-i18n="new.stickers.text">วาดเส้นตรง ลูกศร เส้นโค้ง สี่เหลี่ยม และวงกลม ติดสติกเกอร์คำ 12 แบบ และอีโมจิสี 77 แบบ เปิดดูได้ในโปรแกรม PDF ทุกตัว</p>
+          <div class="nh-stickers" aria-hidden="true">
+            <span class="nh-sticker" style="--c:#16a34a">✓ อนุมัติ</span>
+            <span class="nh-sticker" style="--c:#dc2626">⚡ ด่วน</span>
+            <span class="nh-sticker" style="--c:#2a78f0">✍ เซ็นตรงนี้</span>
+            <span class="nh-sticker" style="--c:#7c3aed">★ เยี่ยมมาก</span>
+            <span class="nh-emoji">👍</span><span class="nh-emoji">✅</span><span class="nh-emoji">📌</span><span class="nh-emoji">🙏</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -160,7 +234,7 @@
     <div class="nh-wrap">
       <div class="nh-section-head nh-reveal">
         <span class="nh-label" data-i18n="privacy.label">ความเป็นส่วนตัว</span>
-        <h2 data-i18n="privacy.title">เอกสารของคุณไม่ออกไปนอกเครื่อง</h2>
+        <h2 data-i18n="privacy.title">เอกสารของคุณไม่ผ่านเซิร์ฟเวอร์ของเรา</h2>
       </div>
       <div class="nh-cards">
         <div class="nh-principle nh-reveal">
@@ -171,7 +245,7 @@
         <div class="nh-principle nh-reveal">
           <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.5 5.3 3.5 8.5s-1.1 6.1-3.5 8.5c-2.4-2.4-3.5-5.3-3.5-8.5s1.1-6.1 3.5-8.5z"/></svg></span>
           <h3 data-i18n="privacy.2.title">ต่ออินเทอร์เน็ตเท่าที่จำเป็น</h3>
-          <p data-i18n="privacy.2.text">NanoPDF ต่ออินเทอร์เน็ตเพื่อเช็กอัปเดต และเพื่อประทับเวลาลายเซ็นดิจิทัลถ้าคุณใช้ฟีเจอร์นี้</p>
+          <p data-i18n="privacy.2.text">NanoPDF ต่ออินเทอร์เน็ตเพื่อเช็กอัปเดต ประทับเวลาลายเซ็น และเมื่อคุณเลือกแชร์ด้วย NanoShare ซึ่งส่งไฟล์ตรงถึงอีกเครื่องแบบเข้ารหัส</p>
         </div>
         <div class="nh-principle nh-reveal">
           <span class="nh-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5"/></svg></span>
@@ -207,7 +281,7 @@
         </details>
         <details>
           <summary data-i18n="faq.2.q">เอกสารถูกอัปโหลดไปที่ไหนไหม?</summary>
-          <p data-i18n="faq.2.a">ไม่ เอกสารประมวลผลบนเครื่องของคุณ NanoPDF ต่ออินเทอร์เน็ตแค่ตอนเช็กอัปเดต และตอนประทับเวลาลายเซ็นดิจิทัลถ้าคุณใช้ฟีเจอร์นี้</p>
+          <p data-i18n="faq.2.a">ไม่ เอกสารประมวลผลบนเครื่องของคุณ ถ้าเลือกแชร์ด้วย NanoShare ไฟล์จะส่งตรงถึงอีกเครื่องแบบเข้ารหัส โดยไม่ถูกเก็บบนเซิร์ฟเวอร์ นอกจากนั้นอินเทอร์เน็ตใช้แค่เช็กอัปเดต และประทับเวลาลายเซ็นถ้าคุณใช้ฟีเจอร์นี้</p>
         </details>
         <details>
           <summary data-i18n="faq.3.q">ครบ 30 วันแล้วจะเป็นอย่างไร?</summary>
