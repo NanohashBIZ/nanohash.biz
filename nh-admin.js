@@ -129,14 +129,14 @@
       actions.append(button('คัดลอก', 'nh-btn--secondary', () => navigator.clipboard.writeText(lic.license_key)));
       if (lic.status === 'active') {
         actions.append(button('ยกเลิกในบัญชี', 'nh-btn--secondary', async () => {
-          if (!confirm('ซ่อน Key นี้จากบัญชีผู้ใช้? (Key ที่ใส่ในโปรแกรมแล้วยังใช้ได้ เพราะตรวจแบบออฟไลน์)')) return;
+          if (!confirm('ยกเลิก Key นี้? ผู้ใช้จะไม่เห็นในบัญชี และโปรแกรมที่ใส่ Key นี้ไว้จะหยุดใช้ได้ภายใน 7 วัน (ถ้าไม่ต่อเน็ต ไม่เกิน 30 วัน)')) return;
           await api(`/api/admin/licenses/${lic.id}/revoke`, { method: 'POST' });
           await loadKeys($('ad-search').q.value);
         }));
       }
       actions.append(button('ลบ', 'nh-btn--danger', async () => {
         const warn = lic.status === 'active'
-          ? `ลบ Key ${PRODUCT[lic.product]} ของ ${lic.email} ถาวร?\n\nKey นี้ยังใช้งานอยู่ ผู้ใช้จะไม่เห็นในบัญชีอีก แต่ถ้าใส่ในโปรแกรมไปแล้วจะยังใช้ได้ (ตรวจแบบออฟไลน์)`
+          ? `ลบ Key ${PRODUCT[lic.product]} ของ ${lic.email} ถาวร?\n\nKey นี้ยังใช้งานอยู่ ผู้ใช้จะไม่เห็นในบัญชีอีก และโปรแกรมที่ใส่ Key นี้ไว้จะหยุดใช้ได้ภายใน 7 วัน (ถ้าไม่ต่อเน็ต ไม่เกิน 30 วัน)`
           : `ลบ Key ${PRODUCT[lic.product]} ของ ${lic.email} ถาวร?`;
         if (!confirm(warn)) return;
         await api(`/api/admin/licenses/${lic.id}/delete`, { method: 'POST' });

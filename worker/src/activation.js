@@ -1,6 +1,6 @@
 // Ties License Keys to machines (up to MAX_MACHINES each). The apps call /api/activate and keep the
 // signed token; see docs/superpowers/specs/2026-09-28-machine-activation-design.md.
-import { PRODUCTS, readKey } from './license.js';
+import { PRODUCTS, PUBLIC_JWK, readKey } from './license.js';
 import { b64url, fail, json, nowIso, readJson, str } from './util.js';
 
 export const MAX_MACHINES = 2;
@@ -35,13 +35,15 @@ async function allow(env, k, limit) {
     ON CONFLICT(k) DO UPDATE SET n = CASE WHEN reset_at < ?3 THEN 1 ELSE n + 1 END,
       reset_at = CASE WHEN reset_at < ?3 THEN ?2 ELSE reset_at END
     RETURNING n`).bind(k, now + RATE.window, now).first();
+  // a window just started for this caller: drop counters whose window ended, so the table does not grow forever
+  if (row.n === 1) await env.DB.prepare('DELETE FROM rate_limits WHERE reset_at < ?1').bind(now).run();
   return row.n <= limit;
 }
 
 const activeMachines = (env, licenseId) => env.DB.prepare(`SELECT id, machine, machine_name, created_at, last_seen FROM activations
   WHERE license_id = ?1 AND status = 'active' ORDER BY created_at`).bind(licenseId).all().then(r => r.results);
 
-export async function activate(req, env) {
+export async function activate(req, env, publicJwk = PUBLIC_JWK) {
   if (!env.ACTIVATION_PRIVATE_JWK) return fail(503, 'activation_off');
   const ip = req.headers.get('cf-connecting-ip') || 'unknown';
   if (!(await allow(env, `ip:${ip}`, RATE.perIp))) return fail(429, 'rate');
@@ -54,7 +56,7 @@ export async function activate(req, env) {
   const mode = ['refresh', 'release'].includes(body.mode) ? body.mode : 'activate';
   if (!/^[0-9a-f]{64}$/.test(machine) || !PRODUCTS[app] || !body.key) return fail(400, 'bad_request');
 
-  const lic = await readKey(body.key);
+  const lic = await readKey(body.key, publicJwk);
   if (!lic) return fail(400, 'invalid_key');
   if (lic.product !== app) return fail(400, 'wrong_product');
   const kh = await keyHash(lic.key);
@@ -71,31 +73,32 @@ export async function activate(req, env) {
 
   let row = await env.DB.prepare('SELECT id, status FROM licenses WHERE license_key = ?1').bind(lic.key).first();
   if (!row) {
-    // a validly signed key we have no record of (issued with the PowerShell tools, or deleted): register it
+    // a validly signed key we have no record of (issued with the PowerShell tools): register it. Keys the admin
+    // deleted keep their row with status 'deleted', so they land in the revoked branch below instead.
     const res = await env.DB.prepare(`INSERT INTO licenses (product, email, name, exp, plan, license_key, status, note, created_at, created_by)
       VALUES (?1, ?2, ?3, ?4, ?5, ?6, 'active', 'registered on activation', ?7, 'activation')`)
       .bind(lic.product, lic.email.toLowerCase(), lic.name, lic.exp, lic.plan, lic.key, now).run();
     row = { id: res.meta.last_row_id, status: 'active' };
   }
-  if (row.status !== 'active') return fail(403, 'revoked');
+  if (row.status !== 'active') return fail(403, 'revoked'); // revoked, or deleted by the admin
 
-  const existing = await env.DB.prepare('SELECT id, status FROM activations WHERE license_id = ?1 AND machine = ?2').bind(row.id, machine).first();
-  if (existing?.status === 'active') {
-    await env.DB.prepare('UPDATE activations SET last_seen = ?2, machine_name = ?3, app_version = ?4 WHERE id = ?1')
-      .bind(existing.id, now, name, version).run();
-  } else {
+  const seen = await env.DB.prepare(`UPDATE activations SET last_seen = ?3, machine_name = ?4, app_version = ?5
+    WHERE license_id = ?1 AND machine = ?2 AND status = 'active'`).bind(row.id, machine, now, name, version).run();
+  if (!seen.meta.changes) {
     // a machine the customer removed must be activated again by entering the key, not by a background refresh
     if (mode === 'refresh') return fail(410, 'deactivated');
-    const machines = await activeMachines(env, row.id);
-    if (machines.length >= MAX_MACHINES) {
+    // One statement, so the count and the insert cannot be split by another request: two PCs activating at the
+    // same moment must not both see a free slot. A removed row for this PC is brought back instead of inserted.
+    const added = await env.DB.prepare(`INSERT INTO activations (license_id, machine, machine_name, app_version, status, created_at, last_seen)
+      SELECT ?1, ?2, ?3, ?4, 'active', ?5, ?5
+      WHERE (SELECT COUNT(*) FROM activations WHERE license_id = ?1 AND status = 'active' AND machine != ?2) < ?6
+      ON CONFLICT (license_id, machine) DO UPDATE SET status = 'active', machine_name = excluded.machine_name,
+        app_version = excluded.app_version, last_seen = excluded.last_seen, removed_at = NULL,
+        created_at = CASE WHEN activations.status = 'active' THEN activations.created_at ELSE excluded.created_at END`)
+      .bind(row.id, machine, name, version, now, MAX_MACHINES).run();
+    if (!added.meta.changes) {
+      const machines = await activeMachines(env, row.id);
       return json({ error: 'limit', max: MAX_MACHINES, machines: machines.map(m => ({ name: m.machine_name, last_seen: m.last_seen })) }, 409);
-    }
-    if (existing) {
-      await env.DB.prepare(`UPDATE activations SET status = 'active', machine_name = ?2, app_version = ?3, created_at = ?4, last_seen = ?4, removed_at = NULL
-        WHERE id = ?1`).bind(existing.id, name, version, now).run();
-    } else {
-      await env.DB.prepare(`INSERT INTO activations (license_id, machine, machine_name, app_version, status, created_at, last_seen)
-        VALUES (?1, ?2, ?3, ?4, 'active', ?5, ?5)`).bind(row.id, machine, name, version, now).run();
     }
   }
 
