@@ -62,6 +62,7 @@
       <button type="button" class="nh-bot-hide" data-bot="hide"></button>
     </div>
     <button type="button" class="nh-bot-btn" aria-expanded="false" aria-controls="nh-bot-panel">
+      <span class="nh-bot-hit nh-bot-hit--head"></span><span class="nh-bot-hit nh-bot-hit--body"></span><span class="nh-bot-hit nh-bot-hit--hand"></span>
       <span class="nh-bot-shadow" aria-hidden="true"></span>
       <span class="nh-bot-float" aria-hidden="true"><span class="nh-bot-body">
         ${layer('base')}${layer('arm', 'nh-bot-arm')}
@@ -167,8 +168,14 @@
     el.classList.remove('is-open');
     look(0, 0);
     if (focusBtn) btn.focus({ preventScroll: true });
+    else if (el.contains(document.activeElement)) document.activeElement.blur();
   }
-  btn.addEventListener('click', e => (panel.hidden ? open(e.detail === 0) : close()));
+  btn.addEventListener('click', e => {
+    const byKeyboard = e.detail === 0;
+    if (panel.hidden) open(byKeyboard); else close(byKeyboard);
+    // after a mouse click, drop focus so Space / Enter (scrolling the page) can't toggle the menu again
+    if (!byKeyboard) btn.blur();
+  });
   btn.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse' && panel.hidden) wave(); });
   el.addEventListener('click', e => {
     // a link to a part of this same page (e.g. the download cards on /install): scroll there instead of reloading
@@ -184,7 +191,7 @@
       }
     }
     const act = e.target.closest('[data-bot]')?.dataset.bot;
-    if (act === 'close') close(true);
+    if (act === 'close') close(e.detail === 0);
     if (act === 'hide') {
       store.set('nanobot-hidden', '1');
       timers.forEach(clearTimeout);

@@ -666,6 +666,13 @@ html[lang="en"] .nh-buy-banner { display: none; } /* the artwork is in Thai; the
 .nh-bot { --bot-w: 104px; position: fixed; right: 18px; bottom: 14px; z-index: 150; width: var(--bot-w); font-family: var(--font); opacity: 0; transform: translateY(40px); transition: opacity .5s var(--ease), transform .7s cubic-bezier(.3, 1.5, .5, 1); }
 .nh-bot.is-in { opacity: 1; transform: none; }
 .nh-bot-btn { position: relative; display: block; width: 100%; aspect-ratio: 336 / 440; padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+/* only NanoBot's own shape is clickable, not the empty corners of its box */
+.nh-bot, .nh-bot-btn { pointer-events: none; }
+.nh-bot-panel { pointer-events: auto; }
+.nh-bot-hit { position: absolute; z-index: 1; border-radius: 50%; pointer-events: auto; }
+.nh-bot-hit--head { left: 5%; right: 20%; top: 12%; bottom: 48%; border-radius: 42%; }
+.nh-bot-hit--body { left: 4%; right: 30%; top: 50%; bottom: 1%; border-radius: 40%; }
+.nh-bot-hit--hand { left: 64%; right: 6%; top: 44%; bottom: 33%; }
 .nh-bot-btn:focus-visible { outline: 3px solid var(--tidy); outline-offset: 4px; border-radius: 22px; }
 .nh-bot-float { position: absolute; inset: 0; perspective: 420px; animation: nh-bot-float 3.4s ease-in-out infinite; }
 .nh-bot-body { --look-x: 0; --look-y: 0; position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateY(calc(var(--look-x) * 17deg)) rotateX(calc(var(--look-y) * -7deg)) rotateZ(calc(var(--look-x) * 2deg)); transition: transform .7s var(--ease); filter: drop-shadow(0 10px 14px rgba(19, 35, 90, .22)); }
