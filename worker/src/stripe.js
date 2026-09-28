@@ -138,11 +138,11 @@ async function fulfill(env, session) {
 
 /** Return page: the signed-in owner of the session asks us to confirm it. */
 export async function confirm(user, env, sessionId) {
-  const order = await env.DB.prepare('SELECT user_id FROM orders WHERE session_id = ?1').bind(sessionId).first();
+  const order = await env.DB.prepare('SELECT user_id, product FROM orders WHERE session_id = ?1').bind(sessionId).first();
   if (!order || order.user_id !== user.id) return fail(404, 'not_found');
   const session = await stripe(env, 'GET', `/checkout/sessions/${encodeURIComponent(sessionId)}`);
   const licenseId = await fulfill(env, session);
-  return json({ paid: session.payment_status === 'paid', issued: !!licenseId });
+  return json({ paid: session.payment_status === 'paid', issued: !!licenseId, product: order.product });
 }
 
 async function hmacHex(secret, text) {

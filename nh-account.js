@@ -329,7 +329,8 @@
     try {
       const r = await api(`/api/checkout/${encodeURIComponent(sessionId)}/confirm`, { method: 'POST' });
       state.nanoshare = await api('/api/nanoshare').catch(() => state.nanoshare);
-      const nanoshare = r.paid && state.nanoshare?.supporter;
+      // pick the message by what this checkout bought, not by the account's NanoShare status
+      const nanoshare = r.paid && r.product === 'nanoshare';
       msg.textContent = nanoshare ? t().nsPaid : r.paid ? (r.issued ? t().paidOk : t().paidWait) : t().payNotDone;
       renderNanoShare();
       msg.classList.add(r.paid ? 'is-ok' : 'is-bad');
