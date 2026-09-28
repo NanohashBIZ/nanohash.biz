@@ -30,8 +30,8 @@ window.NH_COPY = {
     'facts.2s': 'Easy to use and easy to understand',
     'facts.3': "Free, every feature",
     'facts.3s': "Support us after 30 days",
-    'facts.4': 'One account for every License',
-    'facts.4s': 'Sign in with Google and manage your keys in one place',
+    'facts.4': 'One account, every key',
+    'facts.4s': 'Sign in with Google to manage keys',
 
     'products.label': 'Products',
     'products.title': 'Tools for your PC, your documents and sharing files',
