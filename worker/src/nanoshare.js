@@ -53,8 +53,14 @@ export async function passPage(req, env, url, site) {
   if (to !== 'web' && !(to === 'app' && Number.isInteger(port) && port >= 1024 && port <= 65535 && /^[A-Za-z0-9_-]{16,64}$/.test(state))) {
     return fail(400, 'bad_request');
   }
+  // Always through Google's account chooser first (even when already signed in here), so people pick
+  // which Google account NanoShare uses; "picked=1" marks the trip back from Google.
   const user = await currentUser(req, env);
-  if (!user) return redirect(`/api/auth/google?next=${encodeURIComponent(url.pathname + url.search)}`);
+  if (!user || url.searchParams.get('picked') !== '1') {
+    const back = new URL(url);
+    back.searchParams.set('picked', '1');
+    return redirect(`/api/auth/google?next=${encodeURIComponent(back.pathname + back.search)}`);
+  }
   const pass = await passFor(env, user);
   return to === 'web'
     ? redirect(`${share}/#pass=${pass}`)

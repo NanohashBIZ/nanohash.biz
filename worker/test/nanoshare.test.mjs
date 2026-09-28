@@ -50,19 +50,26 @@ test('pass page: signed out goes to Google sign-in and comes back', async () => 
   const url = new URL('https://nanohash.biz/api/nanoshare/pass?to=web');
   const res = await passPage(req(), env, url, url);
   assert.equal(res.status, 302);
-  assert.equal(res.headers.get('location'), '/api/auth/google?next=' + encodeURIComponent('/api/nanoshare/pass?to=web'));
+  assert.equal(res.headers.get('location'), '/api/auth/google?next=' + encodeURIComponent('/api/nanoshare/pass?to=web&picked=1'));
+})
+
+test('pass page: already signed in still goes through the Google account chooser first', async () => {
+  const env = { ...keyEnv(), DB: fakeDb({ id: 'u1', email: 'a@b.c', name: 'A' }, false) };
+  const url = new URL('https://nanohash.biz/api/nanoshare/pass?to=app&port=51234&state=abcdefghijklmnop');
+  const res = await passPage(req('nh_session=t'), env, url, url);
+  assert.equal(res.headers.get('location'), '/api/auth/google?next=' + encodeURIComponent('/api/nanoshare/pass?to=app&port=51234&state=abcdefghijklmnop&picked=1'));
 });
 
 test('pass page: web gets the pass in the fragment, app on 127.0.0.1 with its state', async () => {
   const env = { ...keyEnv(), DB: fakeDb({ id: 'u1', email: 'a@b.c', name: 'A' }, true) };
-  const web = await passPage(req('nh_session=t'), env, new URL('https://nanohash.biz/api/nanoshare/pass?to=web'), null);
+  const web = await passPage(req('nh_session=t'), env, new URL('https://nanohash.biz/api/nanoshare/pass?to=web&picked=1'), null);
   const loc = web.headers.get('location');
   assert.match(loc, /^https:\/\/share\.nanohash\.biz\/#pass=[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/);
   const payload = JSON.parse(Buffer.from(loc.split('#pass=')[1].split('.')[0], 'base64url').toString());
   assert.equal(payload.tier, 'supporter');
   assert.ok(payload.exp > Date.now() / 1000 + 100 * 86400);
 
-  const app = await passPage(req('nh_session=t'), env, new URL('https://nanohash.biz/api/nanoshare/pass?to=app&port=51234&state=abcdefghijklmnop'), null);
+  const app = await passPage(req('nh_session=t'), env, new URL('https://nanohash.biz/api/nanoshare/pass?to=app&port=51234&state=abcdefghijklmnop&picked=1'), null);
   assert.match(app.headers.get('location'), /^http:\/\/127\.0\.0\.1:51234\/nanoshare-pass\?state=abcdefghijklmnop&pass=/);
 });
 
