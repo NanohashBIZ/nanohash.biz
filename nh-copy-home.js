@@ -92,6 +92,7 @@ window.NH_COPY = {
     'founder.p2': "I use AI like an assistant sitting next to me, helping me try things out faster. But the thinking, the decisions, and trying everything myself before it reaches you are still up to me.",
     'founder.quote': "Start with a small problem you face yourself, then build something that really works.",
     'founder.p3': "If you are a student or a young person with an idea in your head, every tool you need is already in front of you. You do not have to be good at everything or wait until you feel ready. Start today, and make it a little better every day.",
+    'founder.name': 'Narapath Theisaprasith',
     'founder.sign': "Founder, NanoHash",
 
     'contact.label': 'Contact',

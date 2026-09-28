@@ -152,6 +152,7 @@
   async function loadSupporters() {
     const { supporters } = await api('/api/admin/nanoshare/supporters');
     $('ad-ns-count').textContent = supporters.length ? `(${supporters.length})` : '';
+    $('ad-ns-tabcount').textContent = supporters.length ? `(${supporters.length})` : '';
     fill($('ad-ns-list'), supporters, s => {
       const card = el('article', 'nh-acc-item');
       const head = el('div', 'nh-acc-item-head');
@@ -248,6 +249,7 @@
       }
       $('ad-in').hidden = false;
       await loadPending();
+      loadSupporters().catch(() => { /* the tab shows the error when opened */ });
     } catch (e) {
       $('ad-loading').hidden = true;
       $('ad-out').hidden = false;
