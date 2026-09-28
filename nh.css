@@ -660,3 +660,4 @@ html[lang="en"] .nh-buy-banner { display: none; } /* the artwork is in Thai; the
 .nh-ver { display: inline-flex; align-items: center; margin-left: 2px; padding: 3px 8px; border-radius: 999px; background: rgba(19, 35, 90, .08); color: inherit; font-size: .72em; font-weight: 700; letter-spacing: .01em; line-height: 1.2; font-variant-numeric: tabular-nums; opacity: .85; }
 .nh-btn--primary .nh-ver, .nh-btn--lime .nh-ver { background: rgba(255, 255, 255, .18); }
 .nh-btn--lime .nh-ver { background: rgba(19, 35, 90, .12); }
+.nh-dl-head .nh-ver { margin-left: auto; padding: 4px 10px; background: var(--alt); color: var(--muted); font-size: 13px; opacity: 1; }

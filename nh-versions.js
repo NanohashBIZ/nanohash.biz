@@ -12,7 +12,9 @@
       tag.className = 'nh-ver';
       tag.textContent = `v${info.version}`;
       if (info.date) tag.title = info.date;
-      a.append(tag);
+      // install page cards are narrow: show the number next to the app name instead of inside the button
+      const head = a.closest('.nh-dl-card')?.querySelector('.nh-dl-head');
+      if (head) { if (!head.querySelector('.nh-ver')) head.append(tag); } else a.append(tag);
     }
   }).catch(() => { /* no version label, the button still works */ });
 })();
