@@ -620,3 +620,15 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* ---------- Admin: NanoShare supporters ---------- */
 .nh-ad-count { color: var(--muted); font-size: .8em; font-weight: 600; }
 .nh-ad-subtitle { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 18px; }
+
+/* ---------- Account: NanoShare card with screenshot ---------- */
+.nh-ns { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: 28px; align-items: center; }
+.nh-ns-copy { min-width: 0; }
+.nh-ns-shot { align-self: stretch; display: flex; align-items: flex-end; margin: -32px -32px -32px 0; padding: 28px 0 0 28px; border-radius: 0 var(--radius-lg) var(--radius-lg) 0; background: linear-gradient(160deg, var(--share-soft), #a6e6dc); overflow: hidden; }
+.nh-ns-shot .nh-shot { width: 118%; border-right: 0; border-bottom: 0; border-radius: 12px 0 0 0; box-shadow: 0 -1px 0 var(--line), 0 18px 36px -18px rgba(19, 35, 90, .35); }
+.nh-ns-shot img { display: block; width: 100%; height: auto; }
+@media (max-width: 760px) {
+  .nh-ns { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .nh-ns-shot { order: -1; margin: -22px -18px 0; padding: 20px 20px 0; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .nh-ns-shot .nh-shot { width: 100%; border-right: 1px solid var(--line); border-radius: 12px 12px 0 0; }
+}

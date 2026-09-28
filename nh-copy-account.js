@@ -21,6 +21,8 @@ window.NH_COPY = {
     'signin.fine': 'We only use your name and email, to show the License Keys issued to that email.',
 
     'ns.title': 'NanoShare',
+
+    'ns.alt': 'The NanoShare app with a drop area and a box for a receive code',
     'ns.lead': 'Send 200 MB at a time for free · 1 GB when signed in · support once with 99 THB for unlimited sending, forever',
     'ns.support': 'Support NanoShare ฿99',
     'ns.open': 'Open NanoShare with this account',
