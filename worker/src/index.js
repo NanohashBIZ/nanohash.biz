@@ -6,8 +6,9 @@ import { callback, currentUser, logout, start } from './auth.js';
 import * as pay from './stripe.js';
 import * as user from './user.js';
 import { fail } from './util.js';
+import { versions } from './versions.js';
 
-async function route(req, env, url) {
+async function route(req, env, url, ctx) {
   const { pathname: path } = url;
   const site = new URL(env.SITE_ORIGIN || url.origin);
   const method = req.method;
@@ -15,6 +16,7 @@ async function route(req, env, url) {
   // Stripe calls the webhook server to server (no Origin); it is authenticated by its signature instead.
   if (method === 'POST' && path === '/api/stripe/webhook') return pay.webhook(req, env);
   if (method === 'GET' && path === '/api/prices') return pay.prices();
+  if (method === 'GET' && path === '/api/versions') return versions(req, ctx);
   // the desktop apps activate keys here; no browser, no cookie, no Origin
   if (method === 'POST' && path === '/api/activate') return act.activate(req, env);
 
@@ -62,11 +64,11 @@ async function route(req, env, url) {
 }
 
 export default {
-  async fetch(req, env) {
+  async fetch(req, env, ctx) {
     const url = new URL(req.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(req);
     try {
-      return await route(req, env, url);
+      return await route(req, env, url, ctx);
     } catch (e) {
       console.error(e);
       return fail(500, 'server');
