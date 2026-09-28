@@ -17,14 +17,14 @@ test('TidyUp key: SC1 prefix, Name|Email|exp|plan, valid RSA SHA-256 signature',
   const key = await signKey(priv, 'tidyup', 'สมชาย ใจดี', 'a@b.co', '2027-09-27');
   assert.match(key, /^SC1-[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/);
   const { payload, sig } = parts(key);
-  assert.equal(payload.toString('utf8'), 'สมชาย ใจดี|a@b.co|2027-09-27|pro');
+  assert.match(payload.toString('utf8'), /^สมชาย ใจดี\|a@b\.co\|2027-09-27\|pro\|[A-Z0-9]{8}$/);
   assert.ok(verify('sha256', payload, privateKey, sig));
 });
 
 test('NanoPDF key: NP1 prefix and product field first', async () => {
   const key = await signKey(priv, 'nanopdf', 'A|B', 'a@b.co', 'never');
   assert.ok(key.startsWith('NP1-'));
-  assert.equal(parts(key).payload.toString('utf8'), 'NanoPDF|A/B|a@b.co|never|pro');
+  assert.match(parts(key).payload.toString('utf8'), /^NanoPDF\|A\/B\|a@b\.co\|never\|pro\|[A-Z0-9]{8}$/);
 });
 
 test('readKey accepts own keys and rejects tampered ones', async () => {
@@ -48,4 +48,11 @@ test('slipType sniffs images and PDF, rejects others', () => {
   assert.equal(slipType(new TextEncoder().encode('RIFF1234WEBPVP8 ')), 'image/webp');
   assert.equal(slipType(new TextEncoder().encode('%PDF-1.7 hello')), 'application/pdf');
   assert.equal(slipType(new TextEncoder().encode('<html><script>')), null);
+});
+
+test('buying the same thing twice gives two different keys', async () => {
+  const a = await signKey(priv, 'tidyup', 'Same', 'a@b.co', 'never');
+  const b = await signKey(priv, 'tidyup', 'Same', 'a@b.co', 'never');
+  assert.notEqual(a, b);
+  assert.equal((await readKey(a, pub)).name, 'Same');
 });

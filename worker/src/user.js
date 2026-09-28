@@ -1,6 +1,7 @@
 // What a signed-in user can see and do: their License Keys and support requests.
 import { MAX_MACHINES, machinesFor } from './activation.js';
 import { PRODUCTS } from './license.js';
+import { retryStuck } from './stripe.js';
 import { fail, json, nowIso, str } from './util.js';
 
 const SLIP_MAX = 2 * 1024 * 1024;
@@ -13,6 +14,7 @@ export function me(user) {
 }
 
 export async function myLicenses(user, env) {
+  await retryStuck(env, user.id);
   const { results } = await env.DB.prepare(`SELECT id, product, name, email, exp, plan, license_key, created_at FROM licenses
     WHERE email = ?1 AND status = 'active' ORDER BY created_at DESC`).bind(user.email).all();
   const machines = await machinesFor(env, results.map(l => l.id));

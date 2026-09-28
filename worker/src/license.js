@@ -4,8 +4,10 @@
 import { b64url, fromB64url } from './util.js';
 
 export const PRODUCTS = {
-  tidyup: { name: 'TidyUp PC', prefix: 'SC1-', payload: (n, e, x, p) => `${n}|${e}|${x}|${p}` },
-  nanopdf: { name: 'NanoPDF', prefix: 'NP1-', payload: (n, e, x, p) => `NanoPDF|${n}|${e}|${x}|${p}` },
+  // the trailing serial makes every issued key unique (so a second purchase is a second key with its own PCs);
+  // the apps read only the leading fields and ignore extra ones
+  tidyup: { name: 'TidyUp PC', prefix: 'SC1-', payload: (n, e, x, p, s) => `${n}|${e}|${x}|${p}|${s}` },
+  nanopdf: { name: 'NanoPDF', prefix: 'NP1-', payload: (n, e, x, p, s) => `NanoPDF|${n}|${e}|${x}|${p}|${s}` },
 };
 
 // Public half of TidyUpPC/dev/keys/public.xml. Both apps use this key pair.
@@ -26,14 +28,20 @@ export function expiryFor(term, today = new Date()) {
   return d.toISOString().slice(0, 10);
 }
 
-export async function signKey(privateJwk, product, name, email, exp, plan = 'pro') {
+/** Short random serial, e.g. 7K2QX9MD. */
+export function newSerial() {
+  const abc = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  return [...crypto.getRandomValues(new Uint8Array(8))].map(b => abc[b % abc.length]).join('');
+}
+
+export async function signKey(privateJwk, product, name, email, exp, plan = 'pro', serial = newSerial()) {
   const p = PRODUCTS[product];
   if (!p) throw new Error('unknown product');
   // the secret holds the JWK as base64 JSON (plain JSON also accepted)
   const jwk = typeof privateJwk !== 'string' ? privateJwk
     : JSON.parse(privateJwk.trim().startsWith('{') ? privateJwk : atob(privateJwk.trim()));
   const key = await crypto.subtle.importKey('jwk', { ...jwk, alg: 'RS256', ext: true }, ALG, false, ['sign']);
-  const payload = new TextEncoder().encode(p.payload(clean(name), clean(email), exp, clean(plan)));
+  const payload = new TextEncoder().encode(p.payload(clean(name), clean(email), exp, clean(plan), clean(serial)));
   const sig = new Uint8Array(await crypto.subtle.sign(ALG.name, key, payload));
   return p.prefix + b64url(payload) + '.' + b64url(sig);
 }

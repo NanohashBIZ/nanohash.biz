@@ -106,6 +106,20 @@ export async function createCheckout(req, user, env, site) {
 }
 
 /** Issues the key for a paid session exactly once. Safe to call from the return page and the webhook. */
+/**
+ * Orders Stripe marked paid whose key could not be issued (paid_at set, still open) are issued again.
+ * Runs when the owner opens /account, so a failed issue heals itself.
+ */
+export async function retryStuck(env, userId) {
+  if (!env.STRIPE_SECRET_KEY) return;
+  const { results } = await env.DB.prepare("SELECT session_id FROM orders WHERE user_id = ?1 AND status = 'open' AND paid_at IS NOT NULL")
+    .bind(userId).all();
+  for (const o of results) {
+    try { await fulfill(env, await stripe(env, 'GET', `/checkout/sessions/${encodeURIComponent(o.session_id)}`)); }
+    catch (e) { console.error('retry order failed', o.session_id, e.message); }
+  }
+}
+
 async function fulfill(env, session) {
   if (session.payment_status !== 'paid') return null;
   const order = await env.DB.prepare('SELECT * FROM orders WHERE session_id = ?1').bind(session.id).first();
