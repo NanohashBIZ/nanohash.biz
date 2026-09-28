@@ -40,7 +40,7 @@ window.NH_COPY = {
     'lic.howto': 'How to use: click Copy, then paste the key into the app’s License Key screen. The first time needs internet to activate. One key works on 2 PCs.',
 
     'buy.title': 'Buy a License',
-    'buy.text': 'Pay with Stripe and the License Key appears in this account right away, with a receipt by email.',
+    'buy.text': 'Pay with Stripe and the License Key appears in this account right away, with a receipt by email. One key works on 2 PCs.',
     'buy.name': 'Name to show in the License Key',
     'buy.tidySrc': 'img/ui-home-en.jpg',
     'buy.tidyAlt': 'TidyUp PC overview screen with the PC health score',
