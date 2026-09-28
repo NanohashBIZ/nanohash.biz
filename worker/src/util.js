@@ -17,7 +17,10 @@ export function readCookies(req) {
   const out = {};
   for (const part of (req.headers.get('cookie') || '').split(';')) {
     const i = part.indexOf('=');
-    if (i > 0) out[part.slice(0, i).trim()] = decodeURIComponent(part.slice(i + 1).trim());
+    if (i <= 0) continue;
+    const raw = part.slice(i + 1).trim();
+    // a malformed %-escape (another site's cookie, a hand-edited one) must not turn every request into a 500
+    try { out[part.slice(0, i).trim()] = decodeURIComponent(raw); } catch { out[part.slice(0, i).trim()] = raw; }
   }
   return out;
 }

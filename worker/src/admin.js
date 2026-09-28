@@ -43,11 +43,20 @@ export async function slip(env, id) {
 export async function approve(req, env, admin, id) {
   const body = await readJson(req);
   const term = TERMS.has(body.term) ? body.term : '1y';
-  const r = await env.DB.prepare("SELECT * FROM requests WHERE id = ?1 AND status = 'pending'").bind(id).first();
-  if (!r) return fail(404, 'not_found');
-  const lic = await issue(env, admin, { product: r.product, email: r.email, name: r.display_name, term }, { requestId: r.id });
-  await env.DB.prepare("UPDATE requests SET status = 'approved', license_id = ?2, admin_note = ?3, decided_at = ?4 WHERE id = ?1")
-    .bind(id, lic.id, str(body.note, 500), nowIso()).run();
+  // claim the request first, so a double click or two admins at once issue one key, not two
+  const claim = await env.DB.prepare("UPDATE requests SET status = 'approved', admin_note = ?2, decided_at = ?3 WHERE id = ?1 AND status = 'pending'")
+    .bind(id, str(body.note, 500), nowIso()).run();
+  if (!claim.meta.changes) return fail(404, 'not_found');
+  const r = await env.DB.prepare('SELECT * FROM requests WHERE id = ?1').bind(id).first();
+  let lic;
+  try {
+    lic = await issue(env, admin, { product: r.product, email: r.email, name: r.display_name, term }, { requestId: r.id });
+  } catch (e) {
+    // hand the request back so it can be approved again
+    await env.DB.prepare("UPDATE requests SET status = 'pending', decided_at = NULL WHERE id = ?1 AND license_id IS NULL").bind(id).run();
+    throw e;
+  }
+  await env.DB.prepare('UPDATE requests SET license_id = ?2 WHERE id = ?1').bind(id, lic.id).run();
   return json({ ok: true, license: lic });
 }
 

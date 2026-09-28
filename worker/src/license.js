@@ -19,6 +19,10 @@ export const PUBLIC_JWK = {
 
 const ALG = { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' };
 const clean = s => String(s).replace(/\|/g, '/').trim();
+// Both products sign with one key pair and the prefix is not signed, so a payload must read as exactly one product:
+// NanoPDF payloads start with "NanoPDF", TidyUp payloads never do, and the expiry is always a real date or "never".
+const NANOPDF = 'NanoPDF';
+const validExp = x => x === 'never' || /^\d{4}-\d{2}-\d{2}$/.test(x);
 
 /** 'never' for lifetime, otherwise the date one year from today (yyyy-MM-dd), like the PowerShell tools. */
 export function expiryFor(term, today = new Date()) {
@@ -41,7 +45,9 @@ export async function signKey(privateJwk, product, name, email, exp, plan = 'pro
   const jwk = typeof privateJwk !== 'string' ? privateJwk
     : JSON.parse(privateJwk.trim().startsWith('{') ? privateJwk : atob(privateJwk.trim()));
   const key = await crypto.subtle.importKey('jwk', { ...jwk, alg: 'RS256', ext: true }, ALG, false, ['sign']);
-  const payload = new TextEncoder().encode(p.payload(clean(name), clean(email), exp, clean(plan), clean(serial)));
+  // a TidyUp customer literally named "NanoPDF" would get a key both apps refuse
+  const n = product === 'tidyup' && clean(name) === NANOPDF ? `${NANOPDF} user` : clean(name);
+  const payload = new TextEncoder().encode(p.payload(n, clean(email), exp, clean(plan), clean(serial)));
   const sig = new Uint8Array(await crypto.subtle.sign(ALG.name, key, payload));
   return p.prefix + b64url(payload) + '.' + b64url(sig);
 }
@@ -56,8 +62,10 @@ export async function readKey(text, publicJwk = PUBLIC_JWK) {
     const payload = fromB64url(m[2]);
     if (!(await crypto.subtle.verify(ALG.name, pub, fromB64url(m[3]), payload))) return null;
     const parts = new TextDecoder().decode(payload).split('|');
-    if (m[1] === 'SC1' && parts.length >= 4) return { product: 'tidyup', key, name: parts[0], email: parts[1], exp: parts[2], plan: parts[3] };
-    if (m[1] === 'NP1' && parts.length >= 5 && parts[0] === 'NanoPDF') return { product: 'nanopdf', key, name: parts[1], email: parts[2], exp: parts[3], plan: parts[4] };
+    if (m[1] === 'SC1' && parts.length >= 4 && parts[0] !== NANOPDF && validExp(parts[2]))
+      return { product: 'tidyup', key, name: parts[0], email: parts[1], exp: parts[2], plan: parts[3] };
+    if (m[1] === 'NP1' && parts.length >= 5 && parts[0] === NANOPDF && validExp(parts[3]))
+      return { product: 'nanopdf', key, name: parts[1], email: parts[2], exp: parts[3], plan: parts[4] };
   } catch { /* malformed key */ }
   return null;
 }

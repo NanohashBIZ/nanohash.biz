@@ -13,6 +13,9 @@ const OAUTH = 'nh_oauth';
 const secure = site => site.protocol === 'https:';
 const callbackUrl = site => `${site.origin}/api/auth/callback`;
 
+/** Where sign-in may return to: a known page or NanoShare's pass page, never another site. */
+const safeNext = next => (NEXT.has(next) || isPassNext(next) ? next : '/account');
+
 export function isAdmin(env, email) {
   return String(env.ADMIN_EMAILS || '').toLowerCase().split(',').map(s => s.trim()).filter(Boolean).includes(email);
 }
@@ -23,7 +26,7 @@ export async function start(req, env, url, site) {
   if (!env.GOOGLE_CLIENT_ID || !env.GOOGLE_CLIENT_SECRET) return redirect('/account?error=setup');
   const asked = url.searchParams.get('next');
   // NanoShare's pass page may ask to come back to it (with its own query)
-  const next = NEXT.has(asked) || isPassNext(asked) ? asked : '/account';
+  const next = safeNext(asked);
   const state = randomToken(24);
   const verifier = randomToken(48);
   const challenge = b64url(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier))));
@@ -84,7 +87,8 @@ export async function callback(req, env, url, site) {
     env.DB.prepare('INSERT INTO sessions (token_hash, user_id, created_at, expires_at) VALUES (?1, ?2, ?3, ?4)')
       .bind(await sha256(token), claims.sub, now, expires),
   ]);
-  return redirect(next || '/account', [clear, ['set-cookie', cookie(SESSION, token, { maxAge: SESSION_DAYS * 86400, secure: secure(site) })]]);
+  // checked again: the cookie came back from the browser, and a planted one must not become an open redirect
+  return redirect(safeNext(next), [clear, ['set-cookie', cookie(SESSION, token, { maxAge: SESSION_DAYS * 86400, secure: secure(site) })]]);
 }
 
 export async function currentUser(req, env) {
