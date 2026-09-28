@@ -602,11 +602,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-lic-body { display: grid; gap: 10px; padding: 4px 16px 16px; background: var(--alt); }
 .nh-lic-body .nh-acc-machines { margin-top: 0; }
 @media (max-width: 600px) {
-  .nh-lic-sum { grid-template-columns: minmax(0, 1fr) auto; row-gap: 10px; }
-  .nh-lic-sum .nh-acc-badge { grid-column: 2; grid-row: 1; }
-  .nh-lic-pcs { grid-column: 1; justify-self: start; }
-  .nh-lic-sum .nh-btn { grid-column: 2; grid-row: 2; }
-  .nh-lic-more { grid-column: 1 / -1; justify-self: start; }
+  .nh-lic-sum { grid-template-columns: auto minmax(0, 1fr) auto; row-gap: 10px; column-gap: 10px; }
+  .nh-lic-id { grid-column: 1 / 3; grid-row: 1; }
+  .nh-lic-sum .nh-acc-badge { grid-column: 3; grid-row: 1; justify-self: end; }
+  .nh-lic-pcs { grid-column: 1; grid-row: 2; }
+  .nh-lic-more { grid-column: 2; grid-row: 2; justify-self: start; }
+  .nh-lic-sum .nh-btn { grid-column: 3; grid-row: 2; justify-self: end; }
 }
 
 /* NanoShare on the account page */
