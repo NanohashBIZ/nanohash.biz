@@ -39,7 +39,7 @@
     },
   };
   const LINKS = [
-    { key: 'install', href: '/install', icon: 'M12 3v12m0 0-5-5m5 5 5-5M4 19h16' },
+    { key: 'install', href: '/install#download', icon: 'M12 3v12m0 0-5-5m5 5 5-5M4 19h16' },
     { key: 'buy', href: '/account#buy', icon: 'M3 6h18l-2 11H5L3 6Zm4 0 1-3h8l1 3M9 11h6' },
     { key: 'account', href: '/account', icon: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-8 9a8 8 0 0 1 16 0' },
     { key: 'mail', href: 'mailto:support@nanohash.biz', icon: 'M3 6h18v12H3V6Zm0 0 9 7 9-7' },
@@ -150,14 +150,15 @@
   }
 
   // ---- help menu ----
-  function open() {
+  function open(byKeyboard) {
     panel.hidden = false;
     btn.setAttribute('aria-expanded', 'true');
     el.classList.add('is-open');
     el.classList.remove('is-talking');
     look(-0.7, -0.6);  // look up at the menu
     wave();
-    $('.nh-bot-menu a').focus({ preventScroll: true });
+    // a mouse click leaves focus on NanoBot, so no menu item looks already chosen
+    if (byKeyboard) $('.nh-bot-menu a').focus({ preventScroll: true });
   }
   function close(focusBtn) {
     if (panel.hidden) return;
@@ -167,9 +168,21 @@
     look(0, 0);
     if (focusBtn) btn.focus({ preventScroll: true });
   }
-  btn.addEventListener('click', () => (panel.hidden ? open() : close()));
+  btn.addEventListener('click', e => (panel.hidden ? open(e.detail === 0) : close()));
   btn.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse' && panel.hidden) wave(); });
   el.addEventListener('click', e => {
+    // a link to a part of this same page (e.g. the download cards on /install): scroll there instead of reloading
+    const a = e.target.closest('.nh-bot-menu a');
+    if (a && a.hash && a.pathname.replace(/\.html$/, '') === location.pathname.replace(/\.html$/, '')) {
+      const target = document.querySelector(a.hash);
+      if (target) {
+        e.preventDefault();
+        close(false);
+        target.scrollIntoView({ behavior: still.matches ? 'auto' : 'smooth', block: 'center' });
+        target.querySelector('a, button')?.focus({ preventScroll: true });
+        return;
+      }
+    }
     const act = e.target.closest('[data-bot]')?.dataset.bot;
     if (act === 'close') close(true);
     if (act === 'hide') {
