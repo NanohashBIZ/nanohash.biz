@@ -3,7 +3,7 @@
 // Pass = b64url(JSON payload) + "." + b64url(ECDSA P-256 / SHA-256 signature, raw r||s).
 // share.nanohash.biz holds the public key and checks it; nothing else about the user leaves here.
 import { currentUser } from './auth.js';
-import { b64url, fail, json, redirect } from './util.js';
+import { b64url, cookie, fail, json, readCookies, redirect } from './util.js';
 
 const ACCOUNT_DAYS = 7;
 const SUPPORTER_DAYS = 180;
@@ -12,7 +12,8 @@ const utf8 = new TextEncoder();
 
 /** The page NanoShare sends people to: signs them in if needed, then hands the pass back. */
 export const PASS_PATH = '/api/nanoshare/pass';
-export const isPassNext = next => /^\/api\/nanoshare\/pass\?[A-Za-z0-9=&_.-]{0,200}$/.test(next || '');
+const PICK_COOKIE = 'nh_nspick';
+export const isPassNext =next => /^\/api\/nanoshare\/pass\?[A-Za-z0-9=&_.-]{0,200}$/.test(next || '');
 
 async function signingKey(env) {
   if (!env.NANOSHARE_PASS_JWK) throw Object.assign(new Error('NANOSHARE_PASS_JWK missing'), { status: 503 });
@@ -54,17 +55,23 @@ export async function passPage(req, env, url, site) {
     return fail(400, 'bad_request');
   }
   // Always through Google's account chooser first (even when already signed in here), so people pick
-  // which Google account NanoShare uses; "picked=1" marks the trip back from Google.
+  // which Google account NanoShare uses. "picked" marks the trip back from Google; it must match a
+  // one-time value in a cookie we set just now, so a crafted link can't skip the chooser.
   const user = await currentUser(req, env);
-  if (!user || url.searchParams.get('picked') !== '1') {
+  const picked = url.searchParams.get('picked');
+  const expected = readCookies(req)[PICK_COOKIE];
+  if (!user || !picked || !expected || picked !== expected) {
+    const nonce = b64url(crypto.getRandomValues(new Uint8Array(16)));
     const back = new URL(url);
-    back.searchParams.set('picked', '1');
-    return redirect(`/api/auth/google?next=${encodeURIComponent(back.pathname + back.search)}`);
+    back.searchParams.set('picked', nonce);
+    return redirect(`/api/auth/google?next=${encodeURIComponent(back.pathname + back.search)}`,
+      [['set-cookie', cookie(PICK_COOKIE, nonce, { maxAge: 600, path: PASS_PATH, secure: (site ?? url).protocol === 'https:' })]]);
   }
+  const used = ['set-cookie', cookie(PICK_COOKIE, '', { maxAge: 0, path: PASS_PATH, secure: (site ?? url).protocol === 'https:' })];
   const pass = await passFor(env, user);
   return to === 'web'
-    ? redirect(`${share}/#pass=${pass}`)
-    : redirect(`http://127.0.0.1:${port}/nanoshare-pass?state=${encodeURIComponent(state)}&pass=${encodeURIComponent(pass)}`);
+    ? redirect(`${share}/#pass=${pass}`, [used])
+    : redirect(`http://127.0.0.1:${port}/nanoshare-pass?state=${encodeURIComponent(state)}&pass=${encodeURIComponent(pass)}`, [used]);
 }
 
 /** /account: this user's NanoShare level. */
