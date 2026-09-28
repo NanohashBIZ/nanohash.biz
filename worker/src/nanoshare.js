@@ -6,7 +6,7 @@ import { currentUser } from './auth.js';
 import { b64url, cookie, fail, json, readCookies, redirect } from './util.js';
 
 const ACCOUNT_DAYS = 7;
-const SUPPORTER_DAYS = 180;
+const SUPPORTER_DAYS = 100 * 365;   // supporting is for good: the pass doesn't run out
 export const SUPPORTER_PRICE = 9900; // satang: 99 THB
 const utf8 = new TextEncoder();
 
