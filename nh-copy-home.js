@@ -30,8 +30,8 @@ window.NH_COPY = {
     'facts.2s': 'Easy to use and easy to understand',
     'facts.3': "Free, every feature",
     'facts.3s': "Support us after 30 days",
-    'facts.4': 'No account needed',
-    'facts.4s': 'Download and start right away',
+    'facts.4': 'One account for every License',
+    'facts.4s': 'Sign in with Google and manage your keys in one place',
 
     'products.label': 'Products',
     'products.title': 'Tools for your PC, your documents and sharing files',
@@ -67,13 +67,13 @@ window.NH_COPY = {
     'approach.1.title': 'Clear at every step',
     'approach.1.text': 'Every tool tells you what it will do and why, and you always confirm it yourself.',
     'approach.2.title': 'No monthly fees',
-    'approach.2.text': "Every feature is free to use. After 30 days you can support us with an offline License Key. No account needed.",
+    'approach.2.text': "Every feature is free to use. After 30 days you can support us with a one-time payment, for 1 year or for life. No monthly fees.",
     'approach.3.title': 'Thai that never breaks',
     'approach.3.text': 'No floating vowels, no broken fonts, and Thai search that finds what you type.',
 
     'about.label': 'Why NanoHash',
     'about.title': 'Nano by name.<br>Full-strength by design.',
-    'about.text': 'NanoHash makes small, light Windows apps that install from a single file. No account needed, and they update themselves from inside the app.',
+    'about.text': 'NanoHash makes small, light Windows apps that install from a single file, work right away without signing in, and update themselves from inside the app.',
 
 
     'about.s1': 'One setup file, uninstall from Settings',

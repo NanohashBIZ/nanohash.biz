@@ -2,7 +2,7 @@
 window.NH_COPY = {
   en: {
     'meta.title': 'NanoPDF — Every PDF task, in one Windows app',
-    'meta.description': "Read, edit, convert, OCR, certify copies, sign and send PDFs on Windows. Full Thai support. Every feature free, no account needed.",
+    'meta.description': "Read, edit, convert, OCR, certify copies, sign and send PDFs on Windows. Full Thai support. Every feature free, ready to use right after download.",
     'skip': 'Skip to content',
     'lang.label': 'Choose language',
     'nav.account': 'My account',
@@ -100,7 +100,7 @@ window.NH_COPY = {
 
     'trial.label': "Free, with support",
     'trial.title': "Free to use. Support us after 30 days.",
-    'trial.text': "No account, no card. After 30 days every feature keeps working. If you like it, support us with a License Key, which activates offline.",
+    'trial.text': "Ready to use right after download, no card needed. After 30 days every feature keeps working. If you like it, support us with a License Key: one payment, and one key works on 2 PCs.",
     'trial.cta': "Download free",
     'trial.ask': "Ask about a License Key",
 
