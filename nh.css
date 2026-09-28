@@ -661,3 +661,61 @@ html[lang="en"] .nh-buy-banner { display: none; } /* the artwork is in Thai; the
 .nh-btn--primary .nh-ver, .nh-btn--lime .nh-ver { background: rgba(255, 255, 255, .18); }
 .nh-btn--lime .nh-ver { background: rgba(19, 35, 90, .12); }
 .nh-dl-head .nh-ver { margin-left: auto; padding: 4px 10px; background: var(--alt); color: var(--muted); font-size: 13px; opacity: 1; }
+
+/* ---------- NanoBot mascot + help menu (nh-bot.js) ---------- */
+.nh-bot { --bot-w: 104px; position: fixed; right: 18px; bottom: 14px; z-index: 150; width: var(--bot-w); font-family: var(--font); opacity: 0; transform: translateY(40px); transition: opacity .5s var(--ease), transform .7s cubic-bezier(.3, 1.5, .5, 1); }
+.nh-bot.is-in { opacity: 1; transform: none; }
+.nh-bot-btn { position: relative; display: block; width: 100%; aspect-ratio: 336 / 440; padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.nh-bot-btn:focus-visible { outline: 3px solid var(--tidy); outline-offset: 4px; border-radius: 22px; }
+.nh-bot-float { position: absolute; inset: 0; perspective: 420px; animation: nh-bot-float 3.4s ease-in-out infinite; }
+.nh-bot-body { --look-x: 0; --look-y: 0; position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateY(calc(var(--look-x) * 17deg)) rotateX(calc(var(--look-y) * -7deg)) rotateZ(calc(var(--look-x) * 2deg)); transition: transform .7s var(--ease); filter: drop-shadow(0 10px 14px rgba(19, 35, 90, .22)); }
+.nh-bot-l { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; pointer-events: none; user-select: none; -webkit-user-select: none; }
+/* the face sits on the screen: slide it further than the head turns, so the head reads as round */
+.nh-bot-face { position: absolute; inset: 0; transform: translate(calc(var(--look-x) * 3.4%), calc(var(--look-y) * 2.2%)); transition: transform .6s var(--ease); }
+.nh-bot-eye { transition: transform .07s ease-in; }
+.nh-bot-eye--l { transform-origin: 29.46% 33.75%; }
+.nh-bot-eye--r { transform-origin: 51.79% 37.5%; }
+.nh-bot.is-blink .nh-bot-eye { transform: scaleY(.08); }
+.nh-bot-arm { transform-origin: 66.07% 60.91%; }
+.nh-bot.is-waving .nh-bot-arm { animation: nh-bot-wave 1.5s ease-in-out; }
+.nh-bot-shadow { position: absolute; left: 14%; right: 22%; bottom: -2px; height: 9px; border-radius: 50%; background: radial-gradient(closest-side, rgba(19, 35, 90, .28), transparent); animation: nh-bot-shadow 3.4s ease-in-out infinite; }
+.nh-bot-btn:hover .nh-bot-body { filter: drop-shadow(0 12px 18px rgba(19, 35, 90, .3)); }
+@keyframes nh-bot-float { 50% { transform: translateY(-6px); } }
+@keyframes nh-bot-shadow { 50% { transform: scaleX(.86); opacity: .7; } }
+@keyframes nh-bot-wave {
+  0%, 100% { transform: rotate(0); }
+  15% { transform: rotate(-20deg); }
+  32% { transform: rotate(9deg); }
+  50% { transform: rotate(-20deg); }
+  68% { transform: rotate(9deg); }
+  84% { transform: rotate(-8deg); }
+}
+
+.nh-bot-bubble { position: absolute; right: calc(var(--bot-w) * .62); bottom: calc(var(--bot-w) * 1.2); width: max-content; max-width: 220px; padding: 10px 14px; border-radius: 16px 16px 4px 16px; background: var(--ink); color: #fff; font-size: 14.5px; font-weight: 500; line-height: 1.45; box-shadow: var(--shadow); opacity: 0; transform: translateY(8px) scale(.94); transform-origin: 100% 100%; pointer-events: none; transition: opacity .3s var(--ease), transform .35s var(--ease); }
+.nh-bot.is-talking .nh-bot-bubble { opacity: 1; transform: none; }
+
+.nh-bot-panel { position: absolute; right: 0; bottom: calc(var(--bot-w) * 1.36 + 10px); width: 292px; max-width: calc(100vw - 32px); padding: 18px 16px 12px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--bg); color: var(--text); box-shadow: 0 1px 2px rgba(19, 35, 90, .08), 0 24px 48px -12px rgba(19, 35, 90, .32); transform-origin: 85% 100%; animation: nh-bot-pop .28s var(--ease); }
+.nh-bot-panel::after { content: ""; position: absolute; right: 40px; bottom: -7px; width: 14px; height: 14px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg); transform: rotate(45deg); }
+@keyframes nh-bot-pop { from { opacity: 0; transform: translateY(8px) scale(.96); } }
+.nh-bot-title { margin: 0 34px 2px 4px; color: var(--ink); font-size: 16.5px; font-weight: 700; line-height: 1.35; }
+.nh-bot-lead { margin: 0 4px 10px; color: var(--muted); font-size: 14.5px; line-height: 1.45; }
+.nh-bot-x { position: absolute; top: 10px; right: 10px; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 999px; background: none; color: var(--muted); cursor: pointer; }
+.nh-bot-x:hover { background: var(--alt); color: var(--ink); }
+.nh-bot-x svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.nh-bot-menu { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.nh-bot-menu a { display: flex; align-items: center; gap: 12px; min-height: 46px; padding: 8px 10px; border-radius: var(--radius); color: var(--ink); font-size: 15px; font-weight: 600; line-height: 1.3; text-decoration: none; transition: background-color .15s var(--ease); }
+.nh-bot-menu a:hover, .nh-bot-menu a:focus-visible { background: var(--alt); }
+.nh-bot-menu a:focus-visible { outline: 2px solid var(--tidy); outline-offset: -2px; }
+.nh-bot-menu svg { flex: none; width: 34px; height: 34px; padding: 7px; border-radius: 10px; background: var(--lime); fill: none; stroke: var(--ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.nh-bot-menu small { display: block; color: var(--muted); font-size: 13px; font-weight: 500; }
+.nh-bot-hide { display: block; margin: 8px auto 0; padding: 6px 10px; border: 0; background: none; color: var(--muted); font: 500 13px/1.3 var(--font); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.nh-bot-hide:hover { color: var(--ink); }
+
+@media (max-width: 640px) {
+  .nh-bot { --bot-w: 78px; right: 10px; bottom: 8px; }
+  .nh-bot-bubble { font-size: 13.5px; max-width: 190px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nh-bot, .nh-bot-float, .nh-bot-shadow, .nh-bot-body, .nh-bot-face, .nh-bot-panel, .nh-bot-bubble { animation: none; transition: none; }
+}
+@media print { .nh-bot { display: none; } }

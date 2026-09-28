@@ -313,5 +313,6 @@
 <script src="nh-install-guide.js"></script>
 <script src="nh-versions.js"></script>
 <script>document.querySelectorAll('.nh-copy').forEach(function(b){b.addEventListener('click',function(){var live=b.nextElementSibling,done=function(){b.classList.add('is-copied');live.textContent=document.documentElement.lang==='en'?'Email address copied':'คัดลอกอีเมลแล้ว';setTimeout(function(){b.classList.remove('is-copied');live.textContent=''},1800)};if(navigator.clipboard){navigator.clipboard.writeText(b.dataset.copy).then(done,function(){})}})});</script>
+<script src="nh-bot.js" defer></script>
 </body>
 </html>
