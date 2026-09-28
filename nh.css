@@ -100,12 +100,15 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-hero h1 { margin-top: 20px; }
 .nh-lead { max-width: 560px; margin-top: 22px; color: var(--muted); font-size: 19px; text-wrap: pretty; }
 .nh-hero .nh-actions { margin-top: 34px; }
-.nh-hero-shots { position: relative; padding: 0 0 34% 0; }
+.nh-hero-shots { position: relative; aspect-ratio: 20 / 17; }
 .nh-hero-shots::before { content: ""; position: absolute; inset: 8% -6% -4% 10%; border-radius: 28px; background: linear-gradient(135deg, var(--tidy-soft), var(--share-soft) 55%, var(--lime-soft)); }
 .nh-shot { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
-.nh-hero-shots .nh-shot:nth-child(1) { width: 80%; }
-.nh-hero-shots .nh-shot:nth-child(2) { position: absolute; right: 0; bottom: 9%; width: 64%; }
-.nh-hero-shots .nh-shot:nth-child(3) { position: absolute; z-index: 1; left: 4%; bottom: 0; width: 46%; }
+.nh-hero-shots .nh-shot { position: absolute; transition: left .9s var(--ease), top .9s var(--ease), width .9s var(--ease), transform .9s var(--ease), box-shadow .9s var(--ease); }
+/* three places the screenshots rotate through (nh-motion.js); without JS each keeps its first place */
+.nh-hero-shots .nh-shot:not([data-slot]):nth-child(1), .nh-hero-shots .nh-shot[data-slot="0"] { z-index: 1; left: 0; top: 0; width: 80%; transform: translateY(0); }
+.nh-hero-shots .nh-shot:not([data-slot]):nth-child(2), .nh-hero-shots .nh-shot[data-slot="1"] { z-index: 2; left: 36%; top: 91%; width: 64%; transform: translateY(-100%); }
+.nh-hero-shots .nh-shot:not([data-slot]):nth-child(3), .nh-hero-shots .nh-shot[data-slot="2"] { z-index: 3; left: 4%; top: 100%; width: 46%; transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) { .nh-hero-shots .nh-shot { transition: none; } }
 
 /* ---------- Facts strip ---------- */
 .nh-facts { padding: 8px 0 32px; }
