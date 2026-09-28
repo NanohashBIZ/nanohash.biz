@@ -569,3 +569,14 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-acc-machine-who { display: grid; min-width: 0; }
 .nh-acc-machine-who strong { font-size: 15px; overflow-wrap: anywhere; }
 .nh-acc-machine-who small { color: var(--muted); font-size: 13px; }
+
+/* ---------- Buy cards: app screenshots ---------- */
+.nh-buy-card { overflow: hidden; padding: 0 0 20px; background: #fff; }
+.nh-buy-card > h3, .nh-buy-card > .nh-buy-tag, .nh-buy-card > .nh-buy-options { margin-inline: 20px; }
+.nh-buy-shot { padding: 22px 22px 0; background: var(--lime-soft); }
+.nh-buy-card--tidy .nh-buy-shot { background: linear-gradient(160deg, var(--tidy-soft), #d6e6ff); }
+.nh-buy-card--pdf .nh-buy-shot { background: linear-gradient(160deg, var(--lime-soft), #e9ffa8); }
+.nh-buy-shot .nh-shot { border-bottom: 0; border-radius: 12px 12px 0 0; box-shadow: 0 -1px 0 var(--line), 0 16px 32px -18px rgba(19, 35, 90, .35); }
+.nh-buy-shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; }
+.nh-buy-card h3 { margin-top: 4px; }
+.nh-buy-tag { margin-top: -6px; color: var(--muted); font-size: 14px; }

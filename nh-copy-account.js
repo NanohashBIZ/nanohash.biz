@@ -29,6 +29,11 @@ window.NH_COPY = {
     'buy.title': 'Buy a License',
     'buy.text': 'Pay with Stripe and the License Key appears in this account right away, with a receipt by email.',
     'buy.name': 'Name to show in the License Key',
+    'buy.tidySrc': 'img/ui-home-en.jpg',
+    'buy.tidyAlt': 'TidyUp PC overview screen with the PC health score',
+    'buy.tidyTag': 'Keep your PC fast and safe from one screen',
+    'buy.pdfAlt': 'NanoPDF editing the text of a Thai document',
+    'buy.pdfTag': 'Every PDF job in one app, with Thai that stays right',
     'buy.1y': '1 year',
     'buy.never': 'Lifetime',
 
