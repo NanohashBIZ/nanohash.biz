@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://nanohash.biz/</loc></url>
-  <url><loc>https://nanohash.biz/tidyup</loc></url>
-  <url><loc>https://nanohash.biz/nanopdf</loc></url>
-  <url><loc>https://nanohash.biz/nanoshare</loc></url>
-  <url><loc>https://nanohash.biz/install</loc></url>
-  <url><loc>https://nanohash.biz/privacy</loc></url>
+  <url><loc>https://nanohash.biz/</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://nanohash.biz/tidyup</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://nanohash.biz/nanopdf</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://nanohash.biz/nanoshare</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://nanohash.biz/install</loc><lastmod>2026-09-28</lastmod></url>
+  <url><loc>https://nanohash.biz/privacy</loc><lastmod>2026-09-28</lastmod></url>
 </urlset>
