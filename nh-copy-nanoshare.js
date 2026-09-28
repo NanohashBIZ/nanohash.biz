@@ -15,7 +15,7 @@ window.NH_COPY = {
 
     'hero.eyebrow': 'Free · Windows app and web',
     'hero.title': 'Send files between devices. Just drag and drop.',
-    'hero.lead': 'Send files, whole folders, messages and links straight from one device to another. Encrypted all the way, never stored anywhere, and no account needed.',
+    'hero.lead': 'Send files, whole folders, messages and links straight from one device to another. Encrypted all the way and never stored anywhere. Send up to 200 MB at a time for free, or 1 GB when you sign in with Google.',
     'hero.cta': 'Download for Windows',
     'hero.web': 'Use it in your browser',
     'hero.meta': 'Free for personal and business use · Windows 10/11 64-bit · No admin rights needed',
@@ -90,10 +90,10 @@ window.NH_COPY = {
 
     'faq.label': 'Help',
     'faq.title': 'Common questions',
-    'faq.1.q': 'Does the receiver need an app or an account?',
+    'faq.1.q': 'Does the receiver need an app or to sign in?',
     'faq.1.a': 'No. The receiver opens the link, scans the QR code or types the code at share.nanohash.biz in any browser, on a computer or a phone.',
     'faq.2.q': 'How big can files be?',
-    'faq.2.a': 'In the Windows app and in Chrome or Edge there is no size limit. In other browsers and on phones, files over 200 MB are held in memory before saving, so very large files may not come through.',
+    'faq.2.a': 'Over the internet you can send up to 200 MB at a time for free, 1 GB when signed in with Google, and without limits for good after a one-time ฿99 support. Between PCs on the same LAN, the Windows app has no size limit. Receivers in browsers other than Chrome or Edge, and on phones, hold files over 200 MB in memory before saving, so very large files may not come through.',
     'faq.3.q': 'Why does it sometimes fail to connect?',
     'faq.3.a': 'Files go straight between devices with no relay server, so some networks, such as company networks, do not allow the direct connection. Try another Wi-Fi or mobile data.',
     'faq.4.q': 'Does it keep sending if I close the window?',
@@ -101,7 +101,7 @@ window.NH_COPY = {
     'faq.5.q': 'What does my PC need?',
     'faq.5.a': 'Windows 10 (version 1809 or later) or Windows 11, 64-bit, and Microsoft Edge WebView2, which comes with Windows 11 and is a free download from Microsoft for Windows 10. Sending to nearby PCs over LAN needs an internet connection once, the first time.',
     'faq.6.q': 'Can I use it at work? What does it cost?',
-    'faq.6.a': 'It is free for personal and business use, on all of your computers. There is no trial and no License Key.',
+    'faq.6.a': 'It is free for personal and business use, on all of your computers. There is no trial and no License Key. To send more than 1 GB at a time, support us once with ฿99 and the limit is gone for good.',
 
     'footer.nav': 'Footer',
     'footer.install': 'Install guide',
