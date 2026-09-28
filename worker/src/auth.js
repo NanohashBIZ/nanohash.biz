@@ -1,5 +1,6 @@
 // Sign in with Google (OAuth 2.0 authorization code flow with PKCE) and cookie sessions.
 import { cookie, fail, fromB64url, json, nowIso, randomToken, readCookies, redirect, sha256, b64url } from './util.js';
+import { isPassNext } from './nanoshare.js';
 
 const GOOGLE_AUTH = 'https://accounts.google.com/o/oauth2/v2/auth';
 const GOOGLE_TOKEN = 'https://oauth2.googleapis.com/token';
@@ -20,7 +21,9 @@ export async function start(req, env, url, site) {
   // www: start again on the main origin so the cookies land on one host
   if (url.hostname.startsWith('www.')) return redirect(`${site.origin}${url.pathname}${url.search}`);
   if (!env.GOOGLE_CLIENT_ID || !env.GOOGLE_CLIENT_SECRET) return redirect('/account?error=setup');
-  const next = NEXT.has(url.searchParams.get('next')) ? url.searchParams.get('next') : '/account';
+  const asked = url.searchParams.get('next');
+  // NanoShare's pass page may ask to come back to it (with its own query)
+  const next = NEXT.has(asked) || isPassNext(asked) ? asked : '/account';
   const state = randomToken(24);
   const verifier = randomToken(48);
   const challenge = b64url(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier))));

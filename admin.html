@@ -45,6 +45,7 @@
           <button type="button" role="tab" data-tab="keys" aria-selected="false">Key ทั้งหมด</button>
           <button type="button" role="tab" data-tab="import" aria-selected="false">นำเข้า Key เดิม</button>
           <button type="button" role="tab" data-tab="history" aria-selected="false">คำขอทั้งหมด</button>
+          <button type="button" role="tab" data-tab="nanoshare" aria-selected="false">NanoShare</button>
         </nav>
 
         <section class="nh-acc-block" data-panel="pending">
@@ -94,6 +95,18 @@
           </form>
         </section>
 
+        <section class="nh-acc-block" data-panel="nanoshare" hidden>
+          <h2>ผู้สนับสนุน NanoShare</h2>
+          <p class="nh-acc-sub">ผู้สนับสนุนส่งไฟล์ใน NanoShare ได้ไม่จำกัด ปกติระบบตั้งให้เองเมื่อชำระ 99 บาทผ่าน Stripe ใช้ช่องนี้เมื่อโอนเองหรือต้องการยกเลิก ผู้ใช้ต้องเคยเข้าสู่ระบบด้วย Google มาก่อน</p>
+          <form class="nh-acc-form" id="ad-ns">
+            <label class="nh-field"><span>อีเมล Google ของผู้ใช้</span><input type="email" name="email" required maxlength="200"></label>
+            <div class="nh-acc-submit">
+              <button type="submit" class="nh-btn nh-btn--primary" value="1">ตั้งเป็นผู้สนับสนุน</button>
+              <button type="submit" class="nh-btn nh-btn--secondary" value="0">ยกเลิก</button>
+              <p class="nh-acc-msg" id="ad-ns-msg" aria-live="polite"></p>
+            </div>
+          </form>
+        </section>
         <section class="nh-acc-block" data-panel="history" hidden>
           <h2>คำขอทั้งหมด</h2>
           <div class="nh-acc-list" id="ad-history"></div>

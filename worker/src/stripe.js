@@ -2,6 +2,7 @@
 // Prices live here on the server; the browser only picks a product and a term.
 import { PRODUCTS, expiryFor, signKey } from './license.js';
 import { fail, json, nowIso, readJson, str } from './util.js';
+import { SUPPORTER_PRICE } from './nanoshare.js';
 
 const API = 'https://api.stripe.com/v1';
 const API_VERSION = '2026-06-24.dahlia';
@@ -65,8 +66,18 @@ export async function createCheckout(req, user, env, site) {
   const term = str(body.term, 10);
   const name = str(body.name, 80) || user.name;
   const lang = body.lang === 'en' ? 'en' : 'th';
-  if (!PRODUCTS[product]) return fail(400, 'product');
-  if (!PRICES[term]) return fail(400, 'term');
+  // NanoShare supporter: 99 THB once, unlimited sending, no License Key
+  const nanoshare = product === 'nanoshare';
+  if (!nanoshare && !PRODUCTS[product]) return fail(400, 'product');
+  if (!nanoshare && !PRICES[term]) return fail(400, 'term');
+  const amount = nanoshare ? SUPPORTER_PRICE : PRICES[term];
+  const orderTerm = nanoshare ? 'supporter' : term;
+  const itemName = nanoshare
+    ? (lang === 'en' ? 'NanoShare supporter (unlimited, forever)' : 'ผู้สนับสนุน NanoShare (ส่งไม่จำกัด ถาวร)')
+    : `${PRODUCTS[product].name} License — ${TERM_LABEL[term][lang]}`;
+  const itemText = nanoshare
+    ? (lang === 'en' ? `Unlimited sending for ${user.email}` : `ส่งไฟล์ไม่จำกัดสำหรับ ${user.email}`)
+    : (lang === 'en' ? `License Key for ${name}` : `License Key สำหรับ ${name}`);
 
   const session = await stripe(env, 'POST', '/checkout/sessions', {
     mode: 'payment',
@@ -77,23 +88,20 @@ export async function createCheckout(req, user, env, site) {
       quantity: 1,
       price_data: {
         currency: CURRENCY,
-        unit_amount: PRICES[term],
-        product_data: {
-          name: `${PRODUCTS[product].name} License — ${TERM_LABEL[term][lang]}`,
-          description: lang === 'en' ? `License Key for ${name}` : `License Key สำหรับ ${name}`,
-        },
+        unit_amount: amount,
+        product_data: { name: itemName, description: itemText },
       },
     }],
     invoice_creation: { enabled: true },
     automatic_tax: { enabled: env.STRIPE_AUTOMATIC_TAX === 'true' },
-    metadata: { product, term, name, user_id: user.id },
+    metadata: { product, term: orderTerm, name, user_id: user.id },
     success_url: `${site.origin}/account?paid={CHECKOUT_SESSION_ID}`,
     cancel_url: `${site.origin}/account?cancelled=1`,
   });
 
   await env.DB.prepare(`INSERT INTO orders (session_id, user_id, email, product, term, display_name, amount, currency, livemode, status, created_at)
     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, 'open', ?10)`)
-    .bind(session.id, user.id, user.email, product, term, name, PRICES[term], CURRENCY, session.livemode ? 1 : 0, nowIso()).run();
+    .bind(session.id, user.id, user.email, product, orderTerm, name, amount, CURRENCY, session.livemode ? 1 : 0, nowIso()).run();
   return json({ url: session.url });
 }
 
@@ -107,6 +115,11 @@ async function fulfill(env, session) {
   const claim = await env.DB.prepare("UPDATE orders SET status = 'paid', paid_at = ?2 WHERE session_id = ?1 AND status = 'open'")
     .bind(session.id, nowIso()).run();
   if (!claim.meta.changes) return null;
+  if (order.product === 'nanoshare') {
+    // supporter: unlimited NanoShare sending on this account; nothing to sign
+    await env.DB.prepare('UPDATE users SET nanoshare_supporter = 1 WHERE id = ?1').bind(order.user_id).run();
+    return 'supporter';
+  }
   try {
     const exp = expiryFor(order.term);
     const key = await signKey(env.LICENSE_PRIVATE_JWK, order.product, order.display_name, order.email, exp);

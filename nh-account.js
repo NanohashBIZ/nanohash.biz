@@ -4,7 +4,7 @@
     th: {
       product: { tidyup: 'TidyUp PC', nanopdf: 'NanoPDF' },
       never: 'ใช้ได้ตลอด', expires: 'ใช้ได้ถึง', expired: 'หมดอายุแล้ว', issued: 'ออกให้เมื่อ',
-      copy: 'คัดลอก', copied: 'คัดลอกแล้ว',
+      copy: 'คัดลอก', copied: 'คัดลอกแล้ว', all: 'ทั้งหมด', manage: 'จัดการ', pcs: (n, max) => `${n}/${max} เครื่อง`,
       noLicenses: 'ยังไม่มี License Key ในบัญชีนี้ ถ้าสนับสนุนเราแล้ว แจ้งได้ในฟอร์มด้านล่าง',
       machines: (n, max) => `เครื่องที่ใช้ Key นี้ ${n}/${max}`, noMachines: 'ยังไม่ได้ใส่ Key นี้ในเครื่องไหน',
       firstUsed: 'เริ่มใช้', lastSeen: 'ใช้ล่าสุด', removeMachine: 'เอาเครื่องนี้ออก',
@@ -14,6 +14,8 @@
       toStripe: 'กำลังไปหน้าชำระเงิน…', paidOk: 'ชำระเงินเรียบร้อย License Key อยู่ในรายการด้านบนแล้ว ขอบคุณที่สนับสนุนเรา',
       paidWait: 'ได้รับการชำระเงินแล้ว กำลังออก License Key รีเฟรชหน้านี้อีกครั้งในอีกสักครู่', payCancelled: 'ยกเลิกการชำระเงินแล้ว ยังไม่มีการตัดเงิน',
       payNotDone: 'ยังไม่ได้รับการชำระเงิน ถ้าจ่ายด้วย PromptPay อาจใช้เวลาสักครู่',
+      nsFree: 'บัญชีนี้ส่งไฟล์ใน NanoShare ได้ครั้งละ 1 GB', nsSupporter: 'คุณเป็นผู้สนับสนุน NanoShare ส่งไฟล์ได้ไม่จำกัด ขอบคุณมาก',
+      nsPaid: 'ขอบคุณที่สนับสนุน NanoShare ตอนนี้ส่งได้ไม่จำกัดแล้ว กด “เปิด NanoShare ด้วยบัญชีนี้” หรือเข้าสู่ระบบในโปรแกรมอีกครั้ง',
       ref: 'อ้างอิง', slip: 'แนบสลิปแล้ว', sent: 'ส่งคำขอแล้ว เราจะตรวจสอบและแจ้งผลในหน้านี้', sending: 'กำลังส่ง…',
       errors: {
         cancelled: 'ยกเลิกการเข้าสู่ระบบแล้ว', state: 'การเข้าสู่ระบบหมดเวลา ลองใหม่อีกครั้ง',
@@ -29,7 +31,7 @@
     en: {
       product: { tidyup: 'TidyUp PC', nanopdf: 'NanoPDF' },
       never: 'Lifetime', expires: 'Valid until', expired: 'Expired', issued: 'Issued',
-      copy: 'Copy', copied: 'Copied',
+      copy: 'Copy', copied: 'Copied', all: 'All', manage: 'Manage', pcs: (n, max) => `${n}/${max} PCs`,
       noLicenses: 'No License Keys in this account yet. If you have supported us, tell us in the form below.',
       machines: (n, max) => `PCs using this key ${n}/${max}`, noMachines: 'Not entered on any PC yet',
       firstUsed: 'Since', lastSeen: 'Last seen', removeMachine: 'Remove this PC',
@@ -39,6 +41,8 @@
       toStripe: 'Opening the payment page…', paidOk: 'Payment complete. Your License Key is in the list above. Thank you for supporting us.',
       paidWait: 'Payment received. Your License Key is being issued; refresh this page in a moment.', payCancelled: 'Payment cancelled. You have not been charged.',
       payNotDone: 'Payment not received yet. PromptPay payments can take a moment.',
+      nsFree: 'This account can send 1 GB at a time in NanoShare', nsSupporter: 'You support NanoShare: unlimited sending. Thank you!',
+      nsPaid: 'Thank you for supporting NanoShare. Unlimited sending is on: tap “Open NanoShare with this account”, or sign in again in the app.',
       ref: 'Reference', slip: 'Slip attached', sent: 'Request sent. We will check it and show the result here.', sending: 'Sending…',
       errors: {
         cancelled: 'Sign-in was cancelled.', state: 'Sign-in timed out. Please try again.',
@@ -83,29 +87,71 @@
     const list = $('acc-licenses');
     list.replaceChildren();
     if (!state.licenses.length) { list.append(el('p', 'nh-acc-empty', t().noLicenses)); return; }
-    for (const lic of state.licenses) {
-      const row = el('article', 'nh-acc-item nh-acc-lic');
-      const head = el('div', 'nh-acc-item-head');
-      const title = el('strong', 'nh-acc-prod');
-      title.append(el('i', `nh-dl-dot nh-dl-dot--${lic.product === 'tidyup' ? 'tidy' : 'pdf'}`), t().product[lic.product] || lic.product);
-      const expired = lic.exp !== 'never' && lic.exp < today();
-      const exp = el('span', `nh-acc-badge${expired ? ' is-bad' : ' is-ok'}`,
-        lic.exp === 'never' ? t().never : expired ? `${t().expired} ${date(lic.exp)}` : `${t().expires} ${date(lic.exp)}`);
-      head.append(title, exp);
-      const meta = el('p', 'nh-acc-meta', `${lic.name} · ${lic.email} · ${t().issued} ${date(lic.created_at)}`);
-      const key = el('code', 'nh-acc-key', lic.license_key);
-      const actions = el('div', 'nh-acc-actions');
-      const copy = el('button', 'nh-btn nh-btn--primary nh-btn--small', t().copy);
-      copy.type = 'button';
-      copy.addEventListener('click', async () => {
-        try { await navigator.clipboard.writeText(lic.license_key); } catch { selectText(key); return; }
-        copy.textContent = t().copied;
-        setTimeout(() => { copy.textContent = t().copy; }, 1800);
-      });
-      actions.append(copy);
-      row.append(head, meta, key, actions, machineList(lic));
-      list.append(row);
+
+    // filter chips once there is more than one product
+    const counts = {};
+    for (const l of state.licenses) counts[l.product] = (counts[l.product] || 0) + 1;
+    const products = Object.keys(counts);
+    if (state.licFilter && !counts[state.licFilter]) state.licFilter = '';
+    if (products.length > 1) {
+      const bar = el('div', 'nh-lic-filter');
+      bar.setAttribute('role', 'group');
+      const chip = (value, label, n) => {
+        const b = el('button', 'nh-lic-chip', `${label} ${n}`);
+        b.type = 'button';
+        b.setAttribute('aria-pressed', String((state.licFilter || '') === value));
+        b.addEventListener('click', () => { state.licFilter = value; renderLicenses(); });
+        return b;
+      };
+      bar.append(chip('', t().all, state.licenses.length), ...products.map(p => chip(p, t().product[p] || p, counts[p])));
+      list.append(bar);
     }
+
+    const shown = state.licenses.filter(l => !state.licFilter || l.product === state.licFilter);
+    const box = el('div', 'nh-lic-list');
+    for (const lic of shown) box.append(licenseRow(lic));
+    list.append(box);
+  }
+
+  function licenseRow(lic) {
+    const max = state.maxMachines || 2;
+    const used = (lic.machines || []).length;
+    const expired = lic.exp !== 'never' && lic.exp < today();
+    const row = el('details', 'nh-lic');
+    if (state.openLic === lic.id) row.open = true;
+    row.addEventListener('toggle', () => { state.openLic = row.open ? lic.id : (state.openLic === lic.id ? null : state.openLic); });
+
+    const sum = el('summary', 'nh-lic-sum');
+    const id = el('div', 'nh-lic-id');
+    const title = el('strong', 'nh-acc-prod');
+    title.append(el('i', `nh-dl-dot nh-dl-dot--${lic.product === 'tidyup' ? 'tidy' : 'pdf'}`), t().product[lic.product] || lic.product);
+    id.append(title, el('small', null, `${lic.name} · ${keyPreview(lic.license_key)}`));
+    const exp = el('span', `nh-acc-badge${expired ? ' is-bad' : ' is-ok'}`,
+      lic.exp === 'never' ? t().never : expired ? `${t().expired} ${date(lic.exp)}` : `${t().expires} ${date(lic.exp)}`);
+    const pcs = el('span', `nh-lic-pcs${used >= max ? ' is-full' : ''}`, t().pcs(used, max));
+    const copy = copyButton(lic.license_key, 'nh-btn--secondary');
+    copy.addEventListener('click', e => e.preventDefault()); // do not toggle the row
+    const more = el('span', 'nh-lic-more', t().manage);
+    sum.append(id, exp, pcs, copy, more);
+
+    const body = el('div', 'nh-lic-body');
+    const key = el('code', 'nh-acc-key', lic.license_key);
+    body.append(el('p', 'nh-acc-meta', `${lic.email} · ${t().issued} ${date(lic.created_at)}`), key, machineList(lic));
+    row.append(sum, body);
+    return row;
+  }
+
+  const keyPreview = k => (k.length > 18 ? `${k.slice(0, 8)}…${k.slice(-6)}` : k);
+
+  function copyButton(text, cls) {
+    const b = el('button', `nh-btn ${cls} nh-btn--small`, t().copy);
+    b.type = 'button';
+    b.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(text); } catch { return; }
+      b.textContent = t().copied;
+      setTimeout(() => { b.textContent = t().copy; }, 1800);
+    });
+    return b;
   }
 
   function machineList(lic) {
@@ -176,6 +222,14 @@
     $('acc-admin').hidden = !state.admin;
     renderLicenses();
     renderRequests();
+    renderNanoShare();
+  }
+
+  function renderNanoShare() {
+    const supporter = !!state.nanoshare?.supporter;
+    $('ns-status').textContent = supporter ? t().nsSupporter : t().nsFree;
+    $('ns-status').className = 'nh-acc-msg' + (supporter ? ' is-ok' : '');
+    $('ns-support').hidden = supporter;
   }
 
   async function load() {
@@ -183,7 +237,8 @@
       const me = await api('/api/me');
       state.user = me.user;
       state.admin = me.admin;
-      const [lic, req] = await Promise.all([api('/api/licenses'), api('/api/requests')]);
+      const [lic, req, ns] = await Promise.all([api('/api/licenses'), api('/api/requests'), api('/api/nanoshare').catch(() => null)]);
+      state.nanoshare = ns;
       state.licenses = lic.licenses;
       state.maxMachines = lic.max_machines;
       state.requests = req.requests;
@@ -249,12 +304,34 @@
     }
   }));
 
+  // NanoShare supporter: 99 THB once, same Stripe Checkout as the License Keys
+  $('ns-support').addEventListener('click', async () => {
+    const b = $('ns-support');
+    const msg = $('ns-status');
+    b.disabled = true;
+    msg.className = 'nh-acc-msg';
+    msg.textContent = t().toStripe;
+    try {
+      const { url } = await api('/api/checkout', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ product: 'nanoshare', term: 'supporter', lang: document.documentElement.lang }),
+      });
+      location.href = url;
+    } catch (err) {
+      msg.textContent = t().errors[err.code] || t().errors.other;
+      msg.classList.add('is-bad');
+      b.disabled = false;
+    }
+  });
   // back from Stripe Checkout: confirm the payment so the key is issued even before the webhook arrives
   async function afterCheckout(sessionId) {
     const msg = $('acc-buy-msg');
     try {
       const r = await api(`/api/checkout/${encodeURIComponent(sessionId)}/confirm`, { method: 'POST' });
-      msg.textContent = r.paid ? (r.issued ? t().paidOk : t().paidWait) : t().payNotDone;
+      state.nanoshare = await api('/api/nanoshare').catch(() => state.nanoshare);
+      const nanoshare = r.paid && state.nanoshare?.supporter;
+      msg.textContent = nanoshare ? t().nsPaid : r.paid ? (r.issued ? t().paidOk : t().paidWait) : t().payNotDone;
+      renderNanoShare();
       msg.classList.add(r.paid ? 'is-ok' : 'is-bad');
       state.licenses = (await api('/api/licenses')).licenses;
       renderLicenses();
@@ -279,6 +356,7 @@
   load().then(() => {
     if (!state.user) return;
     if (paid) afterCheckout(paid);
+    else if (params.get('support') === 'nanoshare') $('nanoshare').scrollIntoView({ block: 'center' });
     else if (cancelled) { $('acc-buy-msg').textContent = t().payCancelled; $('buy').scrollIntoView({ block: 'center' }); }
   });
 })();

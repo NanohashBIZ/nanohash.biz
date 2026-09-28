@@ -148,6 +148,25 @@
   }
 
   const loaders = { pending: loadPending, history: loadHistory, keys: () => loadKeys($('ad-search').q.value) };
+  // NanoShare supporter on/off by email
+  document.getElementById('ad-ns').addEventListener('submit', async e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const msg = document.getElementById('ad-ns-msg');
+    const supporter = e.submitter?.value === '1';
+    msg.className = 'nh-acc-msg';
+    try {
+      await api('/api/admin/nanoshare/supporter', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ email: form.email.value, supporter }),
+      });
+      msg.textContent = supporter ? 'ตั้งเป็นผู้สนับสนุนแล้ว' : 'ยกเลิกแล้ว';
+      msg.classList.add('is-ok');
+    } catch (err) {
+      msg.textContent = err.code === 'no_user' ? 'ไม่พบผู้ใช้อีเมลนี้ (ต้องเคยเข้าสู่ระบบก่อน)' : 'ทำไม่สำเร็จ';
+      msg.classList.add('is-bad');
+    }
+  });
   document.querySelectorAll('.nh-ad-tabs [data-tab]').forEach(tab => tab.addEventListener('click', async () => {
     document.querySelectorAll('.nh-ad-tabs [data-tab]').forEach(b => b.setAttribute('aria-selected', String(b === tab)));
     document.querySelectorAll('[data-panel]').forEach(p => { p.hidden = p.dataset.panel !== tab.dataset.tab; });

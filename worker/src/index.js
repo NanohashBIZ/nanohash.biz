@@ -1,5 +1,6 @@
 // nanohash.biz: static pages from ./public, plus the account API under /api/.
 import * as act from './activation.js';
+import * as ns from './nanoshare.js';
 import * as admin from './admin.js';
 import { callback, currentUser, logout, start } from './auth.js';
 import * as pay from './stripe.js';
@@ -24,6 +25,8 @@ async function route(req, env, url) {
   if (method === 'GET' && path === '/api/auth/google') return start(req, env, url, site);
   if (method === 'GET' && path === '/api/auth/callback') return callback(req, env, url, site);
   if (method === 'POST' && path === '/api/auth/logout') return logout(req, env, site);
+  // NanoShare asks for a pass here; signs in first when needed
+  if (method === 'GET' && path === ns.PASS_PATH) return ns.passPage(req, env, url, site);
 
   const me = await currentUser(req, env);
   if (!me) return fail(401, 'signed_out');
@@ -31,6 +34,7 @@ async function route(req, env, url) {
   if (method === 'GET' && path === '/api/me') return user.me(me);
   if (method === 'GET' && path === '/api/licenses') return user.myLicenses(me, env);
   if (method === 'GET' && path === '/api/requests') return user.myRequests(me, env);
+  if (method === 'GET' && path === '/api/nanoshare') return ns.status(me, env);
   if (method === 'POST' && path === '/api/requests') return user.createRequest(req, me, env);
   if (method === 'POST' && path === '/api/checkout') return pay.createCheckout(req, me, env, site);
   let a;
@@ -48,6 +52,7 @@ async function route(req, env, url) {
   if (method === 'GET' && path === '/api/admin/licenses') return admin.listLicenses(env, url);
   if (method === 'POST' && path === '/api/admin/licenses') return admin.create(req, env, me);
   if (method === 'POST' && path === '/api/admin/licenses/import') return admin.importKeys(req, env, me);
+  if (method === 'POST' && path === '/api/admin/nanoshare/supporter') return ns.setSupporter(req, env);
   if (method === 'POST' && (m = path.match(/^\/api\/admin\/licenses\/(\d+)\/revoke$/))) return admin.revoke(env, +m[1]);
   if (method === 'POST' && (m = path.match(/^\/api\/admin\/licenses\/(\d+)\/delete$/))) return admin.removeLicense(env, +m[1]);
   if (method === 'POST' && (m = path.match(/^\/api\/admin\/machines\/(\d+)\/remove$/))) return act.removeMachineAsAdmin(env, +m[1]);
