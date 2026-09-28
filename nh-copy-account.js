@@ -30,6 +30,12 @@ window.NH_COPY = {
     'profile.admin': 'Admin',
     'profile.logout': 'Sign out',
 
+    'tabs.label': 'My account',
+    'tabs.licenses': 'License Keys',
+    'tabs.buy': 'Buy a License',
+    'tabs.support': 'Paid another way',
+    'tabs.history': 'My requests',
+
     'lic.title': 'License Keys',
     'lic.howto': 'How to use: click Copy, then paste the key into the app’s License Key screen. The first time needs internet to activate. One key works on 2 PCs.',
 

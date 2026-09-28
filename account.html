@@ -69,13 +69,22 @@
           <button type="button" class="nh-btn nh-btn--secondary nh-btn--small" id="acc-logout" data-i18n="profile.logout">ออกจากระบบ</button>
         </div>
 
-        <section class="nh-acc-block" aria-labelledby="lic-title">
+        <nav class="nh-acc-tabs" role="tablist" aria-label="บัญชีของฉัน" data-i18n-attr="aria-label:tabs.label">
+          <button type="button" role="tab" data-tab="licenses" aria-selected="true"><span data-i18n="tabs.licenses">License Key</span> <b id="acc-tab-lic"></b></button>
+          <button type="button" role="tab" data-tab="buy" aria-selected="false" data-i18n="tabs.buy">ซื้อ License</button>
+          <button type="button" role="tab" data-tab="nanoshare" aria-selected="false">NanoShare</button>
+          <button type="button" role="tab" data-tab="support" aria-selected="false" data-i18n="tabs.support">แจ้งโอนเงิน</button>
+          <button type="button" role="tab" data-tab="history" aria-selected="false"><span data-i18n="tabs.history">คำขอของฉัน</span> <b id="acc-tab-req"></b></button>
+        </nav>
+        <p class="nh-acc-notice" id="acc-notice" role="status" hidden></p>
+
+        <section class="nh-acc-block" id="licenses" data-panel="licenses" aria-labelledby="lic-title">
           <h2 id="lic-title" data-i18n="lic.title">License Key</h2>
           <div class="nh-acc-list" id="acc-licenses"></div>
           <p class="nh-acc-fine" data-i18n="lic.howto">วิธีใช้: กดคัดลอก แล้ววาง Key ในหน้าใส่ License Key ของโปรแกรม ครั้งแรกต้องต่ออินเทอร์เน็ตเพื่อเปิดใช้ 1 Key ใช้ได้ 2 เครื่อง</p>
         </section>
 
-        <section class="nh-acc-block" id="buy" aria-labelledby="buy-title">
+        <section class="nh-acc-block" id="buy" data-panel="buy" aria-labelledby="buy-title" hidden>
           <h2 id="buy-title" data-i18n="buy.title">ซื้อ License</h2>
           <p class="nh-acc-sub" data-i18n="buy.text">ชำระเงินผ่าน Stripe แล้ว License Key จะขึ้นในบัญชีนี้ทันที พร้อมใบเสร็จทางอีเมล</p>
           <label class="nh-field nh-buy-name">
@@ -105,7 +114,7 @@
           <p class="nh-acc-msg" id="acc-buy-msg" aria-live="polite"></p>
         </section>
 
-        <section class="nh-acc-block nh-ns" id="nanoshare" aria-labelledby="ns-title">
+        <section class="nh-acc-block nh-ns" id="nanoshare" data-panel="nanoshare" aria-labelledby="ns-title" hidden>
 <div class="nh-ns-copy">
 <h2 id="ns-title" data-i18n="ns.title">NanoShare</h2>
 <p class="nh-acc-sub" data-i18n="ns.lead">ส่งไฟล์ฟรีครั้งละ 200 MB · เข้าสู่ระบบแล้วส่งได้ครั้งละ 1 GB · สนับสนุน 99 บาทครั้งเดียว ส่งได้ไม่จำกัดตลอดไป</p>
@@ -118,7 +127,7 @@
 <div class="nh-ns-shot"><div class="nh-shot"><img src="img/nanoshare/app-home.png" alt="แอป NanoShare พร้อมช่องลากไฟล์มาวางและช่องใส่รหัสรับไฟล์" data-i18n-attr="alt:ns.alt" width="980" height="700" loading="lazy"></div></div>
 </section>
 
-<section class="nh-acc-block" id="support" aria-labelledby="req-title">
+<section class="nh-acc-block" id="support" data-panel="support" aria-labelledby="req-title" hidden>
           <h2 id="req-title" data-i18n="req.title">โอนเงินเองแล้ว? แจ้งที่นี่</h2>
           <p class="nh-acc-sub" data-i18n="req.text">ถ้าคุณโอนเงินหรือสนับสนุนเราด้วยช่องทางอื่น แจ้งที่นี่ เราจะตรวจสอบและออก License Key เข้าบัญชีนี้ให้</p>
           <form class="nh-acc-form" id="acc-form" novalidate>
@@ -150,7 +159,7 @@
           </form>
         </section>
 
-        <section class="nh-acc-block" aria-labelledby="hist-title">
+        <section class="nh-acc-block" id="requests" data-panel="history" aria-labelledby="hist-title" hidden>
           <h2 id="hist-title" data-i18n="hist.title">คำขอของคุณ</h2>
           <div class="nh-acc-list" id="acc-requests"></div>
         </section>

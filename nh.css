@@ -635,3 +635,17 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nh-ns-shot { order: -1; margin: -22px -18px 0; padding: 20px 20px 0; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
   .nh-ns-shot .nh-shot { width: 100%; border-right: 1px solid var(--line); border-radius: 12px 12px 0 0; }
 }
+
+/* ---------- Account: tabs ---------- */
+.nh-acc-tabs { display: flex; gap: 6px; margin-top: 22px; padding: 6px; overflow-x: auto; border: 1px solid var(--line); border-radius: 999px; background: #fff; scrollbar-width: none; }
+.nh-acc-tabs::-webkit-scrollbar { display: none; }
+.nh-acc-tabs button { display: inline-flex; flex: none; align-items: center; gap: 6px; min-height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font: 600 14px/1 var(--font); white-space: nowrap; cursor: pointer; transition: background-color .15s var(--ease), color .15s var(--ease); }
+.nh-acc-tabs button:hover { color: var(--ink); background: var(--alt); }
+.nh-acc-tabs button[aria-selected="true"] { background: var(--ink); color: #fff; }
+.nh-acc-tabs b { min-width: 20px; padding: 2px 6px; border-radius: 999px; background: #e6ebf5; color: var(--ink); font-size: 12px; text-align: center; }
+.nh-acc-tabs b:empty { display: none; }
+.nh-acc-tabs button[aria-selected="true"] b { background: var(--lime); }
+.nh-acc-notice { margin-top: 16px; padding: 14px 18px; border-radius: var(--radius); font-weight: 600; }
+.nh-acc-notice.is-ok { border: 1px solid #c8e67a; background: var(--lime-soft); color: #2f5200; }
+.nh-acc-notice.is-bad { border: 1px solid #f3c1bb; background: #fff4f2; color: #9b2c1f; }
+#acc-in > [data-panel] { margin-top: 16px; }

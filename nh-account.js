@@ -11,7 +11,7 @@
       confirmRemove: name => `เอา ${name} ออกจาก Key นี้?\n\nเครื่องนั้นจะกลับเป็นยังไม่ได้เปิดใช้ภายใน 7 วัน และใส่ Key นี้ในเครื่องใหม่แทนได้`,
       noRequests: 'ยังไม่มีคำขอ',
       status: { pending: 'รอตรวจสอบ', approved: 'อนุมัติแล้ว', rejected: 'ไม่อนุมัติ' },
-      toStripe: 'กำลังไปหน้าชำระเงิน…', paidOk: 'ชำระเงินเรียบร้อย License Key อยู่ในรายการด้านบนแล้ว ขอบคุณที่สนับสนุนเรา',
+      toStripe: 'กำลังไปหน้าชำระเงิน…', paidOk: 'ชำระเงินเรียบร้อย License Key ใหม่อยู่ในรายการด้านล่างแล้ว ขอบคุณที่สนับสนุนเรา',
       paidWait: 'ได้รับการชำระเงินแล้ว กำลังออก License Key รีเฟรชหน้านี้อีกครั้งในอีกสักครู่', payCancelled: 'ยกเลิกการชำระเงินแล้ว ยังไม่มีการตัดเงิน',
       payNotDone: 'ยังไม่ได้รับการชำระเงิน ถ้าจ่ายด้วย PromptPay อาจใช้เวลาสักครู่',
       nsFree: 'บัญชีนี้ส่งไฟล์ใน NanoShare ได้ครั้งละ 1 GB', nsSupporter: 'คุณเป็นผู้สนับสนุน NanoShare ส่งไฟล์ได้ไม่จำกัด ขอบคุณมาก',
@@ -38,7 +38,7 @@
       confirmRemove: name => `Remove ${name} from this key?\n\nThat PC goes back to not activated within 7 days, and you can enter the key on a new PC instead.`,
       noRequests: 'No requests yet',
       status: { pending: 'Being checked', approved: 'Approved', rejected: 'Not approved' },
-      toStripe: 'Opening the payment page…', paidOk: 'Payment complete. Your License Key is in the list above. Thank you for supporting us.',
+      toStripe: 'Opening the payment page…', paidOk: 'Payment complete. Your new License Key is in the list below. Thank you for supporting us.',
       paidWait: 'Payment received. Your License Key is being issued; refresh this page in a moment.', payCancelled: 'Payment cancelled. You have not been charged.',
       payNotDone: 'Payment not received yet. PromptPay payments can take a moment.',
       nsFree: 'This account can send 1 GB at a time in NanoShare', nsSupporter: 'You support NanoShare: unlimited sending. Thank you!',
@@ -222,6 +222,7 @@
     $('acc-admin').hidden = !state.admin;
     renderLicenses();
     renderRequests();
+    tabCounts();
     renderNanoShare();
   }
 
@@ -279,6 +280,7 @@
       msg.classList.add('is-ok');
       state.requests = (await api('/api/requests')).requests;
       renderRequests();
+      tabCounts();
     } catch (err) {
       bad(err.code);
     } finally {
@@ -331,16 +333,55 @@
       state.nanoshare = await api('/api/nanoshare').catch(() => state.nanoshare);
       // pick the message by what this checkout bought, not by the account's NanoShare status
       const nanoshare = r.paid && r.product === 'nanoshare';
-      msg.textContent = nanoshare ? t().nsPaid : r.paid ? (r.issued ? t().paidOk : t().paidWait) : t().payNotDone;
       renderNanoShare();
-      msg.classList.add(r.paid ? 'is-ok' : 'is-bad');
       state.licenses = (await api('/api/licenses')).licenses;
       renderLicenses();
+      tabCounts();
+      if (r.paid) {
+        showTab(nanoshare ? 'nanoshare' : 'licenses');
+        notice(nanoshare ? t().nsPaid : r.issued ? t().paidOk : t().paidWait);
+        return;
+      }
+      msg.textContent = t().payNotDone;
+      msg.classList.add('is-bad');
     } catch (err) {
       msg.textContent = t().errors[err.code] || t().errors.other;
       msg.classList.add('is-bad');
     }
-    $('buy').scrollIntoView({ block: 'center' });
+    showTab('buy');
+  }
+
+  // ---- tabs: one section at a time; the hash (#buy, #nanoshare, ...) opens a tab directly ----
+  const TAB_OF_HASH = { licenses: 'licenses', buy: 'buy', nanoshare: 'nanoshare', support: 'support', requests: 'history' };
+  const HASH_OF_TAB = { licenses: 'licenses', buy: 'buy', nanoshare: 'nanoshare', support: 'support', history: 'requests' };
+  function showTab(name, { focus = false } = {}) {
+    if (!document.querySelector(`[data-panel="${name}"]`)) name = 'licenses';
+    document.querySelectorAll('.nh-acc-tabs [data-tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === name)));
+    document.querySelectorAll('#acc-in [data-panel]').forEach(p => { p.hidden = p.dataset.panel !== name; });
+    const hash = name === 'licenses' ? '' : `#${HASH_OF_TAB[name]}`;
+    if (location.hash !== hash) history.replaceState(null, '', location.pathname + location.search + hash);
+    if (focus) document.querySelector('.nh-acc-tabs [aria-selected="true"]')?.focus();
+  }
+  document.querySelectorAll('.nh-acc-tabs [data-tab]').forEach(b => b.addEventListener('click', () => { notice(''); showTab(b.dataset.tab); }));
+  document.querySelector('.nh-acc-tabs').addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const tabs = [...document.querySelectorAll('.nh-acc-tabs [data-tab]')];
+    const i = tabs.findIndex(b => b.getAttribute('aria-selected') === 'true');
+    showTab(tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length].dataset.tab, { focus: true });
+  });
+  window.addEventListener('hashchange', () => showTab(TAB_OF_HASH[location.hash.slice(1)] || 'licenses'));
+
+  function notice(text, ok = true) {
+    const n = $('acc-notice');
+    n.hidden = !text;
+    n.textContent = text || '';
+    n.className = `nh-acc-notice${ok ? ' is-ok' : ' is-bad'}`;
+  }
+
+  function tabCounts() {
+    $('acc-tab-lic').textContent = state.licenses.length ? String(state.licenses.length) : '';
+    const pending = state.requests.filter(r => r.status === 'pending').length;
+    $('acc-tab-req').textContent = pending ? String(pending) : '';
   }
 
   document.addEventListener('nh:lang', () => { if (!$('acc-loading').hidden) return; render(); });
@@ -357,7 +398,8 @@
   load().then(() => {
     if (!state.user) return;
     if (paid) afterCheckout(paid);
-    else if (params.get('support') === 'nanoshare') $('nanoshare').scrollIntoView({ block: 'center' });
-    else if (cancelled) { $('acc-buy-msg').textContent = t().payCancelled; $('buy').scrollIntoView({ block: 'center' }); }
+    else if (params.get('support') === 'nanoshare') showTab('nanoshare');
+    else if (cancelled) { showTab('buy'); $('acc-buy-msg').textContent = t().payCancelled; }
+    else showTab(TAB_OF_HASH[location.hash.slice(1)] || 'licenses');
   });
 })();
