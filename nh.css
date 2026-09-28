@@ -370,6 +370,14 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-ig-chip span { display: grid; min-width: 0; }
 .nh-ig-chip b { overflow: hidden; color: var(--ink); font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
 .nh-ig-chip small { color: var(--muted); font-size: 12px; }
+.nh-ig-edge { width: 100%; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: #fff; box-shadow: 0 10px 24px -14px rgba(19, 35, 90, .4); font-size: 12px; }
+.nh-ig-edge p { display: flex; align-items: flex-start; gap: 6px; padding: 8px 10px; background: #f3f3f3; color: #333; line-height: 1.35; }
+.nh-ig-edge p svg { flex: none; width: 14px; height: 14px; margin-top: 1px; fill: none; stroke: #b25e00; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.nh-ig-edge p span { min-width: 0; overflow-wrap: anywhere; }
+.nh-ig-edge p i { flex: none; margin-left: auto; padding: 0 6px; border-radius: 4px; background: #dcdcdc; font-style: normal; font-weight: 700; }
+.nh-ig-edge ul { margin: 0; padding: 4px; list-style: none; }
+.nh-ig-edge li { padding: 5px 8px; border-radius: 6px; color: #333; }
+.nh-ig-edge li.is-keep { outline: 2px solid var(--lime); box-shadow: 0 0 0 4px rgba(19, 35, 90, .55); background: #eef3ff; color: var(--ink); font-weight: 700; }
 .nh-ig-icon { display: grid; place-items: center; gap: 8px; }
 .nh-ig-icon svg { width: 64px; height: 64px; padding: 14px; border-radius: 18px; background: var(--ink); fill: none; stroke: var(--lime); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .nh-ig-icon span { color: var(--ink); font-weight: 700; }

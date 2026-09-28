@@ -9,6 +9,8 @@
       step: 'ขั้นที่',
       more: 'ดูวิธีติดตั้งแบบละเอียด',
       s1: ['เปิดไฟล์ที่ดาวน์โหลด', 'คลิกไฟล์ที่มุมขวาบนของเบราว์เซอร์ หรือในโฟลเดอร์ Downloads'],
+      s1edge: ['กด "..." แล้ว "Keep"', 'ถ้า Edge เตือนว่าไฟล์ไม่ค่อยมีคนดาวน์โหลด ให้กด ... ข้างชื่อไฟล์ แล้วเลือก Keep (เก็บไว้) ถ้าถามอีก กด Show more แล้ว Keep anyway จากนั้นคลิกเปิดไฟล์'],
+      edgeWarn: 'ไฟล์นี้ไม่ค่อยมีคนดาวน์โหลด',
       done: 'เสร็จแล้ว',
       s2: ['กด "More info"', 'ถ้า Windows ขึ้นหน้าจอสีแดง ให้กดข้อความนี้ใต้คำเตือน'],
       s3: ['เช็กชื่อไฟล์ แล้วกด "Run anyway"', 'ช่อง App ต้องเป็นชื่อไฟล์เดียวกับที่ดาวน์โหลด'],
@@ -23,6 +25,8 @@
       step: 'Step',
       more: 'See the full install guide',
       s1: ['Open the downloaded file', 'Click the file at the top right of your browser, or in your Downloads folder'],
+      s1edge: ['Click "..." then "Keep"', "If Edge says the file isn't commonly downloaded, click ... next to it and choose Keep. If it asks again, click Show more, then Keep anyway. Then open the file"],
+      edgeWarn: "isn't commonly downloaded",
       done: 'Done',
       s2: ['Click "More info"', 'If Windows shows a red screen, click this link below the warning'],
       s3: ['Check the name, then "Run anyway"', 'The App line must match the file you downloaded'],
@@ -41,9 +45,13 @@
     const tidy = /tidy/i.test(file);
     const share = /share/i.test(file);
     const s4 = tidy ? t.s4tidy : share ? t.s4share : t.s4pdf;
+    // Edge holds files it has rarely seen behind a "Keep" menu before they can be opened
+    const edge = /\bEdg\//.test(navigator.userAgent);
     const card = (n, [title, text], visual) =>
       `<li class="nh-ig-card"><p class="nh-ig-step">${t.step} ${n}</p><h3>${esc(title)}</h3><div class="nh-ig-visual">${visual}</div><p class="nh-ig-text">${esc(text)}</p></li>`;
     const chip = `<div class="nh-ig-chip"><img src="img/favicon-64.png" alt="" width="28" height="28"><span><b>${esc(file)}</b><small>${t.done}</small></span></div>`;
+    const edgeMenu = `<div class="nh-ig-edge"><p><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3l8 14H2zM10 8v4M10 14.5v.5"/></svg><span><b>${esc(file)}</b> ${t.edgeWarn}</span><i>···</i></p>
+      <ul><li>Delete</li><li class="is-keep">Keep</li><li>Report this file as safe</li></ul></div>`;
     const shot = (src, ring) => `<div class="nh-shot nh-shot--ring nh-ig-shot"><img src="${src}" alt="" width="529" height="495"><span class="nh-ring" style="${ring}"></span></div>`;
     const finish = tidy
       ? `<div class="nh-ig-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.5-3 8-7 9.5-4-1.5-7-5-7-9.5V6zM9 12l2 2 4-4"/></svg><span>Yes</span></div>`
@@ -58,7 +66,7 @@
           <button type="button" class="nh-ig-close" aria-label="${t.close}"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg></button>
         </header>
         <ol class="nh-ig-cards">
-          ${card(1, t.s1, chip)}
+          ${edge ? card(1, t.s1edge, edgeMenu) : card(1, t.s1, chip)}
           ${card(2, t.s2, shot('img/install/smartscreen-1.png', 'left:2.5%;top:22.5%;width:15%;height:7%'))}
           ${card(3, t.s3, shot('img/install/smartscreen-2.png', 'left:51.5%;top:87.5%;width:21.5%;height:9%'))}
           ${card(4, s4, finish)}
