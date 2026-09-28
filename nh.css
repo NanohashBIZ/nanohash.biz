@@ -210,10 +210,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-founder-sign { display: flex; align-items: center; gap: 16px; margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--ink); }
 .nh-founder-sign img { flex: none; width: 44px; height: 44px; }
 .nh-founder-who { display: grid; gap: 2px; }
-.nh-founder-name { position: relative; z-index: 0; justify-self: start; font-family: 'Charm', var(--font); font-size: 32px; font-weight: 700; line-height: 1.25; color: var(--ink); }
-.nh-founder-name::after { content: ""; position: absolute; z-index: -1; left: -2px; right: -6px; bottom: .12em; height: .32em; border-radius: 6px; background: var(--lime); opacity: .75; transform: rotate(-1deg); }
+.nh-founder-name { justify-self: start; font-family: 'Great Vibes', cursive; font-size: 46px; font-weight: 400; line-height: 1.05; color: var(--ink); transform: rotate(-3deg); transform-origin: left center; }
 .nh-founder-role { color: var(--muted); font-size: 14px; font-weight: 600; letter-spacing: .01em; }
-@media (max-width: 480px) { .nh-founder-name { font-size: 27px; } }
+@media (max-width: 480px) { .nh-founder-name { font-size: 40px; } }
 /* ---------- Contact band ---------- */
 .nh-band#contact { position: relative; overflow: hidden; text-align: left; }
 .nh-band#contact::before, .nh-band#contact::after { content: ""; position: absolute; border-radius: 50%; filter: blur(10px); pointer-events: none; }
