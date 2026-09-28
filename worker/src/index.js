@@ -53,6 +53,7 @@ async function route(req, env, url) {
   if (method === 'POST' && path === '/api/admin/licenses') return admin.create(req, env, me);
   if (method === 'POST' && path === '/api/admin/licenses/import') return admin.importKeys(req, env, me);
   if (method === 'POST' && path === '/api/admin/nanoshare/supporter') return ns.setSupporter(req, env);
+  if (method === 'GET' && path === '/api/admin/nanoshare/supporters') return ns.listSupporters(env);
   if (method === 'POST' && (m = path.match(/^\/api\/admin\/licenses\/(\d+)\/revoke$/))) return admin.revoke(env, +m[1]);
   if (method === 'POST' && (m = path.match(/^\/api\/admin\/licenses\/(\d+)\/delete$/))) return admin.removeLicense(env, +m[1]);
   if (method === 'POST' && (m = path.match(/^\/api\/admin\/machines\/(\d+)\/remove$/))) return act.removeMachineAsAdmin(env, +m[1]);

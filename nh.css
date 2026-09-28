@@ -612,3 +612,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* NanoShare on the account page */
 .nh-ns-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+
+/* ---------- Admin: NanoShare supporters ---------- */
+.nh-ad-count { color: var(--muted); font-size: .8em; font-weight: 600; }
+.nh-ad-subtitle { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 18px; }

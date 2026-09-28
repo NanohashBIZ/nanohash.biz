@@ -147,7 +147,32 @@
     }, 'ไม่พบ Key');
   }
 
-  const loaders = { pending: loadPending, history: loadHistory, keys: () => loadKeys($('ad-search').q.value) };
+  const baht = satang => `฿${(satang / 100).toLocaleString('th-TH')}`;
+
+  async function loadSupporters() {
+    const { supporters } = await api('/api/admin/nanoshare/supporters');
+    $('ad-ns-count').textContent = supporters.length ? `(${supporters.length})` : '';
+    fill($('ad-ns-list'), supporters, s => {
+      const card = el('article', 'nh-acc-item');
+      const head = el('div', 'nh-acc-item-head');
+      const via = s.paid_at
+        ? el('span', `nh-acc-badge ${s.livemode ? 'is-ok' : 'is-pending'}`, `Stripe ${baht(s.amount)}${s.livemode ? '' : ' · ทดสอบ'}`)
+        : el('span', 'nh-acc-badge', 'ตั้งโดยแอดมิน');
+      head.append(el('strong', 'nh-acc-prod', s.name || s.email), via);
+      const since = s.paid_at ? `สนับสนุนเมื่อ ${when(s.paid_at)}` : `สมัครบัญชีเมื่อ ${when(s.created_at)}`;
+      card.append(head, el('p', 'nh-acc-meta', `${s.email} · ${since} · เข้าสู่ระบบล่าสุด ${when(s.last_login)}`));
+      const actions = el('div', 'nh-acc-actions');
+      actions.append(button('ยกเลิกผู้สนับสนุน', 'nh-btn--danger', async () => {
+        if (!confirm(`ยกเลิกสถานะผู้สนับสนุน NanoShare ของ ${s.email}? (ไม่มีการคืนเงินอัตโนมัติ)`)) return;
+        await api('/api/admin/nanoshare/supporter', { json: { email: s.email, supporter: false } });
+        await loadSupporters();
+      }));
+      card.append(actions);
+      return card;
+    }, 'ยังไม่มีผู้สนับสนุน');
+  }
+
+  const loaders = { pending: loadPending, history: loadHistory, keys: () => loadKeys($('ad-search').q.value), nanoshare: loadSupporters };
   // NanoShare supporter on/off by email
   document.getElementById('ad-ns').addEventListener('submit', async e => {
     e.preventDefault();
@@ -162,6 +187,7 @@
       });
       msg.textContent = supporter ? 'ตั้งเป็นผู้สนับสนุนแล้ว' : 'ยกเลิกแล้ว';
       msg.classList.add('is-ok');
+      await loadSupporters();
     } catch (err) {
       msg.textContent = err.code === 'no_user' ? 'ไม่พบผู้ใช้อีเมลนี้ (ต้องเคยเข้าสู่ระบบก่อน)' : 'ทำไม่สำเร็จ';
       msg.classList.add('is-bad');

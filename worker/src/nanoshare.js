@@ -72,6 +72,18 @@ export async function status(user, env) {
   return json({ supporter: await isSupporter(env, user.id), price: SUPPORTER_PRICE });
 }
 
+/** Admin: every NanoShare supporter, with the Stripe payment when there is one (none = set by an admin). */
+export async function listSupporters(env) {
+  const { results } = await env.DB.prepare(`SELECT u.id, u.email, u.name, u.created_at, u.last_login,
+      o.amount, o.currency, o.paid_at, o.livemode
+    FROM users u
+    LEFT JOIN orders o ON o.session_id = (
+      SELECT session_id FROM orders WHERE user_id = u.id AND product = 'nanoshare' AND status = 'paid' ORDER BY paid_at DESC LIMIT 1)
+    WHERE u.nanoshare_supporter = 1
+    ORDER BY COALESCE(o.paid_at, u.created_at) DESC`).all();
+  return json({ supporters: results });
+}
+
 /** Admin: grant or take back supporter status by email. */
 export async function setSupporter(req, env) {
   const body = await req.json().catch(() => ({}));
