@@ -207,12 +207,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nh-founder-letter > p { margin-top: 18px; color: var(--text); font-size: 18px; }
 .nh-founder-quote { margin: 28px 0 8px; padding: 6px 0 6px 22px; border-left: 4px solid var(--lime); color: var(--ink); font-size: clamp(22px, 2.3vw, 28px); font-weight: 700; line-height: 1.4; }
 :lang(th) .nh-founder-quote { line-height: 1.55; }
-.nh-founder-sign { display: flex; align-items: center; gap: 16px; margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--ink); }
-.nh-founder-sign img { flex: none; width: 44px; height: 44px; }
-.nh-founder-who { display: grid; gap: 2px; }
-.nh-founder-name { justify-self: start; font-family: 'Great Vibes', cursive; font-size: 46px; font-weight: 400; line-height: 1.05; color: var(--ink); transform: rotate(-3deg); transform-origin: left center; }
-.nh-founder-role { color: var(--muted); font-size: 14px; font-weight: 600; letter-spacing: .01em; }
-@media (max-width: 480px) { .nh-founder-name { font-size: 40px; } }
+.nh-founder-sign { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 28px !important; color: var(--ink) !important; }
+.nh-founder-sign img { width: 36px; height: 36px; }
+.nh-founder-name { font-size: 17px; font-weight: 500; }
+.nh-founder-role { padding-left: 12px; border-left: 1px solid #c9d2e3; font-weight: 700; }
 /* ---------- Contact band ---------- */
 .nh-band#contact { position: relative; overflow: hidden; text-align: left; }
 .nh-band#contact::before, .nh-band#contact::after { content: ""; position: absolute; border-radius: 50%; filter: blur(10px); pointer-events: none; }
