@@ -1,7 +1,7 @@
 // English copy for index.html (the home page). Thai copy lives in the HTML.
 window.NH_COPY = {
   en: {
-    'meta.title': 'NanoHash — Windows apps: TidyUp PC, NanoPDF, NanoShare',
+    'meta.title': 'NanoHash - Smart Tech, Simple Life',
     'meta.description': 'NanoHash makes Windows software for PC care, PDF documents and file sharing: TidyUp PC, NanoPDF and NanoShare. Clear to use, private by default, fully in Thai and English.',
     'skip': 'Skip to content',
     'lang.label': 'Choose language',
