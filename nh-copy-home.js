@@ -27,11 +27,11 @@ window.NH_COPY = {
     'facts.1': 'Windows 10 and 11',
     'facts.1s': '64-bit editions',
     'facts.2': 'Thai and English',
-    'facts.2s': 'Easy to use and easy to understand',
+    'facts.2s': 'Clear and easy to use',
     'facts.3': "Free, every feature",
     'facts.3s': "Support us after 30 days",
     'facts.4': 'One account, every key',
-    'facts.4s': 'Sign in with Google to manage keys',
+    'facts.4s': 'Manage keys with Google',
 
     'products.label': 'Products',
     'products.title': 'Tools for your PC, your documents and sharing files',

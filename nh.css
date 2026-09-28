@@ -110,9 +110,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* ---------- Facts strip ---------- */
 .nh-facts { padding: 8px 0 32px; }
 .nh-facts ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 1px 2px rgba(19, 35, 90, .04), 0 20px 40px -24px rgba(19, 35, 90, .22); }
-.nh-facts li { display: flex; align-items: center; gap: 14px; padding: 22px 24px; }
+.nh-facts li { display: flex; align-items: center; gap: 12px; padding: 22px 20px; }
 .nh-facts li + li { border-left: 1px solid var(--line); }
 .nh-fact-cards strong { display: block; color: var(--ink); font-size: 16px; font-weight: 600; line-height: 1.4; text-wrap: balance; }
+@media (min-width: 1200px) { .nh-fact-cards strong, .nh-fact-cards small { white-space: nowrap; } }
 .nh-facts li > span:last-child { min-width: 0; }
 .nh-fact-cards small { display: block; margin-top: 3px; color: var(--muted); font-size: 14px; font-weight: 400; line-height: 1.45; }
 .nh-fact-icon { display: grid; flex: none; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--ink); color: var(--lime); transition: transform .25s var(--ease); }
